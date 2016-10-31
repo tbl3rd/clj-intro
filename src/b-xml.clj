@@ -11,13 +11,13 @@
   )
 
 [:vmext:RegisterVimServerParams
- [:vmext:VimServer {:name "vc1-name"}
+ [:vmext:VimServer :name "dvc1-name"
   [:Description "Got me ..."]
-  [:vmext:Username "vc1-user"]
-  [:vmext:Password "vc1-pass"]
+  [:vmext:Username "lyonst"]
+  [:vmext:Password "password"]
   [:vmext:Url "https://127.0.0.1"]
   [:vmext:IsEnabled true]]
- [:vmext:ShieldManager {:name "vsm1-name"}
+ [:vmext:ShieldManager :name "vsm1"
   [:vmext:Username "vsm1-user"]
   [:vmext:Password "vsm1-pass"]
   [:vmext:Url "https://127.0.0.1"]]]
