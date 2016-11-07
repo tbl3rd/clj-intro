@@ -24,7 +24,7 @@
 ;; CONJ adds to a list at the head.
 ;; CONJ adds to a set or map wherever.
 
-;; The words "adds to" do not mean that CONJ changes a collection.
+;; The words "adds to" do not mean that CONJ changes the collection.
 
 ;; The value CONJ produces is always a new collection containing
 ;; values from the old collection along with the argument values.
