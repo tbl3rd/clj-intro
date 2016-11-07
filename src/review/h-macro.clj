@@ -42,6 +42,13 @@
 (quote    identity)                     ;-=> identity
 (identity identity)                     ;-=> #function[clojure.core/identity]
 
+;; Unlike IDENTITY, QUOTE is so useful that it gets its own syntax.
+
+'identity                               ;-=> identity
+'quote                                  ;-=> quote
+'()                                     ;-=> ()
+'(0 1 2 3 4)                            ;-=> (0 1 2 3 4)
+
 ;; Some people find MACROS mysterious, because most languages do not
 ;; let programmers define their own.  But we've already used several
 ;; macros without even thinking about them.  Macros take the place of

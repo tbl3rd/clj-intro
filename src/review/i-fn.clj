@@ -6,7 +6,7 @@
 ;; of the base language as being a bunch of macros defined for you
 ;; that all compile down to various FN expressions.
 
-;; FN is THAT much fun.
+;; FN is THAT much fun.  Here is just a little of what it can do.
 
 ;; A FN expression is a list whose head is FN and whose tail consists
 ;; of a vector representing parameters, and a sequence of expressions
