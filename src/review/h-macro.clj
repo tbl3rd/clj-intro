@@ -52,8 +52,13 @@
 ;; Some people find MACROS mysterious, because most languages do not
 ;; let programmers define their own.  But we've already used several
 ;; macros without even thinking about them.  Macros take the place of
-;; the SYNTAX of other languages: they serve the same purpose as
-;; declarations, definitions, and conditionals in other languages.
+;; most of the SYNTAX of other languages: they serve the same purpose
+;; as declarations, definitions, and conditionals in other languages.
+
+;; Unlike other languages though, Clojure provides DEFMACRO so that
+;; programmers can define their own syntax as necessary. However,
+;; all of the syntax you are likely to need for a long while is
+;; already defined.
 
 ;; IF, AND, and OR are all standard Clojure macros.  They have to be.
 ;; Why?  Think about it.
