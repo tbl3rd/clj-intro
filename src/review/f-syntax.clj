@@ -1,5 +1,5 @@
 ;;
-;; Summary: Clojure Syntax and Programs Redux
+;; Summary: Clojure Syntax and Programs
 ;;
 
 ;; And with that, you have virtually the entire syntax of Clojure.
@@ -43,5 +43,3 @@
 
 ;; You are now a Clojure programmer.  While there is a lot more to
 ;; learn, all you really need is practice.
-
-;; So ... Let's practice!
