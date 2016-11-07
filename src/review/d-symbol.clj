@@ -42,6 +42,6 @@ vec vector map set first rest seq       ; also symbols
 
 ;; The value of a symbol is the value that symbol names.
 
-;; Evaluating a symbol that has no value is an error.
+;; Evaluating a symbol that has no value is an error though.
 
-;; Clojure defines all those symbols for you, so ... no errors.
+;; Clojure defines all the above symbols for you, so ... no errors.
