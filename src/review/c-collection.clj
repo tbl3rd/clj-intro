@@ -10,7 +10,7 @@
 ;; There is one more collection to be introduced later.
 ;;
 ;; Clojure's data language of ATOMS and COLLECTIONS encompasses
-;; all of the serialization formats in common use today.
+;; all of the textual data representations in common use today.
 
 "Clojure"                               ; \C is at 0 and \e at 6.
 
