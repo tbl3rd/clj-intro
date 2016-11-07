@@ -30,3 +30,6 @@ add1                                    ;-=> #function[boot.user/add1]
 ;; When evaluated, that DEFN expression translates exactly into the
 ;; DEF expression above, which translates into a LET expression, which
 ;; translates into a FN expression, which ... You get the picture.
+
+;; DEF and LET binding symbols to values is how you name nearly
+;; everything in Clojure.
