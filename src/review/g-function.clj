@@ -53,6 +53,7 @@
 
 ;; And a keyword is a function of its associations.
 
+(:T {:A :T :T :A :C :G :G :C})          ;-=> :A
 (:Harpo #{:Chico :Groucho :Harpo})      ;-=> :Groucho
 ((:sum {:sum + :difference -}) 1 2 3)   ;-=> 6
 
