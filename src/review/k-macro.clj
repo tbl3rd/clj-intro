@@ -5,8 +5,6 @@
 ;; When evaluated, the expression at the HEAD of a LIST must be a
 ;; FUNCTION or a MACRO.  (We discuss MACROS now!)
 
-;; Remember: The head of a list determines how Clojure evaluates it.
-
 ;; If the value of the head is a function, then Clojure evaluates the
 ;; expressions in the tail of that list and passes those values as
 ;; arguments to the function whose value is the head.
@@ -54,10 +52,11 @@
 "The first is translated directly into the second when read."
 
 ;; This short-handing of common usage is fundamental to programming
-;; Clojure and other L-word languages.  Most of Clojure's core is
-;; just names for common usage patterns discovered over generations.
-;; All those names are just shorthand for expressions that effectively
-;; compile down to only a very few fundamental functions and macros.
+;; Clojure and other L-word languages.  Most of Clojure's core just
+;; consists of names for the most common usage patterns discovered
+;; over generations. All those names are just shorthand for
+;; expressions that effectively compile down to only a very few
+;; fundamental functions and macros.
 
 ;; In fact, you can think of :, "", [], #{}, and {} as shorthand for
 ;; various function expressions such as (keyword ...), (str ...),
@@ -85,7 +84,54 @@
 (if true  :then :else)                  ;-=> :then
 (if false :then :else)                  ;-=> :else
 
-;; When you understand atoms, collections, functions, and macros, you
-;; understand the language.  There is nothing except the vocabulary of
-;; literals, functions, and macros provided by the standard library,
-;; and how to combine them into what you need to solve your problem.
+;; Consider the following Clojure functions.
+
+(def rob {:name "Rob" :dead? true})
+(def tom {:name "Tom" :dead? false})
+
+(defn zombie?
+  "True iff INTRUDER is a zombie."
+  [intruder]
+  (:dead? intruder))
+
+(zombie? rob)                           ;-=> true
+(zombie? tom)                           ;-=> false
+
+(defn greet
+  "Greet SOMEONE."
+  [someone]
+  (let [greeting (str "Hi " (:name someone))]
+    (println greeting)
+    greeting))
+
+(defn blast
+  "Blast SOMETHING to nothing!"
+  [something]
+  (println ["Blast!" something]))
+
+(defn protect
+  "Protect against zombie intruders."
+  [intruder]
+  (println 'protect)
+  (if (zombie? intruder) (blast intruder)
+      (greet intruder)))
+
+(protect rob)                          ;-=> nil after blasting in REPL
+(protect tom)                          ;-=> "Hello Tom"
+
+;; What would happen if IF were a function called FI?
+
+(defn fi
+  "Wrap if in a silly function."
+  [test then else]
+  (if test then else))
+
+(defn tcetorp
+  "Protection of a kind against intruders."
+  [intruder]
+  (println 'tcetorp)
+  (fi (zombie? intruder) (blast intruder)
+      (greet intruder)))
+
+(tcetorp rob)              ; nil again after blasting in REPL
+(tcetorp tom)              ; "Hello Tom" after blasting in REPL
