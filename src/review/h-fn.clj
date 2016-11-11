@@ -45,14 +45,14 @@
 
 (fn [f n] (f n))                        ; a function to apply F to N
 
-((fn [f n] (f n))                       ; Call "apply F to N" ...
+((fn [f n] (f n))                       ; Call "apply F to N"
  (fn [n] (+ 1 n))                       ; ... passing it "add 1 to N"
  2)                                     ; ... and 2 as arguments.
 
 ;; Although in this case, a better name for the F parameter is ADD1.
 
 ((fn [add1 n] (add1 n))                 ; Function to call ADD1 on N.
- (fn [n] (+ 1 n))                       ; Bind (+ 1 n) to ADD1.
+ (fn [n] (+ 1 n))                       ; Bind (fn [n] (+ 1 n)) to ADD1.
  2)                                     ; Bind 2 to N.
 
 ;; So now instead of repeating the (fn [n] (+ 1 n)) expression as above,
@@ -62,7 +62,7 @@
       n]                                ; Introduce symbol N.
    (add1                                ; Apply ADD1 to the result of ...
     (add1                               ; applying ADD1 to the result of
-     (add1 n))))                        ; applying ADD1 to N.
+     (add1 n))))                        ; ... applying ADD1 to N.
  (fn [n] (+ 1 n))                       ; ADD1's value is this FN.
  2)                                     ; N's value is this int.
 
@@ -87,7 +87,7 @@
            (add1
             (add1 n)))))))))))   ; Oh my!  Clutch my pearls!
  (fn [n] (+ 1 n))                ; Specify ADD1's value way down here.
- 2)                              ; Specify N's value is way down here.
+ 2)                              ; Specify N's value way down here.
 
 ;; What is wrong with it?  (Lost In a Sea of Parentheses?)
 

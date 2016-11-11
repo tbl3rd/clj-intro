@@ -12,7 +12,7 @@
 ;; keywords, characters, true, false, and nil all evaluate to
 ;; themselves.  Their values are printed just as they are read.
 
-;; There is one atom (symbol) and one collection (list) that are
+;; There is one atom SYMBOL and one collection LIST that are
 ;; evaluated differently.
 
 ;; Symbols and lists have values that differ from their literal
@@ -33,9 +33,9 @@
 ;; conventions -- Clojure does with just the atoms and collections
 ;; you've already seen.
 
-;; A Clojure program consists of reading a sequence of values written
-;; as atoms and collections, evaluating them according to the rules
-;; above, and printing the results.
+;; A Clojure program consists of reading a sequence of expressions
+;; written as atoms and collections, evaluating them according to the
+;; rules above, and printing the results.
 
 ;; Writing a Clojure program consists of using symbols to name values,
 ;; and composing lists of those values such that the side effect of

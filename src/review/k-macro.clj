@@ -11,7 +11,8 @@
 ;; expressions in the tail of that list and passes those values as
 ;; arguments to the function whose value is the head.
 
-;; Sometimes the head of the list is a MACRO instead of a function.
+;; However, sometimes the head of the list is a MACRO instead.
+
 ;; The rule for evaluating a list whose head is a MACRO differs from
 ;; the rule for evaluating a list whose head is a FUNCTION.
 
@@ -19,7 +20,7 @@
 ;; in the list's tail.  Instead, it passes those expressions to the
 ;; macro "unevaluated".  The macro then does whatever it likes with
 ;; those expressions to produce a new expression that Clojure then
-;; evaluates in place of the MACRO.
+;; evaluates in place of the MACRO form.
 
 ;; While a function takes in values and produces another value, a
 ;; macro takes in expressions to produce another expression, which
