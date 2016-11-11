@@ -56,6 +56,3 @@ list                     ;-=> #function[clojure.lang.PersistentList/1]
 (list fn?)               ;-=> (#function[clojure.core/fn?])
 ((first (list fn? + - count)) list)     ;-=> true
 ((first (list list fn? +)) 0 1 2)       ;-=> (0 1 2)
-
-;; But sometimes the HEAD is a SYMBOL whose value is NOT a function.
-;; Occasionally the head is a MACRO.  (MACROS come later.)

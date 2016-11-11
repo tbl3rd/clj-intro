@@ -2,15 +2,14 @@
 ;; Functions
 ;;
 
-;; Remember: When evaluated, the value of the expression at the HEAD
-;; of a LIST must be a FUNCTION or a MACRO.  (MACROS come later.)
-;; Here are examples of functions.
+;; When evaluating a list, the value of the expression at the HEAD
+;; of the list is most often a FUNCTION.
 
-;; FIRST is a function that returns the value at the head of a
-;; collection.
+;; FIRST and REST are examples of functions.
 
-;; REST is a function that returns the values in the tail of a
-;; collection as a list.
+;; FIRST returns the value at the head of a collection.
+
+;; REST returns the values in the tail of a collection as a list.
 
 ;; Notice that we say "FIRST and REST are functions" when we really
 ;; should say that "FIRST and REST are symbols whose values are
@@ -32,16 +31,33 @@
 ;; The value of a (rest ...) expression is always a list even if there
 ;; is nothing in it.  The head of an empty collection is nil.
 
+;; The 'operators' of other languages are also just Clojure functions.
+;; For example, these are all functions too.
+
++ - * / = == > < <= >=
+
+;; That means they have values just like 23 or "string"!
+;; Which means you can put them in a list and count them.
+
+(count (list + - * / = == > < <= >=))   ;-=> 10
+
 ;; When evaluated, the head of a list can be any expression whose
 ;; value is a function.  For example, the head can be a list.
 
 ((first (list + - * /)) 1 2 3)          ;-=> 6
 
+;; GET is a function which gets the value in the collection (its first
+;; argument) associated with the value in its second argument.
+
 ((get {:plus + :minus -} :minus) 1 2 3) ;-=> -4
 
-;; A vector is a function of its indexes.
+;; But unlike in other languages, Clojure collections can also
+;; function on their own.
 
-(["Clojure", 0 :to fn?] 2)              ;-=> :to
+;; For example, a vector is a function of its indexes.
+
+(get ["Clojure", 0 :to fn?] 2)          ;-=> :to
+(    ["Clojure", 0 :to fn?] 2)          ;-=> :to
 
 ;; A map is a function of its keys.
 
@@ -57,5 +73,8 @@
 (:Harpo #{:Chico :Groucho :Harpo})      ;-=> :Harpo
 ((:sum {:sum + :difference -}) 1 2 3)   ;-=> 6
 
-;; And, of course, functions are values, just like integers or
-;; strings, that can be passed to other functions.
+;; And finally, because functions are values, just like integers or
+;; strings, they can be passed to other functions as arguments and
+;; returned as results.
+
+(map (comp keyword str) (range 4))      ;-=> (:0 :1 :2 :3)

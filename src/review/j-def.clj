@@ -12,7 +12,7 @@
 
 add1                                    ;-=> #function[boot.user/add1]
 
-;; ... to a value, such as
+;; ... to a value, such as the value of
 
 (fn [n] (+ 1 n))
 
@@ -31,5 +31,5 @@ add1                                    ;-=> #function[boot.user/add1]
 ;; DEF expression above, which translates into a LET expression, which
 ;; translates into a FN expression, which ... You get the picture.
 
-;; DEF and LET binding symbols to values is how you name nearly
-;; everything in Clojure.
+;; Using DEF and LET to bind symbols to values is how you name most
+;; things in Clojure.

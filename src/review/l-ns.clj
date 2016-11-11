@@ -18,11 +18,11 @@
 ;; The NS-NAME function returns the name of its namespace argument.
 ;; Note that the name of a namespace is a symbol.
 
-;; The NS macro changes the namespace bound to *NS* such that DEF adds
-;; its bindings to it.  NS takes a symbol naming the new namespace and
-;; creates that namespace if it did not exist before.
+;; The CREATE-NS function makes a new namespace, and IN-NS changes the
+;; namespace bound to *NS* such that new DEF forms add bindings to it.
 
-(ns new-namespace)                      ;-=> nil
+(create-ns 'new-namespace)              ;-=> #namespace[new-namespace]
+(in-ns 'new-namespace)                  ;-=> #namespace[new-namespace]
 *ns*                                    ;-=> #namespace[new-namespace]
 
 ;; Since we are now in NEW-NAMESPACE, we must reference the symbols
@@ -73,9 +73,11 @@ String                                  ;-=> java.lang.String
 
 ;; Namespaces allow Clojure programs to use libraries and grow without
 ;; code in one part of the program interfering with, perhaps unknown,
-;; code in another part.  (They are kind of like packages in Java.)
+;; code in another part.  (They are used for organizing like packages
+;; in Java or modules in other languages.)
 
 ;; Let's return now to our prior namespace with IN-NS.
 
 (in-ns (quote boot.user))               ;-=> #namespace[boot.user]
+*ns*                                    ;-=> #namespace[boot.user]
 add1                                    ;-=> #function[boot.user/add1]

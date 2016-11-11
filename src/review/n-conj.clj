@@ -24,6 +24,9 @@
 ;; CONJ adds to a list at the head.
 ;; CONJ adds to a set or map wherever.
 
+;; INTO uses CONJ to add values to a collection, so (into () ...)
+;; effectively reverses the sequence of values in its arguments.
+
 ;; The words "adds to" do not mean that CONJ changes the collection.
 
 ;; The value CONJ produces is always a new collection containing

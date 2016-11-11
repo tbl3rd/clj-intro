@@ -5,13 +5,16 @@
 ;; What if we could define a macro that factored out the naming power
 ;; of FN such that the symbol could be next to the value it names.
 
-;; Clojure has already done that, and called it LET.
+;; Clojure has already done that, and called it LET.  LET factors out
+;; the naming capability of FN with a simpler syntax.
 
 (let [add1 (fn [n] (+ 1 n))             ; Bind ADD1 to (FN ...).
       n    2]                           ; Bind N to 2.
   (add1
    (add1
-    (add1 n))))                         ; ... and evaluate!
+    (add1
+     (add1
+      (add1 n))))))                     ; ... and evaluate!
 
 ;; LET takes a vector of pairs of expressions, each of which
 ;; represents a binding of the expression on the left to the
@@ -30,11 +33,13 @@
    (add1
     (add1
      (add1
-      n))))
+      (add1
+       (add1
+        n))))))
  (fn [n] (+ 1 n)) 2)                    ; The right sides.
 
-;; Each binding in the LET vector adds a new parameter to the FN's
-;; parameter vector and a new argument to the tail of the FN's
+;; Each binding in the LET vector adds a new parameter to a FN's
+;; parameter vector and a new argument to the tail of that FN's
 ;; enclosing list.
 
 ;; LET is just easier to read and write than the FN form because it
@@ -42,10 +47,12 @@
 ;; hanging them on opposite ends of the FN's expression, which can get
 ;; arbitrarily long.
 
-;; But you still can't use the ADD1 symbol outside of the LET form.
-;; Every time you want to introduce an ADD1 symbol to an expression,
-;; you have to write an enclosing LET form to bind it.
+;; LET is handy and common, but you still can't use the ADD1 symbol
+;; outside of the LET form. Symbols introduced by (LET ...) are bound
+;; only within its ()s.  With LET, every time you want to introduce an
+;; ADD1 symbol to an expression,you have to write an enclosing LET
+;; form to bind it.
 
-;; Is there a way to define ADD1 such that you could use it anywhere
-;; in a program without having to introduce a LET binding for it each
-;; time?
+;; So there must be a way to define ADD1 such that you can use it
+;; anywhere in a program without having to introduce a new LET binding
+;; for it each time.
