@@ -58,4 +58,4 @@ list                     ;-=> #function[clojure.lang.PersistentList/1]
 ((first (list list fn? +)) 0 1 2)       ;-=> (0 1 2)
 
 ;; But sometimes the HEAD is a SYMBOL whose value is NOT a function.
-;; Occasionally the head is a symbol that names a MACRO.
+;; Occasionally the head is a MACRO.  (MACROS come later.)

@@ -13,7 +13,7 @@
 ;; namespace is always bound to the symbol *NS*.
 
 *ns*                                    ;-=> #namespace[boot.user]
-(ns-name *ns*)                          ;-=> new-namespace
+(ns-name *ns*)                          ;-=> boot.user
 
 ;; The NS-NAME function returns the name of its namespace argument.
 ;; Note that the name of a namespace is a symbol.

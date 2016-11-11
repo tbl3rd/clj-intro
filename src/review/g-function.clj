@@ -54,7 +54,7 @@
 ;; And a keyword is a function of its associations.
 
 (:T {:A :T :T :A :C :G :G :C})          ;-=> :A
-(:Harpo #{:Chico :Groucho :Harpo})      ;-=> :Groucho
+(:Harpo #{:Chico :Groucho :Harpo})      ;-=> :Harpo
 ((:sum {:sum + :difference -}) 1 2 3)   ;-=> 6
 
 ;; And, of course, functions are values, just like integers or
