@@ -82,9 +82,9 @@
 ;; Quasiquote is like quote except that inside a Quasiquoted form, an
 ;; Unquoted symbol is replaced with the expression bound to it.
 
-(let [expression 'beatles?]
+(let [expression 'beatle?]
   `(println [(quote ~expression) ~expression]))
-;;-=> (clojure.core/println [(quote beatles?) beatles?])
+;;-=> (clojure.core/println [(quote beatle?) beatle?])
 
 ;; You can think of Quasiquote as introducing a template into which
 ;; new expressions can be injected with Unquote.
