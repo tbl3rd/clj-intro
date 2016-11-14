@@ -1,5 +1,5 @@
 ;;
-;; a DUMP macro
+;; a debugging macro to dump the values of expressions
 ;;
 
 ;; We want something to use when debugging such that the content of
@@ -102,10 +102,3 @@
 (dump (beatle? :ringo))
 (dump (if (beatle? :ringo) "Found!" "Nope."))
 (dump (if (beatle? :mick) "Found!" "Nope."))
-
-;; There is another UNQUOTE form called SPLICE, which adds an unquoted
-;; form to the expression surrounding it.
-
-(defn do-or-nil-fn
-  [& stuff]
-  )
