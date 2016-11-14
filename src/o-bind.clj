@@ -106,5 +106,5 @@
 
 ;; One exception is DEF which can bind only a symbol.  That is because
 ;; the Clojure implementation needs to be able to create Java objects
-;; to bootstrap its implementation, and DEF is where that happens
+;; to bootstrap its implementation, and DEF is where that happens --
 ;; before there is enough Clojure to support FN binding.
