@@ -2,15 +2,15 @@
 ;; Binding forms
 ;;
 
-;; FN, LET, and DEF are known as BINDING forms because they bind
+;; FN, LET, and DEF are known as "binding forms" because they bind
 ;; names (represented as symbols on the left) to values evaluated from
-;; expressions on the right.
+;; expressions on the right.  Clojure has a couple of others too.
 
 ;; So far, the left side of all our bindings have been simple symbols,
 ;; but Clojure also allows vector and map expressions on the left side
-;; as the targets of bindings.  Vectors bind sequence values (such as
-;; vectors, lists and sequences) and maps bind associative values such
-;; as maps and sets.
+;; as the targets of most bindings.  Vectors of symbols bind sequence
+;; values (such as vectors, lists and sequences) and maps bind
+;; associative values such as maps and sets.
 
 ;; Here is a SWAP function, for example.
 
@@ -100,6 +100,11 @@
 ;; bindings, which bind map and set values whose keys are symbols or
 ;; strings.
 
-;; Destructuring is implemented in FN, so it is available in all the
-;; binding forms: FN, LET, DEF, DEFN, DEFMACRO, BINDING, and so on --
-;; even binding forms you might write yourself.
+;; Destructuring is implemented in FN, so it is available in most of
+;; the binding forms: FN, LET, DEFN, DEFMACRO, LOOP, FOR, BINDING, and
+;; so on -- even binding forms you might write yourself.
+
+;; One exception is DEF which can bind only a symbol.  That is because
+;; the Clojure implementation needs to be able to create Java objects
+;; to bootstrap its implementation, and DEF is where that happens
+;; before there is enough Clojure to support FN binding.

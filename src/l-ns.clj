@@ -2,7 +2,7 @@
 ;; Namespaces
 ;;
 
-;; In Clojure, that global implicit LET that DEF adds bindings to is
+;; In Clojure, that "global implicit LET" that DEF adds bindings to is
 ;; called a NAMESPACE.
 
 ;; You can think of a namespace as a global binding vector where DEF
