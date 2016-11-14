@@ -75,25 +75,25 @@
 
 ;; The construction of new list forms from old list forms is such a
 ;; common thing when writing macros, that Clojure introduces some more
-;; shorthand quoting forms: the QUASIQUOTE ` (backtick) and UNQUOTE ~
+;; shorthand quoting forms: the Quasiquote ` (backtick) and Unquote ~
 ;; (tilda).  You can use them to construct a list template that the
 ;; macro fills in.
 
-;; QUASIQUOTE is like QUOTE except that inside a QUASIQUOTEd form, an
-;; UNQUOTEd symbol is replaced with the expression bound to it.
+;; Quasiquote is like quote except that inside a Quasiquoted form, an
+;; Unquoted symbol is replaced with the expression bound to it.
 
 (let [expression 'beatles?]
   `(println [(quote ~expression) ~expression]))
 ;;-=> (clojure.core/println [(quote beatles?) beatles?])
 
-;; You can think of QUASIQUOTE as introducing a template into which
-;; new expressions can be injected with UNQUOTE.
+;; You can think of Quasiquote as introducing a template into which
+;; new expressions can be injected with Unquote.
 
 (defmacro dump
   [expression]
   `(println [(quote ~expression) ~expression]))
 
-;; Unlike QUOTE, you don't actually need QUASIQUOTE and UNQUOTE to
+;; Unlike QUOTE, you don't actually need Quasiquote and Unquote to
 ;; write macros, but you will see them used by others, and they can
 ;; streamline macros by removing the need for helper functions like
 ;; DUMP-FN.
