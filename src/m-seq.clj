@@ -59,4 +59,4 @@
 (into  {} (rest  {:a 0 :b 1 :c 2}))     ;-=>  {:b 1, :c 2}
 (into  () (rest '(0 1 2 3 4)))          ;-=> (4 3 2 1)
 
-"Why does" (into  () (rest '(0 1 2 3 4))) "reverse order?"
+"Why does" (into () (rest '(0 1 2 3 4))) "reverse order?"
