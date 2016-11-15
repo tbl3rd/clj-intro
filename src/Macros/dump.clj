@@ -102,3 +102,12 @@
 (dump (beatle? :ringo))
 (dump (if (beatle? :ringo) "Found!" "Nope."))
 (dump (if (beatle? :mick) "Found!" "Nope."))
+
+;; Final DUMP macro.  Explain.
+
+(defmacro dump
+  [expression]
+  `(let [x# ~expression]
+     (do
+       (println ['~expression x#])
+       x#)))
