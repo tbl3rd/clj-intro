@@ -103,6 +103,12 @@
 (dump (if (beatle? :ringo) "Found!" "Nope."))
 (dump (if (beatle? :mick) "Found!" "Nope."))
 
+;; There is at least one obvious improvement we can make to DUMP.
+
+;; What is the value of (dump ...)?  It is always NIL.
+
+;; But we want to use this for debugging.
+
 ;; Final DUMP macro.  Explain.
 
 (defmacro dump

@@ -26,12 +26,12 @@
 
 ;; Everything that other languages accomplish through reserved words,
 ;; variables, statements, operators, lvalues, rvalues, declarations,
-;; definitions, classes, methods, enumerations, types, dictionaries,
-;; blocks, objects, assignments, statics, fields, members, modules,
-;; packages, generics, annotations, overloading, configurations, POMs,
-;; tokens, and serializers -- each with their own syntax and naming
-;; conventions -- Clojure does with just the atoms and collections
-;; you've already seen.
+;; definitions, classes, methods, control structures, enumerations,
+;; types, dictionaries, blocks, objects, assignments, statics, fields,
+;; members, modules, packages, generics, annotations, overloading,
+;; configurations, POMs,tokens, and serializers -- each with their own
+;; syntax and naming conventions -- Clojure does with just the atoms
+;; and collections you've already seen.
 
 ;; A Clojure program consists of reading a sequence of expressions
 ;; written as atoms and collections, evaluating them according to the
