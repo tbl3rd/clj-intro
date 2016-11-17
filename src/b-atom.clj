@@ -31,4 +31,9 @@ nil "is just" nil "In Clojure, it represents 'nothing'."
 nil, false                              ;-=> both FALSE
 true, 0, "", :false, "false", :nil      ;-=> all TRUE!
 
+"Clojure represents" java.util.regex.Pattern "values as ..."
+
+#"..."                           ; matches any 3 characters
+#"\w+"                           ; matches 1 or more "word characters"
+
 ;; And there is one other kind of 'atom' to be introduced later.
