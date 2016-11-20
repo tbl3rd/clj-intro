@@ -21,13 +21,16 @@
 ;;
 ;; The ATOM is called a SYMBOL.  The COLLECTION is the LIST.
 
-;; An ATOM looks like a reserved word or 'variable' in languages like
-;; Java.  It is just a sequence of character that does not begin with
-;; a backslash (which would denote a character), a digit (which would
-;; be a number) a colon (which would make it a keyword), or any of the
-;; COLLECTION delimiter characters ("[]#{}, for example).
+;; A symbol acts like a reserved word or 'variable' in languages like
+;; Java.  It is a space-delimited token that does not begin with a
+;; backslash (which would denote a character), a digit (which would be
+;; a number) a colon (which would make it a keyword), any of the
+;; COLLECTION delimiter characters ("[]#{}, for example, which would
+;; make it a collection or something), or a quote (like ' or `)
 
-;; We saw one in the title.  Remember fn?
+;; You also can't use @ in a symbol (for reasons explained later).
+
+;; We saw a symbol in the title.  Remember fn?
 
 fn?                                     ; is a symbol
 string? number? char? keyword? symbol?  ; all symbols
