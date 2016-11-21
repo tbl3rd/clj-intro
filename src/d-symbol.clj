@@ -26,9 +26,10 @@
 ;; backslash (which would denote a character), a digit (which would be
 ;; a number) a colon (which would make it a keyword), any of the
 ;; COLLECTION delimiter characters ("[]#{}, for example, which would
-;; make it a collection or something), or a quote (like ' or `)
+;; make it a collection or something), or a quote (like ' or `).
 
-;; You also can't use @ in a symbol (for reasons explained later).
+;; You also can't use @, ^, or ~ in a symbol (because they are special
+;; to THE READER, as will be explained later).
 
 ;; We saw a symbol in the title.  Remember fn?
 
