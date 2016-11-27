@@ -2,8 +2,8 @@
 ;; Java
 ;;
 
-;; Closure includes several features to inter-operate with Java conveniently.
-;; We've seen some of them already.
+;; Clojure is designed to inter-operate with Java conveniently.
+;; We've seen some of this already.
 
 ;; Refer to a static field with Class/Field.
 
