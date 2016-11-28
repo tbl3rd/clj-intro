@@ -29,16 +29,22 @@
 ;; multiple REFs, but Clojure also provides ATOM, AGENT, and FUTURE
 ;; when you don't need all that flexibility.
 
-(def deposits
-  "Map depositor names to depositors."
-  (ref {}))
+(def accounts
+  "Map depositor IDs to depositors."
+  (ref {:deposits    {:id :deposits    :name "deposits"    :balance (ref 0)}
+        :withdrawals {:id :withdrawals :name "withdrawals" :balance (ref 0)}}))
+
+(let [account-id (ref 100000)]
+  (defn next-account-id
+    []
+    (dosync (alter account-id inc))))
 
 (defn add-depositor
   "Add a depositor with NAME and BALANCE."
   [name balance]
-  (let [depositor {:name name :balance (ref balance)}]
+  (let [depositor {:id (next-account-id) :name name :balance (ref balance)}]
     (set-validator! (:balance depositor) (complement neg?))
-    (dosync (alter deposits assoc (:name depositor) depositor))
+    (dosync (alter accounts assoc (:id depositor) depositor))
     depositor))
 
 (add-depositor "Tom"   9999)
@@ -52,23 +58,32 @@
         (catch Exception x#
           (.getMessage x#))))
 
-(defn show-deposits
+(defn show-accounts
   []
-  (into {} (for [{:keys [name balance]} (vals @deposits)]
-             [name @balance])))
+  (vec (sort-by second
+                (for [{:keys [id name balance]} (vals @accounts)]
+                  [id name @balance]))))
 
-(show-deposits)
+(show-accounts)
+
+(defn lookup-id
+  [name]
+  (filterv (fn [account] (= (:name account) name)) (vals @accounts)))
+
+(lookup-id "Akash")
 
 (defn transfer
   [amount from to]
   (dosync
-   (let [deposits (ensure deposits)
-         from (deposits from)
-         to (deposits to)]
+   (let [accounts (ensure accounts)
+         from     (accounts from)
+         to       (accounts to)]
      (when (and from to)
-       (commute (:balance from) - amount)
-       (commute (:balance to)   + amount)))))
+       (commute (:balance to)   + amount)
+       (commute (:balance from) - amount)))))
 
 (transfer 99 "Tom" "Kunal")
-
-(show-deposits)
+(show-accounts)
+(do-or-catch
+ (transfer 9999 "Tom" "Kunal"))
+(show-accounts)
