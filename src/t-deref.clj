@@ -72,15 +72,27 @@
 
 (lookup-id "Akash")
 
+(defn one
+  "The first thing in THINGS if there is only 1.  Otherwise nil."
+  [things]
+  (when (= 1 (count things))
+    (first things)))
+
 (defn transfer
   [amount from to]
   (dosync
    (let [accounts (ensure accounts)
-         from     (accounts from)
-         to       (accounts to)]
-     (when (and from to)
+         from     (one (lookup-id from))
+         to       (one (lookup-id to))]
+     (if (and from to)
        (commute (:balance to)   + amount)
        (commute (:balance from) - amount)))))
+
+(defn deposit
+  [name amount]
+  (dosync
+   (when-let [account (one (lookup-id name))]
+     (commute (:balance account) + amount))))
 
 (transfer 99 "Tom" "Kunal")
 (show-accounts)
