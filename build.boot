@@ -5,4 +5,8 @@
 (set-env!
  :resource-paths #{"src"}
  :target-path "target"
- :dependencies '[[org.clojure/clojure "1.7.0"]])
+ :dependencies '[[org.clojure/clojure "1.8.0"]])
+
+;; Evaluate in cider REPL to enable debugger.
+;;
+(boot.core/load-data-readers!)
