@@ -25,14 +25,10 @@
 ;; isolated coordination of changes from multiple threads across
 ;; multiple places.
 
-;; DOSYNC is a flexible way to synchronize concurrent changes in
-;; multiple REFs, but Clojure also provides ATOM, AGENT, and FUTURE
-;; when you don't need all that flexibility.
-
 (def accounts
   "Map depositor IDs to depositors."
-  (ref {:deposits    {:id :deposits    :name "deposits"    :balance (ref 0)}
-        :withdrawals {:id :withdrawals :name "withdrawals" :balance (ref 0)}}))
+  (ref {:deposits    {:id :deposits    :name "deposits"    :balance (ref 0M)}
+        :withdrawals {:id :withdrawals :name "withdrawals" :balance (ref 0M)}}))
 
 (let [account-id (ref 100000)]
   (defn next-account-id
@@ -47,9 +43,9 @@
     (dosync (alter accounts assoc (:id depositor) depositor))
     depositor))
 
-(add-depositor "Tom"   9999)
-(add-depositor "Akash" 9999)
-(add-depositor "Kunal" 9999)
+(add-depositor "Tom"   9999M)
+(add-depositor "Akash" 9999M)
+(add-depositor "Kunal" 9999M)
 
 (defmacro do-or-catch
   "Result of evaluating expressions or message of any exception thrown."
@@ -60,42 +56,51 @@
 
 (defn show-accounts
   []
-  (vec (sort-by second
-                (for [{:keys [id name balance]} (vals @accounts)]
-                  [id name @balance]))))
+  (vec (sort-by
+        second
+        (for [{:keys [id name balance]} (vals @accounts)]
+          [id name @balance]))))
 
 (show-accounts)
 
 (defn lookup-id
   [name]
-  (filterv (fn [account] (= (:name account) name)) (vals @accounts)))
+  (letfn [(find-name [account] (= (:name account) name))]
+    (if-let [accounts (filter find-name (vals @accounts))]
+      (when (= 1 (count accounts))
+        (first accounts)))))
 
 (lookup-id "Akash")
-
-(defn one
-  "The first thing in THINGS if there is only 1.  Otherwise nil."
-  [things]
-  (when (= 1 (count things))
-    (first things)))
 
 (defn transfer
   [amount from to]
   (dosync
    (let [accounts (ensure accounts)
-         from     (one (lookup-id from))
-         to       (one (lookup-id to))]
-     (if (and from to)
+         from     (lookup-id from)
+         to       (lookup-id to)]
+     (when (and from to)
        (commute (:balance to)   + amount)
        (commute (:balance from) - amount)))))
 
+(defn adjust
+  [name op amount]
+  (dosync
+   (when-let [account (lookup-id name)]
+     (commute (:balance account) op amount))))
+
 (defn deposit
   [name amount]
-  (dosync
-   (when-let [account (one (lookup-id name))]
-     (commute (:balance account) + amount))))
+  (adjust name + amount))
 
-(transfer 99 "Tom" "Kunal")
-(show-accounts)
-(do-or-catch
- (transfer 9999 "Tom" "Kunal"))
+(defn withdraw
+  [name amount]
+  (adjust name - amount))
+
+(comment
+  (transfer 99 "Tom" "Kunal")
+  #_(show-accounts)
+  #_(do-or-catch
+     (transfer 9999 "Tom" "Kunal"))
+  )
+
 (show-accounts)
