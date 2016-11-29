@@ -6,17 +6,64 @@
 ;; in your system.  For that Clojure provides references.
 
 ;; A reference is a place for a value to be.  The value in that place
-;; can change over time, but the values themselves never change.
+;; can change over time, but the values themselves never change.  There
+;; are many kinds of reference (AGENT ATOM DELAY FUTURE REF), but the
+;; DEREF function always yields the value in a reference.
 
-;; The DEREF form yields the value in a reference.
+;; A REF is designed to be shared across threads, but they are useful
+;; even in single-threaded applications.  Clojure ensures that DEREF
+;; shows a consistent view of the value in all threads that share the
+;; reference.
 
-(let [x (ref :value)]
-  (deref x))                            ;-=> :value
+(let [at (agent  :agent)
+      am (atom   :atom)
+      dy (delay  :delay)
+      fe (future :future)
+      rf (ref    :ref)]
+  (vector (deref at)
+          (deref am)
+          (deref dy)
+          (deref fe)
+          (deref rf)))         ;-=> [:agent :atom :delay :future :ref]
 
 ;; As you might expect by now, there is also a reader macro for DEREF.
 
-(let [x (ref :value)]
-  @x)                                   ;-=> :value
+(let [at (agent  :agent)
+      am (atom   :atom)
+      dy (delay  :delay)
+      fe (future :future)
+      rf (ref    :ref)]
+  (vector @at @am @dy @fe @rf)) ;-=> [:agent :atom :delay :future :ref]
+
+;; DELAY is like DO except that the expressions in the DELAY are not
+;; evaluated until the DELAY is DEREFed.  From that point on, the
+;; DELAY is just a reference to the result of the evaluating the
+;; expressions. You can use DELAY to postpone an expensive computation
+;; until its value is needed.
+
+(let [delayed (delay (println "Delayed!") :delayed)
+      done (do (println "Done!") :done)]
+  (vector @delayed @delayed done))      ;-=> [:delayed :delayed :done]
+
+;; Notice that "Done!" prints before "Delayed!" and that "Delayed!"
+;; prints once and not twice.
+
+;; FUTURE is like DELAY except that the expressions are evaluated in
+;; the background and DEREF blocks until the value is available.
+
+(letfn [(make [x] (future (Thread/sleep 3000) (println x) x))]
+  (time (vec (map deref (map make (range 10))))))
+                                        ;-=> [0 1 2 3 4 5 6 7 8 9]
+
+;; Notice that the result shows in about 3 (instead of 30) seconds,
+;; and that the integers are printed in some apparently random order
+;; whereas the vector result shows the expected order.  That's because
+;; the future computations are doled out to background threads which
+;; run and print their integers concurrently.  Only when all the
+;; futures finish are their values collected in the result vector.
+
+;; An ATOM is a reference whose value can be changed synchronously
+;; from one or more threads.
 
 ;; The value in a REF can be changed only within a transaction bounded
 ;; by a DOSYNC form.  DOSYNC comprises zero or more REF changes (via
