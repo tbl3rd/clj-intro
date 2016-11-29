@@ -17,9 +17,9 @@
 ;; There are two kinds of expressions with values that never print
 ;; just like they are read.
 
-;; One kind is an ATOM and another is a COLLECTION.
+;; One kind is a SCALAR and another is a COLLECTION.
 ;;
-;; The ATOM is called a SYMBOL.  The COLLECTION is the LIST.
+;; The SCALAR is called a SYMBOL.  The COLLECTION is the LIST.
 
 ;; A symbol acts like a reserved word or 'variable' in languages like
 ;; Java.  It is a space-delimited token that does not begin with a

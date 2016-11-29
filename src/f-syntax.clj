@@ -4,7 +4,7 @@
 
 ;; And with that, you have virtually the entire syntax of Clojure.
 
-;; There is not much else except the primitive atoms (string number
+;; There is not much else except the primitive scalars (string number
 ;; keyword character true false nil symbol), the collections (vector
 ;; map set list), and the rules for evaluating them.
 
@@ -12,7 +12,7 @@
 ;; keywords, characters, true, false, and nil all evaluate to
 ;; themselves.  Their values are printed just as they are read.
 
-;; There is one atom SYMBOL and one collection LIST that are
+;; There is one scalar SYMBOL and one collection LIST that are
 ;; evaluated differently.
 
 ;; Symbols and lists have values that differ from their literal
@@ -30,12 +30,12 @@
 ;; types, dictionaries, blocks, objects, assignments, statics, fields,
 ;; members, modules, packages, generics, annotations, overloading,
 ;; configurations, POMs,tokens, and serializers -- each with their own
-;; syntax and naming conventions -- Clojure does with just the atoms
+;; syntax and naming conventions -- Clojure does with just the scalars
 ;; and collections you've already seen.
 
 ;; A Clojure program consists of reading a sequence of expressions
-;; written as atoms and collections, evaluating them according to the
-;; rules above, and printing the results.
+;; written as scalars and collections, evaluating them according to
+;; the rules above, and printing the results.
 
 ;; Writing a Clojure program consists of using symbols to name values,
 ;; and composing lists of those values such that the side effect of

@@ -3,9 +3,9 @@
 ;;
 
 ;; The value of many Clojure expressions looks just like the
-;; expression.  That is true of all ATOMs except the SYMBOL.
+;; expression.  That is true of all scalars except the SYMBOL.
 ;;
-;; It is also true of all COLLECTIONS except the LIST.
+;; It is also true of all collections except the LIST.
 ;;
 ;; What's going to happen when Clojure evaluates a (LIST)?
 

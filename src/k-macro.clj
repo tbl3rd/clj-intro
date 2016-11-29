@@ -65,7 +65,7 @@
 ;; These strange non-symbol macros are known as 'reader macros' in
 ;; L-word languages, because they are typically implemented in the
 ;; 'reader': the part of the system that turns text into the data
-;; expressions of the language: atoms and collections.
+;; expressions of the language: scalars and collections.
 
 ;; Some people find MACROS mysterious, but we've already used several
 ;; macros without even thinking about them.  Macros take the place of

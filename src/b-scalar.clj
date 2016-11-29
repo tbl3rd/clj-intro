@@ -1,13 +1,15 @@
 ;;
-;; These are sometimes called ATOMS or PRIMITIVES to distinguish them
-;; from COLLECTIONS.
+;; SCALARS
 ;;
+
+;; These literals are sometimes called SCALARS to distinguish them
+;; from COLLECTIONS.
 
 "Clojure" "is a" java.lang.String       ; made of characters
 
-\T \h \e \s \e \space \a \r \e \space java.lang.Character \.
+\T \h \e \s \e \space \a \r \e \space java.lang.Character \. \newline
 
-\tab \a \n \d \newline \a \r \e \space \a \l \s \o \.
+\tab "and" \newline "are" \space "also" \space java.lang.Character \.
 
 0, 23, -42, 3.14159, 22/7               ; are all numbers
 
@@ -36,4 +38,4 @@ true, 0, "", :false, "false", :nil      ;-=> all TRUE!
 #"..."                           ; matches any 3 characters
 #"\w+"                           ; matches 1 or more "word characters"
 
-;; And there is one other kind of 'atom' to be introduced later.
+;; And there is one other kind of scalar to be introduced later.
