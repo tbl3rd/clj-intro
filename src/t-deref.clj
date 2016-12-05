@@ -37,9 +37,9 @@
 
 ;; DELAY is like DO except that the expressions in the DELAY are not
 ;; evaluated until the DELAY is DEREFed.  From that point on, the
-;; DELAY is just a reference to the result of the evaluating the
-;; expressions. You can use DELAY to postpone an expensive computation
-;; until its value is needed.
+;; DELAY is just a reference to a single value: the result of the
+;; evaluating the expressions. You can use DELAY to postpone an
+;; expensive computation until its value is needed.
 
 (let [delayed (delay (println "Delayed!") :delayed)
       done (do (println "Done!") :done)]
@@ -63,19 +63,13 @@
 ;; futures finish are their values collected in the result vector.
 
 ;; An ATOM is a reference whose value can be changed synchronously
-;; from one or more threads.
+;; and atomically from one or more threads.
 
-;; The value in a REF can be changed only within a transaction bounded
-;; by a DOSYNC form.  DOSYNC comprises zero or more REF changes (via
-;; ALTER, COMMUTE, or REF-SET) guaranteed to atomically succeed or
-;; fail together.  REF and DOSYNC allow for atomic, consistent, and
-;; isolated coordination of changes from multiple threads across
-;; multiple places.
-
-(def accounts
-  "Map depositor IDs to depositors."
-  (ref {:deposits    {:id :deposits    :name "deposits"    :balance (ref 0M)}
-        :withdrawals {:id :withdrawals :name "withdrawals" :balance (ref 0M)}}))
+(let [ints (atom [])
+      make (fn [x] (future (Thread/sleep 100) (swap! ints conj x)))
+      results (map deref (map make (range 5)))]
+  (time {:sorted (vec (sort-by count results))
+         :results results}))
 
 (let [account-id (ref 100000)]
   (defn next-account-id
