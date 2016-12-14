@@ -2,7 +2,7 @@
 ;; Clojure also has COLLECTIONS, which nest however you want.
 ;;
 
-"String is kind of ..."                 ; chars: indexed sequential
+"String is kind of ..."                 ; sequence of characters
 [ "..." ]                               ; vector: indexed sequential
 { "key" "value" :kvs "..." }            ; map: associative by key
 #{ :... }                               ; set: in or out
