@@ -43,7 +43,7 @@
  :Released "09 Oct 1981"                ;
  :Director "Dusan Makavejev"}           ; ... an object or 'dict'.
 
-{:A :T :T :A :C :G :G :C}               ; DNA base pairing
+{:A :T, :T :A, :C :G, :G :C}            ; DNA base pairing
 
 #{"Chico" "Groucho" "Harpo" "Zeppo"}    ; The Marx Brothers
 
