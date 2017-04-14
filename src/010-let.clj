@@ -42,17 +42,13 @@
 ;; parameter vector and a new argument to the tail of that FN's
 ;; enclosing list.
 
-;; LET is just easier to read and write than the FN form because it
+;; LET is easier to read and write than the FN form because it
 ;; brings the names and values in the binding together instead of
 ;; hanging them on opposite ends of the FN's expression, which can get
 ;; arbitrarily long.
 
-;; LET is handy and common, but you still can't use the ADD1 symbol
-;; outside of the LET form. Symbols introduced by (LET ...) are bound
-;; only within its ()s.  With LET, every time you want to introduce an
-;; ADD1 symbol to an expression,you have to write an enclosing LET
-;; form to bind it.
-
-;; So there must be a way to define ADD1 such that you can use it
-;; anywhere in a program without having to introduce a new LET binding
-;; for it each time.
+;; Symbols introduced by (LET ...) are bound only within its ()s.
+;; This makes LET handy for naming values for local use within other
+;; expressions.  The binding of symbols in a LET form is exactly like
+;; the binding of values to parameters in a function call because they
+;; actually are the same.

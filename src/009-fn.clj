@@ -15,7 +15,7 @@
 ((fn [x y] (str x y)) 2 :arguments)     ;-=> "2:arguments"
 
 ;; We say: X is bound to 2 and, Y is bound to :arguments in the
-;; expression (str x y z).
+;; expression (str x y).
 
 ;; The value of a FN expression is a function that takes an argument
 ;; for each parameter in the vector and evaluates the expressions on
