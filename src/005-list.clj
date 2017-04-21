@@ -2,7 +2,7 @@
 ;; Every valid Clojure EXPRESSION has a VALUE.
 ;;
 
-;; The value of many Clojure expressions looks just like the
+;; The value of many Clojure expressions look just like the
 ;; expression.  That is true of all scalars except the SYMBOL.
 ;;
 ;; It is also true of all collections except the LIST.
@@ -15,7 +15,7 @@
 (list)                                  ;-=> ()
 (vector)                                ;-=> []
 (set (list :a :set))                    ;-=> #{:a :set}
-(+ 1 2 3 4 5 6 7)                       ;-=> 28
+(+ 0 1 2 3 4 5 (* 2 6) 7 8)             ;-=> 42
 (fn? list)                              ;-=> true
 (list? (list))                          ;-=> true
 (fn? (list))                            ;-=> false
@@ -45,7 +45,8 @@
 ;; As in life, a list's HEAD determines how its TAIL is evaluated.
 
 ;; Usually, the HEAD is a SYMBOL or another LIST whose value is a
-;; function.
+;; function.  Occasionally the HEAD is a symbol that names a MACRO.
+;; In either case, the HEAD determines how the TAIL is evaluated.
 
 ;; For example, LIST is a symbol whose value is a function, and that
 ;; function constructs a list of its TAIL values.
@@ -56,3 +57,5 @@ list                     ;-=> #function[clojure.lang.PersistentList/1]
 (list fn?)               ;-=> (#function[clojure.core/fn?])
 ((first (list fn? + - count)) list)     ;-=> true
 ((first (list list fn? +)) 0 1 2)       ;-=> (0 1 2)
+
+;; Learn to count!  Then use COUNT to check your counting.

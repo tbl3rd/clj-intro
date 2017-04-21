@@ -29,9 +29,9 @@
 
 (identity (+ 1 2 3))                    ;-=> 6
 
-;; Perhaps the simplest macro in Clojure is QUOTE, which just produces
-;; the expression which is its argument.  What IDENTITY is to functions,
-;; QUOTE is to macros.
+;; Perhaps the simplest macro-like form in Clojure is QUOTE, which
+;; just produces the expression which is its argument.  What IDENTITY
+;; is to functions, QUOTE is to macros.
 
 (quote (+ 1 2 3))                       ;-=> (+ 1 2 3)
 
@@ -54,13 +54,26 @@
 ;; This short-handing of common usage is fundamental to programming
 ;; Clojure and other L-word languages.  Most of Clojure's core just
 ;; consists of names for the most common usage patterns discovered
-;; over generations. All those names are just shorthand for
-;; expressions that effectively compile down to only a very few
+;; over generations of programmers. All those names are just shorthand
+;; for expressions that effectively compile down to only a very few
 ;; fundamental functions and macros.
 
-;; In fact, you can think of :, "", [], #{}, and {} as shorthand for
-;; various function expressions such as (keyword ...), (str ...),
-;; (vector ...), (set ...), and so on.
+;; For example, defining functions is so common in Clojure (and other
+;; F-word ;; languages) that Clojure defines a special DEFN macro to
+;; make it easier.  For example ...
+
+(defn add1 [n] (+ 1 n))
+
+;; ... is exactly equivalent to ...
+
+(def add1 (fn [n] (+ 1 n)))
+
+;; ... and Clojure immediately translates the former to the latter
+;; when compiling.
+
+;; In fact, you can think of Clojure's other syntax such as :, "", [],
+;; #{}, and {} as shorthand for various function expressions such
+;; as (keyword ...), (str ...), (vector ...), (set ...), and so on.
 
 ;; These strange non-symbol macros are known as 'reader macros' in
 ;; L-word languages, because they are typically implemented in the
@@ -75,7 +88,7 @@
 ;; Unlike other languages though, Clojure provides DEFMACRO so that
 ;; programmers can define their own syntax as necessary.  However,
 ;; all of the syntax you are likely to need for a long while is
-;; already defined for you.
+;; already defined for you in the clojure.core namespace.
 
 ;; For example: IF, AND, and OR are all standard Clojure macros.
 ;; They have to be macros, because they cannot be functions.
@@ -84,13 +97,13 @@
 (if true  :then :else)                  ;-=> :then
 (if false :then :else)                  ;-=> :else
 
-;; Consider the following Clojure functions.
+;; So far so good, but consider the following Clojure definitions.
 
 (def rob {:name "Rob" :dead? true})
 (def tom {:name "Tom" :dead? false})
 
 (defn zombie?
-  "True iff INTRUDER is a zombie."
+  "True if INTRUDER is a zombie."
   [intruder]
   (:dead? intruder))
 
@@ -135,3 +148,8 @@
 
 (tcetorp rob)              ; nil again after blasting in REPL
 (tcetorp tom)              ; "Hello Tom" after blasting in REPL
+
+;; Unlike our FI, Clojure's IF gets its 3 sub-expressions un-evaluated.
+;; After evaluating the first expression (the test), it then evaluates
+;; either the second (then) or the third (else) sub-expression
+;; depending on whether the test is TRUE (then) or FALSE (else).

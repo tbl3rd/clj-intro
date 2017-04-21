@@ -45,9 +45,14 @@ lojure                                  ;-=> [\l \o \j \u \r \e]
 
 (def twenty-three 23)                   ;-=> #'boot.user/twenty-three
 
-;; The part to the left of the / in the var is its namespace.  When
+;; DEF is a macro over VAR.  The first argument to DEF is always a
+;; symbol.  That symbol is bound to the following value in a VAR and
+;; stored in the current namespace.
+
+;; The part to the left of the / in the VAR is its namespace.  When
 ;; evaluated, the symbol to the right of the / is evaluated in the
-;; context of the namespace to the left.
+;; context of the namespace to the left.  We say "the value 23 is
+;; bound to the symbol TWENTY-THREE in the BOOT.USER namespace".
 
 ;; Similar to symbols, keywords can also be bound to a particular
 ;; namespace.

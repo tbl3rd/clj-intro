@@ -5,10 +5,11 @@
 ;; Clojure values are immutable but sometimes you need to model change
 ;; in your system.  For that Clojure provides references.
 
-;; A reference is a place for a value to be.  The value in that place
-;; can change over time, but the values themselves never change.  There
-;; are many kinds of reference (AGENT ATOM DELAY FUTURE REF), but the
-;; DEREF function always yields the value in a reference.
+;; Unlike a name, a reference is a place for a value to be.  The value
+;; in that place can change over time, but the values themselves never
+;; change.  There are many kinds of reference (AGENT ATOM DELAY FUTURE
+;; REF), but the DEREF function works on all of them and yields the
+;; value in the reference.
 
 ;; A REF is designed to be shared across threads, but they are useful
 ;; even in single-threaded applications.  Clojure ensures that DEREF

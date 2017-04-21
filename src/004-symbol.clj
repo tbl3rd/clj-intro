@@ -12,14 +12,14 @@
 ;; looks just like the number.  22/7 goes in and 22/7 comes out.
 
 ;; You send a vector of strings in and get one back.  You send in a
-;; set of integers and get one back.  And so on ...
+;; set of integers and get an equivalent back.  And so on ...
 ;;
-;; There are two kinds of expressions with values that never print
+;; There are two kinds of expressions with values that do not print
 ;; just like they are read.
 
 ;; One kind is a SCALAR and another is a COLLECTION.
 ;;
-;; The SCALAR is called a SYMBOL.  The COLLECTION is the LIST.
+;; The SCALAR is called a SYMBOL.  The COLLECTION is a LIST.
 
 ;; A symbol acts like a reserved word or 'variable' in languages like
 ;; Java.  It is a space-delimited token that does not begin with a
@@ -30,6 +30,8 @@
 
 ;; You also can't use @, ^, or ~ in a symbol (because they are special
 ;; to THE READER, as will be explained later).
+
+;; A & by itself is also special and not a symbol.
 
 ;; We saw a symbol in the title.  Remember fn?
 

@@ -16,16 +16,16 @@
      (add1
       (add1 n))))))                     ; ... and evaluate!
 
-;; LET takes a vector of pairs of expressions, each of which
-;; represents a binding of the expression on the left to the
-;; value on the right.  That vector is followed by a sequence
-;; of expressions that are evaluated using those bindings.
+;; LET takes a vector of pairs of expressions, each pair of which
+;; represents a binding of the expression on the left to the value on
+;; the right.  That "binding vector" is followed by a sequence of
+;; expressions that are evaluated using those bindings.
 
 ;; The scope of each binding is the list enclosing the LET.
 
 ;; Conceptually, LET is still just FN under the hood.
 
-;; LET is a macro that gets the binding vector and the following
+;; So LET is a macro that gets the binding vector and the following
 ;; ADD1 expression and translates it into the following FN expression,
 ;; which Clojure then evaluates.
 
@@ -52,3 +52,13 @@
 ;; expressions.  The binding of symbols in a LET form is exactly like
 ;; the binding of values to parameters in a function call because they
 ;; actually are the same.
+
+;; Symbols bound by LET differ from those bound by DEF because DEF's
+;; symbols are bound in a namespace external to the (DEF ...) form,
+;; whereas LET's symbols are bound only within the (LET ...) form
+;; itself and are invisible (or undefined) outside of the LET form.
+
+;; When LET forms are nested, symbols in outer LETs are bound in the
+;; inner LETs.  Language lawyers call that "lexical scope" or "block
+;; structure".  The scope of a DEF bound symbol extends from the
+;; occurance of that symbol through the end of its namespace.

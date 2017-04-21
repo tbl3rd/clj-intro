@@ -3,7 +3,7 @@
 ;;
 
 "String is kind of ..."                 ; sequence of characters
-[ "..." ]                               ; vector: indexed sequential
+[ "..." :is "an" :ellipsis]             ; vector: indexed sequential
 { "key" "value" :kvs "..." }            ; map: associative by key
 #{ :... }                               ; set: in or out
 
@@ -41,11 +41,11 @@
  :Year 1981                             ;
  :Rated :R                              ; ... represents ...
  :Released "09 Oct 1981"                ;
- :Director "Dusan Makavejev"}           ; ... an object or 'dict'.
+ :Director "Dušan Makavejev"}           ; ... an object or 'dict'.
 
-{:A :T, :T :A, :C :G, :G :C}            ; DNA base pairing
+{:A :T, :C :G, :T :A, :G :C}            ; DNA base pairing
 
-#{"Chico" "Groucho" "Harpo" "Zeppo"}    ; The Marx Brothers
+#{"Chico" "Groucho" "Harpo" "Zeppo"}    ; The set of Marx Brothers
 
 {[247711 128745 615585] #{ 7 20}        ; This map of ...
  [724475 209311 596076] #{47 35}        ;
@@ -53,7 +53,7 @@
  [ 49338 359939 906095] #{61   }        ;
  [571521 682416 785036] #{86 51}        ; ... represents ...
  [174818 239856 437406] #{ 6 22}        ;
- [535936 885819 472347] #{74  9}        ; ... a sparse array.
+ [535936 885819 472347] #{74  9}        ; ... a sparse matrix.
  [ 70989 376305 883810] #{26 68}}       ; And so on ...
 
 {:safe   #{:get     :head               ; Map of "safe" ...
@@ -76,4 +76,4 @@
       [:li [:a {:href "/nesting-routes"} "Nesting Routes"]]]]]]]]
 
 ;; And, by the way, every collection in Clojure is true.
-;; Even empty collections are true.
+;; Even an empty collection is true.
