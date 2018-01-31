@@ -108,3 +108,5 @@
 ;; the Clojure implementation needs to be able to create Java objects
 ;; to bootstrap its implementation, and DEF is where that happens --
 ;; before there is enough Clojure to support FN binding.
+
+;; DEF (really VAR) is just ... special, unlike LET and the others.

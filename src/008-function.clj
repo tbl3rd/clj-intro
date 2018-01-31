@@ -78,3 +78,17 @@
 ;; returned as results.
 
 (map (comp keyword str) (range 4))      ;-=> (:0 :1 :2 :3)
+
+;; COMP takes the functions KEYWORD and STR and returns a new function
+;; that is a composition of its arguments.
+;;
+;; ((COMP F G) X) is exactly equivalent to (F (G X)), but COMP lets
+;; you talk about the composition of F and G without worrying about
+;; the parameters F and G take, such as X.
+
+;; MAP takes the function that is the value of its first argument,
+;; applies that function to the sequences of values that are the
+;; values of the REST of its arguments.  RANGE just returns the
+;; sequence of non-negative integers up to its argument 4.
+
+;; That is how you program in Clojure.

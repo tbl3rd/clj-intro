@@ -55,7 +55,7 @@ String/CASE_INSENSITIVE_ORDER
   (.put "c" 2)
   (println)) ;-=> #object[java.util.HashMap 0x481bbea2 {a=0, b=1, c=2}]
 
-;; I put ,s where the HashMap object is slotted in.
+;; Below I put ,s where the HashMap object is slotted in.
 
 (doto (java.util.HashMap.)
   (.put , "a" 0)
@@ -63,8 +63,11 @@ String/CASE_INSENSITIVE_ORDER
   (.put , "c" 2)
   (println ,)) ;-=> #object[java.util.HashMap 0x481bbea2 {a=0, b=1, c=2}]
 
-;; And, of course, TRY, CATCH, FINALLY, and THROW.
+;; And of course TRY, CATCH, FINALLY, and THROW.
 
 (try "fnord" (/ 1 0)
      (catch Exception e (println "Ignoring:" e))
      (finally (println :Oops!)))
+
+;; There are even MONITOR-ENTER and MONITOR-EXIT, which I've never
+;; used, and SET! which you almost never need.

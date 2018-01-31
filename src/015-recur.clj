@@ -12,7 +12,7 @@
 
 ;; RECUR passes new values to the bindings at a recursion point.
 ;; The values passed here are F and (f n).  You can think of RECUR as
-;; a GOTO that passes arguments to the bindings in LOOP.
+;; a GOTO that passes new arguments to the bindings in LOOP.
 
 (loop [f (fn [n] (+ 1 n))
        n 0]
@@ -22,10 +22,10 @@
            (f n))))                     ; bound to N
 
 ;; RECUR always takes the same number of arguments as there are
-;; bindings at the recursion point.  RECUR re-enters the loop with
-;; each of its argument values bound to an expression in the binding
-;; vector of the LOOP.  Here the value (comp f f) is bound to F and
-;; the value (f n) is bound to N.
+;; bindings at LOOP.  RECUR re-enters the loop with each of its
+;; argument values bound to an expression in the binding vector of the
+;; LOOP.  Here the value (comp f f) is bound to F and the value (f n)
+;; is bound to N.
 
 (loop [f (fn [n] (+ 1 n))
        n 0]
@@ -35,8 +35,8 @@
            (f n))))                     ; bound to N
 
 ;; A RECUR expression must be in "tail position".  The tail position
-;; is the one that determines an expression's value.  RECUR throws an
-;; error when it is not in tail position.
+;; is the one that determines an expression's value.  RECUR won't
+;; compile unless it is in tail position.
 
 ;; Here is a simply recursive function.  RECUR allows you to write
 ;; a simply recursive function that runs without consuming another
@@ -51,9 +51,9 @@
  (fn [n] (+ 1 n))                       ; bound to F initially
  0)                                     ; bound to N initially
 
-;; As you see the LOOP expression is redundant, so like LOOP, FN also
-;; establishes a recursion point.  RECUR effectively just calls the
-;; function again passing it new arguments.
+;; As you see the LOOP expression in that FN form is redundant.  So
+;; FN like LOOP also establishes a recursion point.  RECUR effectively
+;; just calls the function again passing it new arguments.
 
 ((fn [f n]
    (when (< n 99)
@@ -86,7 +86,7 @@
 ;; Note that an expression can have 0, 1, 2, or more tail positions.
 
 ;; (list ...) has none, because LIST needs the value of all its
-;; sub-expressions to for its value.
+;; sub-expressions, the elements, to determine its value.
 
 ;; (when ...) has 1 tail: its last expression.
 

@@ -35,8 +35,8 @@
 ;; You cannot change a collection value any more than you can change
 ;; an integer value.
 
-;; (add1 22) adds the value 1 to the value 22 to produce the value 23.
-;; It does not change the value of the integer 22 to integer 23.
+;; (add1 22) adds the value 1 to the value 22 to produce the new value
+;; 23.  (add1 22) does not change the value of the integer 22 to 23.
 
 ;; Similarly, (conj [0 1 2] 3) does not change the value of [0 1 2]
 ;; to [0 1 2 3].  It adds the value 3 to the value [0 1 2] to produce
@@ -55,10 +55,14 @@
 
 ;;-=> {:now (-1 0 1), :was (0 1 2), :new (0 1 2), :and (0 1 2)}
 
-;; A sequence is a list, so CONJ adds to its head, but (take 3 whole)
-;; always produces the same list of 3 integers.  CONJ does not add to
-;; them, nor does TAKE consume them.
+;; A sequence is a list, so CONJ adds to its head, but WHOLE is always
+;; the whole numbers so (take 3 whole) always produces the same list
+;; of 3 integers.  CONJ does not add to that list of integers, nor
+;; does TAKE consume from them.
 
 ;; This is not just true of CONJ and collections.  The same is true
 ;; for any function applied to any value.  Functions take old values
 ;; and produce new values leaving the old values unchanged.
+
+;; Let that sink in for a while ...
+;; It is an important principle in F-word programming.

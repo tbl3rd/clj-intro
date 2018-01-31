@@ -10,7 +10,7 @@
 
 ;; Calling a function substitutes the values of arguments for the
 ;; symbols in the function's expression.  You call a function by
-;; placing it at the head of a list whose tail are its arguments.
+;; placing it at the head of a list whose tail is its arguments.
 
 ((fn [x y] (str x y)) 2 :arguments)     ;-=> "2:arguments"
 
@@ -66,7 +66,7 @@
  (fn [n] (+ 1 n))                       ; ADD1's value is this FN.
  2)                                     ; N's value is this int.
 
-;; Conceptually, FN is how all functions are defined.
+;; Conceptually, FN is how every function is defined.
 
 ;; Perhaps more importantly it is also how all symbols are introduced
 ;; (as parameters) and get the values they name (as arguments).  And
