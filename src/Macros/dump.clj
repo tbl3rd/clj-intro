@@ -50,7 +50,7 @@
 (dump-fn (quote beatle?))     ;-=> (println [(quote beatle?) beatle?])
 (dump-fn (quote (count beatle?)))
 
-;; Given DUMP-FAN we can define a macro that transforms the expression
+;; Given DUMP-FN we can define a macro that transforms the expression
 ;; we have into the expression we want.
 
 (defmacro dump
