@@ -14,7 +14,7 @@ String/CASE_INSENSITIVE_ORDER
 
 ;; Call a static method.
 
-(System/getenv "USER")                  ;-=> "lyonst"
+(System/getenv "USER")                  ;-=> "tbl"
 
 ;; Call a method on an object like this (. object method arg0 arg1 ...)
 

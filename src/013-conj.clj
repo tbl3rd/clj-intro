@@ -36,7 +36,7 @@
 ;; an integer value.
 
 ;; (add1 22) adds the value 1 to the value 22 to produce the value 23.
-;; It does not change the value of the integer 22 to 23.
+;; It does not change the value of the integer 22 to integer 23.
 
 ;; Similarly, (conj [0 1 2] 3) does not change the value of [0 1 2]
 ;; to [0 1 2 3].  It adds the value 3 to the value [0 1 2] to produce

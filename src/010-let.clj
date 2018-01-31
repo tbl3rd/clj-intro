@@ -29,14 +29,14 @@
 ;; ADD1 expression and translates it into the following FN expression,
 ;; which Clojure then evaluates.
 
-((fn [add1 n]                           ; The left sides.
-   (add1
+(((fn [add1 n]                           ; The left sides.
     (add1
      (add1
       (add1
        (add1
-        n))))))
- (fn [n] (+ 1 n)) 2)                    ; The right sides.
+        (add1
+         n))))))
+  (fn [n] (+ 1 n)) 2))                    ; The right sides.
 
 ;; Each binding in the LET vector adds a new parameter to a FN's
 ;; parameter vector and a new argument to the tail of that FN's

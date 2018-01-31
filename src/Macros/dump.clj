@@ -117,3 +117,12 @@
      (do
        (println ['~expression x#])
        x#)))
+
+(defmacro dump
+  "Dump a vector [FORM VALUE] where FORM is the EXPRESSION source
+  and VALUE is its value."
+  [expression]
+  `(let [x# ~expression]
+     (do
+       (println ['~expression x#])
+       x#)))

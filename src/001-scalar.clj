@@ -11,7 +11,7 @@
 
 \tab "and" \newline "are" \space "also" \space java.lang.Character \.
 
-0, 23, -42, 3.14159, 22/7               ; are all numbers
+0, 23, -42, 3.14159, 6e23, 22/7         ; are all numbers
 
 22/7 "is a" clojure.lang.Ratio
 

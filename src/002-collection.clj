@@ -17,7 +17,7 @@
 ["Clojure", 0 :to fn?]                  ; a tuple of scalars
 [        0  1   2   3]                  ; indexed by integer
 
-[:vmext:RegisterVimServerParams         ; XML
+[:vmext:RegisterVimServerParams {}        ; XML
  [:vmext:VimServer :name "dvc1-name"
   [:Description "Got me ..."]
   [:vmext:Username "lyonst"]
@@ -76,4 +76,4 @@
       [:li [:a {:href "/nesting-routes"} "Nesting Routes"]]]]]]]]
 
 ;; And, by the way, every collection in Clojure is true.
-;; Even empty collections are true.
+;; Even an empty collection is true.

@@ -11,6 +11,7 @@
 ;; And the rules of evaluation are just this.  Strings, numbers,
 ;; keywords, characters, true, false, and nil all evaluate to
 ;; themselves.  Their values are printed just as they are read.
+;; Similarly, most collections evaluate and print as themselves.
 
 ;; There is one scalar SYMBOL and one collection LIST that are
 ;; evaluated differently.
@@ -29,9 +30,9 @@
 ;; definitions, classes, methods, control structures, enumerations,
 ;; types, dictionaries, blocks, objects, assignments, statics, fields,
 ;; members, modules, packages, generics, annotations, overloading,
-;; configurations, POMs,tokens, and serializers -- each with their own
-;; syntax and naming conventions -- Clojure does with just the scalars
-;; and collections you've already seen.
+;; configurations, POMs, tokens, and serializers -- each with their
+;; own syntax and naming conventions -- Clojure does with just the
+;; scalars and collections you've already seen.
 
 ;; A Clojure program consists of reading a sequence of expressions
 ;; written as scalars and collections, evaluating them according to
