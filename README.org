@@ -11,8 +11,8 @@
   There are recent Clojure versions compatible
   with all the [[https://www.oracle.com/java/index.html][SUN/Oracle]] and [[http://openjdk.java.net/][OpenJDK]] versions commonly in use.
 
-  The other popular version of Clojure is called [[https://clojurescript.org/][Clojurescript]].
-  Clojurescript is hosted on [[https://www.javascript.com/][Javascript]]
+  The other popular version of Clojure is called [[https://clojurescript.org/][ClojureScript]].
+  ClojureScript is hosted on [[https://www.javascript.com/][Javascript]]
   and runs on any Javascript engine that supports
   the Google [[https://developers.google.com/closure/][Closure]] tool chain.
 
