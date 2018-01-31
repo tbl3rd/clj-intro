@@ -1,0 +1,204 @@
+* a file indexing exercise
+
+#+BEGIN_EXAMPLE
+From: Tom Lyons (唐理安) <tbl3rd@gmail.com>
+Subject: file indexing exercise
+To: students
+Date: Thu, 17 Nov 2016 17:50:34 -0500 (27 minutes, 17 seconds ago)
+
+Given a sequence of text files, generate two indexes.
+
+The first index is an alphabetical list of all words appearing in the
+files followed by a list of pairs.  Each pair is the name of the file
+and the number of times that word appears in the file.  For example:
+
+  the : [{child.txt=2}, {mary.txt=1}, {row.txt=1}]
+
+The second index is an alphabetical list of all words appearing in the
+files followed by a list of pairs.  Each pair is the name of the file
+followed by the positions of that word in the file.  For example:
+
+  the : [{child.txt=[44, 50]}, {mary.txt=[17]}, {row.txt=[7]}]
+
+I suggest working your way up to those challenges.  Start by just
+reading a file and parsing it into words.  Then just count the words in
+each file.  Then compute the occurrence frequency of each word.  Then
+gather the locations of each word in a file.  Then combine the results
+for each file into an index of all the files, and so on.
+
+Here's output from a Java solution to those problems.
+
+  ./index child.txt contrary.txt mary.txt row.txt
+
+  Count words in files.
+    a : [{child.txt=1}, {contrary.txt=1}, {mary.txt=1}, {row.txt=1}]
+    all : [{contrary.txt=1}]
+    and : [{child.txt=4}, {contrary.txt=2}, {mary.txt=1}]
+    as : [{mary.txt=1}]
+    bells : [{contrary.txt=1}]
+    boat : [{row.txt=1}]
+    born : [{child.txt=1}]
+    but : [{child.txt=1}, {row.txt=1}]
+    child : [{child.txt=7}]
+    cockleshells : [{contrary.txt=1}]
+    contrary : [{contrary.txt=1}]
+    day : [{child.txt=1}]
+    does : [{contrary.txt=1}]
+    down : [{row.txt=1}]
+    dream : [{row.txt=1}]
+    every : [{mary.txt=1}]
+    face : [{child.txt=1}]
+    fair : [{child.txt=2}]
+    far : [{child.txt=1}]
+    fleece : [{mary.txt=1}]
+    for : [{child.txt=1}]
+    friday : [{child.txt=1}]
+    full : [{child.txt=2}]
+    garden : [{contrary.txt=1}]
+    gay : [{child.txt=1}]
+    gently : [{row.txt=1}]
+    giving : [{child.txt=1}]
+    go : [{child.txt=1}, {mary.txt=1}]
+    good : [{child.txt=1}]
+    grace : [{child.txt=1}]
+    grow : [{contrary.txt=1}]
+    had : [{mary.txt=1}]
+    has : [{child.txt=1}]
+    how : [{contrary.txt=1}]
+    in : [{contrary.txt=1}]
+    is : [{child.txt=5}, {row.txt=1}]
+    its : [{mary.txt=1}]
+    lamb : [{mary.txt=2}]
+    life : [{row.txt=1}]
+    little : [{mary.txt=1}]
+    living : [{child.txt=1}]
+    loving : [{child.txt=1}]
+    maids : [{contrary.txt=1}]
+    mary : [{contrary.txt=2}, {mary.txt=2}]
+    merrily : [{row.txt=4}]
+    monday : [{child.txt=1}]
+    must : [{child.txt=1}]
+    of : [{child.txt=3}]
+    on : [{child.txt=1}]
+    pretty : [{contrary.txt=1}]
+    quite : [{contrary.txt=1}]
+    row : [{contrary.txt=1}, {row.txt=3}]
+    s : [{child.txt=7}]
+    sabbath : [{child.txt=1}]
+    saturday : [{child.txt=1}]
+    silver : [{contrary.txt=1}]
+    snow : [{mary.txt=1}]
+    stream : [{row.txt=1}]
+    sure : [{mary.txt=1}]
+    that : [{child.txt=1}, {mary.txt=1}]
+    the : [{child.txt=2}, {mary.txt=1}, {row.txt=1}]
+    thursday : [{child.txt=1}]
+    to : [{child.txt=1}, {mary.txt=1}]
+    tuesday : [{child.txt=1}]
+    was : [{mary.txt=2}]
+    wednesday : [{child.txt=1}]
+    went : [{mary.txt=1}]
+    where : [{mary.txt=1}]
+    white : [{mary.txt=1}]
+    wise : [{child.txt=1}]
+    with : [{contrary.txt=1}]
+    woe : [{child.txt=1}]
+    work : [{child.txt=1}]
+    your : [{contrary.txt=1}, {row.txt=1}]
+
+  Index words in files.
+    a : [{child.txt=[41]}, {contrary.txt=[19]},
+         {mary.txt=[2]}, {row.txt=[16]}]
+    all : [{contrary.txt=[17]}]
+    and : [{child.txt=[33, 55, 57, 59]},
+           {contrary.txt=[12, 14]},
+           {mary.txt=[11]}]
+    as : [{mary.txt=[9]}]
+    bells : [{contrary.txt=[11]}]
+    boat : [{row.txt=[4]}]
+    born : [{child.txt=[48]}]
+    but : [{child.txt=[43]}, {row.txt=[15]}]
+    child : [{child.txt=[2, 9, 16, 23, 30, 37, 45]}]
+    cockleshells : [{contrary.txt=[13]}]
+    contrary : [{contrary.txt=[3]}]
+    day : [{child.txt=[52]}]
+    does : [{contrary.txt=[5]}]
+    down : [{row.txt=[6]}]
+    dream : [{row.txt=[17]}]
+    every : [{mary.txt=[12]}]
+    face : [{child.txt=[6]}]
+    fair : [{child.txt=[4, 54]}]
+    far : [{child.txt=[25]}]
+    fleece : [{mary.txt=[6]}]
+    for : [{child.txt=[40]}]
+    friday : [{child.txt=[28]}]
+    full : [{child.txt=[11, 18]}]
+    garden : [{contrary.txt=[7]}]
+    gay : [{child.txt=[60]}]
+    gently : [{row.txt=[5]}]
+    giving : [{child.txt=[34]}]
+    go : [{child.txt=[27]}, {mary.txt=[22]}]
+    good : [{child.txt=[58]}]
+    grace : [{child.txt=[13]}]
+    grow : [{contrary.txt=[8]}]
+    had : [{mary.txt=[1]}]
+    has : [{child.txt=[24]}]
+    how : [{contrary.txt=[4]}]
+    in : [{contrary.txt=[18]}]
+    is : [{child.txt=[3, 10, 17, 31, 53]}, {row.txt=[14]}]
+    its : [{mary.txt=[5]}]
+    lamb : [{mary.txt=[4, 18]}]
+    life : [{row.txt=[13]}]
+    little : [{mary.txt=[3]}]
+    living : [{child.txt=[42]}]
+    loving : [{child.txt=[32]}]
+    maids : [{contrary.txt=[16]}]
+    mary : [{contrary.txt=[0, 1]}, {mary.txt=[0, 15]}]
+    merrily : [{row.txt=[9, 10, 11, 12]}]
+    monday : [{child.txt=[0]}]
+    must : [{child.txt=[38]}]
+    of : [{child.txt=[5, 12, 19]}]
+    on : [{child.txt=[49]}]
+    pretty : [{contrary.txt=[15]}]
+    quite : [{contrary.txt=[2]}]
+    row : [{contrary.txt=[20]}, {row.txt=[0, 1, 2]}]
+    s : [{child.txt=[1, 8, 15, 22, 29, 36, 47]}]
+    sabbath : [{child.txt=[51]}]
+    saturday : [{child.txt=[35]}]
+    silver : [{contrary.txt=[10]}]
+    snow : [{mary.txt=[10]}]
+    stream : [{row.txt=[8]}]
+    sure : [{mary.txt=[20]}]
+    that : [{child.txt=[46]}, {mary.txt=[14]}]
+    the : [{child.txt=[44, 50]}, {mary.txt=[17]}, {row.txt=[7]}]
+    thursday : [{child.txt=[21]}]
+    to : [{child.txt=[26]}, {mary.txt=[21]}]
+    tuesday : [{child.txt=[7]}]
+    was : [{mary.txt=[7, 19]}]
+    wednesday : [{child.txt=[14]}]
+    went : [{mary.txt=[16]}]
+    where : [{mary.txt=[13]}]
+    white : [{mary.txt=[8]}]
+    wise : [{child.txt=[56]}]
+    with : [{contrary.txt=[9]}]
+    woe : [{child.txt=[20]}]
+    work : [{child.txt=[39]}]
+    your : [{contrary.txt=[6]}, {row.txt=[3]}]
+
+FWIW: Those files are nursery rhymes from http://nursery.zelo.com/
+      but don't click on that without your sunglasses.
+
+BTW: Feel free to just SLURP (http://clojuredocs.org/clojure.core/slurp)
+     the files, so you don't have to deal with the whole Java IO stack.
+     But ... if you wanna get all "web scale" on us, feel free.
+
+     Just for fun, last night I ran the program over text from the
+     MOBY-DICK URL at the Project Gutenberg link (which does not work
+     now) and found that "ishmael" shows up 20 times.  Correcting for
+     lead-in material and normalizing so that the first "Ishmael" is
+     at position 3 in the first sentence "Call me Ishmael." I got the
+     following list of occurrences.
+
+     [3 1920 2593 2638 2780 3045 13761 19876 25565 30064 30078
+      31341 65703 69428 72534 72745 131076 169071 169124 169153]
+#+END_EXAMPLE
