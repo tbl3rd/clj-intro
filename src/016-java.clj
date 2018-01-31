@@ -70,4 +70,5 @@ String/CASE_INSENSITIVE_ORDER
      (finally (println :Oops!)))
 
 ;; There are even MONITOR-ENTER and MONITOR-EXIT, which I've never
-;; used, and SET! which you almost never need.
+;; used, and SET! which you almost never need.  Please forget I
+;; mentioned them.
