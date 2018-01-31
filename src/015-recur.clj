@@ -107,3 +107,13 @@
   (trampoline ping pong (- n 1)))       ; Goto PING passing PONG ...
 
 (ping pong 9)
+
+;; This style of programming is called continuation-passing.  PONG is
+;; PING's continuation and PING is PONG's.  You can think of PING and
+;; PONG as a 2-state machine messaging the value of (or event) N.
+
+;; Continuation passing has many applications.  It is fundamental to
+;; the Actor model of computation and programming language semantics.
+;; You can think of it as a generalization of the usual "direct" call
+;; and return style of procedural programming, where the return point
+;; is made explicit rather than implied by a stack frame discipline.

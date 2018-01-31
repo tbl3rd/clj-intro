@@ -11,14 +11,14 @@
 (conj  [] 0 1 2 3)                       ;-=>  [0 1 2 3]
 (conj  () 0 1 2 3)                       ;-=>  (3 2 1 0)
 (conj #{} 0 1 2 3)                       ;-=> #{0 1 3 2}
-(conj  {} [:a 0] [:b 1] [:c 2])          ;-=> {:a 0, :b 1, :c 2}
+(conj  {} [:a 0] [:b 1] [:c 2])          ;-=>  {:a 0, :b 1, :c 2}
 
 ;; CONJ adds elements where appropriate for the collection.
 
 (conj  [0 1 2] 3)                       ;-=>  [0 1 2 3]
 (conj '(0 1 2) 3)                       ;-=>  (3 0 1 2)
 (conj #{0 1 2} 3)                       ;-=> #{0 1 3 2}
-(conj  {:a 0 :b 0} [:c 0])              ;-=> {:a 0, :b 0, :c 0}
+(conj  {:a 0 :b 0} [:c 0])              ;-=>  {:a 0, :b 0, :c 0}
 
 ;; CONJ adds to a vector at the tail.
 ;; CONJ adds to a list at the head.
