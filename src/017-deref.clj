@@ -74,6 +74,18 @@
 ;; idempotent, or otherwise free of side-effects, or you will have a
 ;; bad time.)
 
+(let [ints (atom [])
+      make (fn [x] (future (Thread/sleep 100) (swap! ints conj x)))
+      results (map deref (map make (range 5)))]
+  (time {:sorted (vec (sort-by count results))
+         :results (vec results)}))
+
+;;-=> {:sorted  [[4] [4 0] [4 0 3] [4 0 3 1] [4 0 3 1 2]],
+;;-=>  :results [[4 0] [4 0 3 1] [4 0 3 1 2] [4 0 3] [4]]}
+
+;; Threads add their integers and report results in apparently random
+;; order, but every integer is present and none is duplicated.
+
 ;; A REF is a reference whose value can be changed only in the context
 ;; of a transaction established by DOSYNC.  Here's an example of using
 ;; ATOM and REF to model bank accounts -- the canonical example of
@@ -86,18 +98,6 @@
 ;; validator returns FALSE.
 
 (def accounts (ref {}))
-
-(let [ints (atom [])
-      make (fn [x] (future (Thread/sleep 100) (swap! ints conj x)))
-      results (map deref (map make (range 5)))]
-  (time {:sorted (vec (sort-by count results))
-         :results (vec results)}))
-
-;;-=> {:sorted  [[4] [4 0] [4 0 3] [4 0 3 1] [4 0 3 1 2]],
-;;-=>  :results [[4 0] [4 0 3 1] [4 0 3 1 2] [4 0 3] [4]]}
-
-;; Threads add their integers and report results in apparently random
-;; order, but every integer is present and none is duplicated.
 
 (let [account-id (ref 100000)]
   (defn next-account-id
