@@ -77,3 +77,5 @@
 
 ;; And, by the way, every collection in Clojure is true.
 ;; Even an empty collection is true.
+
+"" [] {} #{} [nil] {nil ""} #{nil}      ; are all TRUE!

@@ -9,7 +9,7 @@
 
 \T \h \e \s \e \space \a \r \e \space java.lang.Character \. \newline
 
-\tab "and" \newline "are" \space "also" \space java.lang.Character \.
+\tab "and" \newline "are" \space "also" \space java.lang.Character \s\.
 
 0, 23, -42, 3.14159, 6e23, 22/7         ; are all numbers
 
