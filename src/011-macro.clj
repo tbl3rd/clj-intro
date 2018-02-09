@@ -51,7 +51,7 @@
 "The" 'syntax "is just shorthand for" (quote syntax) "."
 "The first is translated directly into the second when read."
 
-;; This short-handing of common usage is fundamental to programming
+;; This shorthanding of common usage is fundamental to programming
 ;; Clojure and other L-word languages.  Most of Clojure's core just
 ;; consists of names for the most common usage patterns discovered
 ;; over generations of programmers. All those names are just shorthand
@@ -59,8 +59,8 @@
 ;; fundamental functions and macros.
 
 ;; For example, defining functions is so common in Clojure (and other
-;; F-word ;; languages) that Clojure defines a special DEFN macro to
-;; make it easier.  For example ...
+;; F-word languages) that Clojure defines a special DEFN macro to make
+;; it easier.  For example ...
 
 (defn add1 [n] (+ 1 n))
 
@@ -77,8 +77,8 @@
 
 ;; These strange non-symbol macros are known as 'reader macros' in
 ;; L-word languages, because they are typically implemented in the
-;; 'reader': the part of the system that turns text into the data
-;; expressions of the language: scalars and collections.
+;; 'reader': that mysterious part of the system that turns text into
+;; the data expressions of the language: scalars and collections.
 
 ;; Some people find MACROS mysterious, but we've already used several
 ;; macros without even thinking about them.  Macros take the place of
@@ -135,7 +135,7 @@
 ;; What would happen if IF were a function called FI?
 
 (defn fi
-  "Wrap if in a silly function."
+  "Wrap IF in a silly function."
   [test then else]
   (if test then else))
 
@@ -149,7 +149,10 @@
 (tcetorp rob)              ; nil again after blasting in REPL
 (tcetorp tom)              ; "Hello Tom" after blasting in REPL
 
-;; Unlike our FI, Clojure's IF gets its 3 sub-expressions un-evaluated.
-;; After evaluating the first expression (the test), it then evaluates
+;; Unlike our FI, Clojure's IF gets its 3 sub-expressions un-evaluated,
+;; and evaluates the first, and only one of the two other expressions,
+;; discarding the other unevaluated.
+
+;; After evaluating the first expression (the test), IF evaluates
 ;; either the second (then) or the third (else) sub-expression
 ;; depending on whether the test is TRUE (then) or FALSE (else).

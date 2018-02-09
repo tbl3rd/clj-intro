@@ -4,15 +4,15 @@
 
 ;; And with that, you have virtually the entire syntax of Clojure.
 
-;; There is not much except the primitive scalars (string number
-;; keyword character true false nil symbol), the collections (vector
+;; There is not much except the primitive scalars (nil false true
+;; string keyword character number symbol), the collections (vector
 ;; map set list), and the rules for evaluating them.
 
 ;; And the rules of evaluation are just this.  Strings, numbers,
 ;; keywords, characters, true, false, and nil all evaluate to
 ;; themselves.  Vectors, sets, and maps also evaluate to themselves.
 
-;; Their values are printed just as they are read.
+;; Their values are printed much as they are read.
 
 ;; There is one scalar SYMBOL and one collection LIST that are
 ;; evaluated differently.

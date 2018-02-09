@@ -15,7 +15,7 @@
 ;; set of integers and get an equivalent back.  And so on ...
 ;;
 ;; There are two kinds of expressions with values that do not print
-;; just like they are read.
+;; like they are read.
 
 ;; One kind is a SCALAR and another is a COLLECTION.
 ;;
@@ -28,8 +28,9 @@
 ;; COLLECTION delimiter characters ("[]#{}, for example, which would
 ;; make it a collection or something), or a quote (like ' or `).
 
-;; You also can't use @, ^, or ~ in a symbol (because they are special
-;; to THE READER, as will be explained later).
+;; You also can't use @, ^, or ~ in a symbol, because they are special
+;; to the READER, as will be explained later.  A symbol also cannot
+;; begin with # because it too is special to that mysterious READER.
 
 ;; A & by itself is also special and not a symbol.
 
@@ -44,7 +45,11 @@ vec vector map set first rest seq       ; also symbols
 *agent* *ns* pop! swap! partition-by    ; more symbols
 = + - / not= == > < <= >= +' -' *'      ; yet more symbols
 
-;; Symbols are used to name values.
+;; Symbols are used to name values.  Symbols also name types.
+
+java.lang.String, clojure.lang.Ratio    ; These name types!
+
+;; So even types are values in Clojure.
 
 ;; The value of a symbol is the value that symbol names.
 
