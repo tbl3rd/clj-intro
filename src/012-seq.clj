@@ -59,7 +59,7 @@
 (into  [] (rest  [0 1 2 3 4]))          ;-=>  [1 2 3 4]
 (into #{} (rest #{0 1 2 3 4}))          ;-=> #{1 2 3 4}
 (into  {} (rest  {:a 0 :b 1 :c 2}))     ;-=>  {:b 1, :c 2}
-(into  () (rest '(0 1 2 3 4)))          ;-=> (4 3 2 1)
+(into  () (rest '(0 1 2 3 4)))          ;-=>  (4 3 2 1)
 
 ;; This is so important that you should make sure you understand it
 ;; before continuing.  Play with collections and sequences in the

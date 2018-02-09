@@ -55,12 +55,12 @@ String/CASE_INSENSITIVE_ORDER
   (.put "c" 2)
   (println)) ;-=> #object[java.util.HashMap 0x481bbea2 {a=0, b=1, c=2}]
 
-;; Below I put ,s where the HashMap object is slotted in.
+;; Below I put ,,,s where the HashMap object is slotted in.
 
 (doto (java.util.HashMap.)
-  (.put , "a" 0)
-  (.put , "b" 1)
-  (.put , "c" 2)
+  (.put ,,, "a" 0)
+  (.put ,,, "b" 1)
+  (.put ,,, "c" 2)
   (println ,)) ;-=> #object[java.util.HashMap 0x481bbea2 {a=0, b=1, c=2}]
 
 ;; And of course TRY, CATCH, FINALLY, and THROW.

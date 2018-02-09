@@ -96,9 +96,9 @@
 
 (->person {:name "Tom"})
 
-;; There are also the much less common :syms and :strs keywords in map
-;; bindings, which bind map and set values whose keys are symbols or
-;; strings.
+;; There is also the less common :STRS (and much less common :SYMS) in
+;; map bindings, which binds map and set values whose keys are
+;; strings (or symbols).
 
 ;; Destructuring is implemented in FN, so it is available in most of
 ;; the binding forms: FN, LET, DEFN, DEFMACRO, LOOP, FOR, BINDING, and

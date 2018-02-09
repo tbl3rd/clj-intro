@@ -5,8 +5,16 @@
 (set-env!
  :resource-paths #{"src"}
  :target-path "target"
- :dependencies '[[org.clojure/clojure "1.8.0"]])
+ :dependencies '[[org.clojure/clojure "1.9.0"]
+                 [onetom/boot-lein-generate "0.1.3"]])
 
-;; Evaluate in cider REPL to enable debugger.
-;;
-(boot.core/load-data-readers!)
+(require 'boot.lein)
+
+(deftask lein
+  "Generate a lein project.clj file for Cursive, and so on."
+  []
+  (with-pre-wrap fileset
+    (boot.lein/generate)
+    fileset))
+
+(boot (lein))                           ; Always refresh project.clj.

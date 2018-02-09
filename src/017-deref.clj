@@ -38,8 +38,8 @@
 
 ;; DELAY is like DO except that the expressions in the DELAY are not
 ;; evaluated until the DELAY is DEREFed.  From that point on, the
-;; DELAY is just a reference to a single value: the result of the
-;; evaluating the expressions. You can use DELAY to postpone an
+;; DELAY is just a reference to a single value: the result of
+;; evaluating the expressions.  You can use DELAY to postpone an
 ;; expensive computation until its value is needed.  This is like
 ;; "call by need" in Algol like languages and is the default "lazy"
 ;; evaluation model of some F-word languages like Haskell.
