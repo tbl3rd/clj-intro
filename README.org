@@ -33,6 +33,9 @@
 
   All the files that end in =.clj=
   are Clojure source files.
+  Start at [[https://github.com/tbl3rd/clj-intro/blob/master/src/000-intro.clj][000-intro.clj]]
+  and read on from there.
+
   If you have a Clojure programming environment set up
   you can load the files as programs.
   I encourage you to do that,
@@ -47,7 +50,7 @@
   "Lisp isn't a language, it's a building material."
   The experience of building systems in Clojure
   feels very different from building systems
-  in Java or Scala.
+  in Java or Scala, or even Python or Ruby.
   I hope exploring these introductory files
   will help deliver the Clojure experience.
 
