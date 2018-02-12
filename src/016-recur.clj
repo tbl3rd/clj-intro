@@ -2,7 +2,8 @@
 ;; RECUR and LOOP
 ;;
 
-;; LOOP is just like LET except that it also establishes a "recursion point".
+;; LOOP is just like LET except that it also establishes a "recursion
+;; point".
 
 (loop [f (fn [n] (+ 1 n))
        n 0]
