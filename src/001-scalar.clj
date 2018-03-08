@@ -13,7 +13,7 @@
 
 0, 23, -42, 3.14159, 6e23, 22/7, 1/137  ; are all numbers
 
-22/7 :and 1/137 "are" clojure.lang.Ratio :values
+22/7 "and" 1/137 "are" clojure.lang.Ratio "values"
 
 314159265358.14159265358M "is a" java.math.BigDecimal
 
