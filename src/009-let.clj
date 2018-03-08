@@ -23,7 +23,9 @@
 
 ;; The scope of each binding is the list enclosing the LET.
 
-;; Conceptually, LET is still just FN under the hood.
+;; Conceptually, LET is still just FN under the hood.  F-word
+;; programmers into category theory might recognize LET as
+;; the "identity monad".
 
 ;; So LET is a macro that gets the binding vector and the following
 ;; ADD1 expression and translates it into the following FN expression,

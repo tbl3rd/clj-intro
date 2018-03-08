@@ -59,7 +59,7 @@
 ;; distinguish vectors from lists when testing equality: they are both
 ;; considered ordered sequences of values and compared index by index.
 ;; Two sequences are equivalent when they have the same length and
-;; equivalent values at each index.
+;; equivalent values at each position.
 
 (= '(:first :second) '(:first :second))  ;=> true, of course
 (=  [:first :second]  [:first :second])  ;=> true, of course
@@ -70,13 +70,20 @@
 ;; from one state to the other: once equal, always equal.  There is no
 ;; assignment to muddy the water.
 
+;; In the following examples, BEATLES equals the set even though the
+;; set prints differently from that used in the definition.  The
+;; semantics of sets means that the order of elements is irrelevant to
+;; the value of the set.
+
 (def beatles #{:john :paul :george :ringo}) ;=> #'user/beatles
 beatles                                     ;=> #{:george :ringo :paul :john}
 (= beatles #{:george :ringo :paul :john})   ;=> true
+(= beatles #{:george :john :paul :ringo})   ;=> true
+(= beatles (into #{} (shuffle beatles)))    ;=> true
 
 ;; Clojure also has '==' to compare numbers for "mathematical
 ;; equality".  Use '==' when you know you're comparing numbers and
-;; your code will probably run a bit faster and less surprising.
+;; your code will probably run a bit faster with fewer surprises.
 
 (=  1 1/1)                              ;=> true
 (=  1 1.0)                              ;=> false
@@ -87,8 +94,42 @@ beatles                                     ;=> #{:george :ringo :paul :john}
 
 ;; Loops
 
-;; Clojure has loops.  It even has FOR loops.
+;; Clojure has loops.  It even has FOR loops.  FOR looks a lot like
+;; LET except that where LET binds a single value to a symbol, FOR
+;; binds its symbols to a sequence of values.  The result is also a
+;; sequence of expressions, where each expression has the form
+;; specified in the body of the FOR.
 
+;; For example, you can read the following as: For H taking each of
+;; :a and :b, let T take the values 0, 1, and 2, generating the
+;; sequence of pairs [H T].
 
-;; But as in most F-word, and especially L-word, languages the primary
-;; means of repeating a computation is via recursion.
+(for [h [:a :b]
+      t [0 1 2]]
+  [h t])               ;=> ([:a 0] [:a 1] [:a 2] [:b 0] [:b 1] [:b 2])
+
+;; Notice that a later binding always exhausts its sequence before an
+;; earlier symbol progresses to its next binding.
+
+;; As in the "for comprehensions" of other F-word languages, Clojure's
+;; FOR bindings can be modified by guard expressions.
+
+;; The :WHEN guard produces the body value only when its condition is
+;; TRUE. The :WHILE guard generates body values until its condition is
+;; FALSE.  FOR also supports a :LET form which introduces a new non-
+;; sequenced binding as in the LET form.  They work together like
+;; this.
+
+(for [x (range)
+      :when (odd? x)
+      :let [squared (* x x)]
+      :while (< squared 99)]
+  squared)                              ;=> (1 9 25 49 81)
+
+;; But as in most F-word, and especially L-word, languages FOR is
+;; conceptually just convenient syntax built on top of FN and RECUR.
+
+;; F-word programmers into category theory might say that FOR is
+;; Clojure's "sequence monad" or "list monad".  (And I suspect it
+;; is why Clojure treats both vectors and lists as sequences when
+;; comparing them for equality!)
