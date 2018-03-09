@@ -77,19 +77,15 @@
 ;; can think of DO as a LET without bindings or a FN called without
 ;; arguments.
 
-(do     0 (println :one) 2)         ;=> 2
-(let [] 0 (println :one) 2)         ; after ignoring the 0
-((fn [] 0 (println :one) 2))        ; and printing :one
+(do     (println :zero) 2)         ;=> 1
+(let [] (println :zero) 2)         ; after printing :zero
+((fn [] (println :zero) 2))        ; Same here.
 
-;; In fact, you can think of Clojure's literal collection syntax such
-;; as :, "", [], #{}, and {} as shorthand for various function
-;; expressions such as (keyword ...), (str ...), (vector ...),
-;; (set ...), and so on.
-
-;; These strange non-symbol macros are known as 'reader macros' in
-;; L-word languages, because they are typically implemented in the
-;; 'reader': that mysterious part of the system that turns text into
-;; the data expressions of the language: scalars and collections.
+;; DO is useful when you need a side-effect.  2 is the value of all
+;; three expressions above.  But they each also print the keyword
+;; :zero somewhere when evaluated.  In each case, two expressions are
+;; evaluated, then all but the last value is discarded.  The value
+;; of (println ...) is always NIL.  (It is designed to be ignored.)
 
 ;; Some people find MACROS mysterious, but we've already used several
 ;; macros without even thinking about them.  Macros take the place of
@@ -168,3 +164,13 @@
 ;; After evaluating the first expression (the test), IF evaluates
 ;; either the second (then) or the third (else) sub-expression
 ;; depending on whether the test is TRUE (then) or FALSE (else).
+
+;; You can even think of Clojure's literal collection syntax such
+;; as :, "", [], #{}, and {} as shorthand for various function
+;; expressions such as (keyword ...), (str ...), (vector ...),
+;; (set ...), and so on.
+
+;; These strange non-symbol macros are known as 'reader macros' in
+;; L-word languages, because they are typically implemented in the
+;; 'reader': that mysterious part of the system that turns text into
+;; the data expressions of the language: scalars and collections.
