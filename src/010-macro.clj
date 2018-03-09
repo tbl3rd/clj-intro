@@ -69,15 +69,17 @@
 (def add1 (fn [n] (+ 1 n)))
 
 ;; ... and Clojure immediately translates the former to the latter
-;; when compiling.  Another common macro is DO.  Remember how LET
-;; abstracts out the symbol binding of FN into a syntax convenient for
-;; the local naming of values?  DO abstracts out the expression
-;; sequencing of FN.  You can think of DO as a LET without binding or
-;; a FN called without arguments.
+;; when compiling.
 
-(do     0 (println :one) 2)         ;=> 2 after printing :one
-(let [] 0 (println :one) 2)         ;=> ignoring the 0
-((fn [] 0 (println :one) 2))
+;; Another common macro is DO.  Remember how LET abstracts out the
+;; symbol binding of FN into a syntax convenient for the local naming
+;; of values?  DO abstracts out the expression sequencing of FN.  You
+;; can think of DO as a LET without bindings or a FN called without
+;; arguments.
+
+(do     0 (println :one) 2)         ;=> 2
+(let [] 0 (println :one) 2)         ; after ignoring the 0
+((fn [] 0 (println :one) 2))        ; and printing :one
 
 ;; In fact, you can think of Clojure's literal collection syntax such
 ;; as :, "", [], #{}, and {} as shorthand for various function
