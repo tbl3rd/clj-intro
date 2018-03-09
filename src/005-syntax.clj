@@ -47,12 +47,12 @@
 ;; You are now a Clojure programmer.  While there is a lot more to
 ;; learn, all you really need now is practice (and vocabulary).
 
-;; NOTE on syntax and macros
+;; NOTE on syntax and macros:
 
-;; Furthermore, the fundamental syntax of Clojure consists of just a
-;; dozen or so primitive forms.  The rest of the language is built of
-;; MACROS on top of that fundamental dozen.  If you understand the
-;; fundamentals, you (at least in theory) understand Clojure.
+;; The fundamental syntax of Clojure consists of just a dozen or so
+;; primitive forms.  The rest of the language is built of MACROS on
+;; top of that fundamental dozen.  If you understand the fundamentals,
+;; you (at least in theory) understand Clojure.
 
 ;; The fundamental Clojure forms are: do fn if loop quote var recur
 ;; with these for Java interop: . catch finally monitor-enter

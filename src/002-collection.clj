@@ -7,8 +7,6 @@
 { "key" "value" :kvs "..." }            ; map: associative by key
 #{ :... }                               ; set: in or out
 
-;; There is one more collection to be introduced later.
-;;
 ;; Clojure's data language of SCALARS and COLLECTIONS encompasses
 ;; all of the textual data representations in common use today.
 
@@ -17,7 +15,7 @@
 ["Clojure", 0 :to fn?]                  ; a tuple of scalars
 [        0  1   2   3]                  ; indexed by integer
 
-[:vmext:RegisterVimServerParams {}        ; XML
+[:vmext:RegisterVimServerParams {:id 7} ; XML
  [:vmext:VimServer :name "dvc1-name"
   [:Description "Got me ..."]
   [:vmext:Username "lyonst"]
@@ -43,7 +41,7 @@
  :Released "09 Oct 1981"                ;
  :Director "Dušan Makavejev"}           ; ... an object or 'dict'.
 
-{:A :T, :C :G, :T :A, :G :C}            ; DNA base pairing
+{:A :T, :C :G, :T :A, :G :C}            ; a DNA base pairing map
 
 #{"Chico" "Groucho" "Harpo" "Zeppo"}    ; The set of Marx Brothers
 
@@ -79,3 +77,5 @@
 ;; Even an empty collection is true.
 
 "" [] {} #{} [nil] {nil ""} #{nil}      ; are all TRUE!
+
+;; And there is one more collection to be introduced later.

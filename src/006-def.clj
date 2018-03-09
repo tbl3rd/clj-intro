@@ -27,7 +27,7 @@ lojure                                  ;-=> [\l \o \j \u \r \e]
 ;; The place where DEF symbols are bound is called a NAMESPACE.
 
 ;; You can think of a namespace as a global map where DEF stashes
-;; symbols keyed their values.
+;; symbols keyed by their values.
 
 ;; So far, we've been working in the USER namespace created by the
 ;; Clojure REPL for us to experiment in.  The value of the current

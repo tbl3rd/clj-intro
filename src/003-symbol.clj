@@ -3,7 +3,7 @@
 ;;
 
 ;; When Clojure reads an EXPRESSION, it either prints that
-;; expression's VALUE or it throws an error.
+;; expression's VALUE or it throws an exception.
 
 ;; So far, the value of each expression that Clojure prints looks a
 ;; lot like the expression itself.
