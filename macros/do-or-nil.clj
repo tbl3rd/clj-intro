@@ -19,12 +19,13 @@
   "This will throw java.io.FileNotFoundException!"
   (def fnord
     "The content of a missing file."
-    (slurp "fnord.txt")))
+    (slurp "fnord.txt"))
+  )
 
 ;; That can be inconvenient.  Can't we just return NIL?
 
-;; DO just evaluates its expressions in order and returns the value of
-;; the last one.
+;; Remember that DO just evaluates its expressions in order and
+;; "returns" the value of the last one.
 
 (do 0 1 2 3 4)                          ;-=> 4
 
@@ -103,7 +104,8 @@
       (println (slurp "fnord.txt"))
       :ok)
     (catch java.lang.Exception boot.user/x
-      (clojure.core/println "Caught:" boot.user/x))))
+      (clojure.core/println "Caught:" boot.user/x)))
+  )
 
 ;; Our exception symbol X is interpreted as bound in the surrounding
 ;; BOOT.USER namespace instead of as local to the macro expansion.
