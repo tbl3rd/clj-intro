@@ -9,8 +9,10 @@
 (fn [two parameters] (str two parameters))
 
 ;; Calling a function substitutes the values of arguments for the
-;; symbols in the function's expression.  You call a function by
-;; placing it at the head of a list whose tail is its arguments.
+;; symbols in the function's expression sequence.  Clojure evaluates
+;; that sequence in order and the value of the last expression is the
+;; value "returned" by the function.  You call a function by placing
+;; it at the head of a list whose tail is its arguments.
 
 ((fn [x y] (str x y)) 2 :arguments)     ;-=> "2:arguments"
 

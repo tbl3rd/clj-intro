@@ -69,11 +69,20 @@
 (def add1 (fn [n] (+ 1 n)))
 
 ;; ... and Clojure immediately translates the former to the latter
-;; when compiling.
+;; when compiling.  Another common macro is DO.  Remember how LET
+;; abstracts out the symbol binding of FN into a syntax convenient for
+;; the local naming of values?  DO abstracts out the expression
+;; sequencing of FN.  You can think of DO as a LET without binding or
+;; a FN called without arguments.
 
-;; In fact, you can think of Clojure's other syntax such as :, "", [],
-;; #{}, and {} as shorthand for various function expressions such
-;; as (keyword ...), (str ...), (vector ...), (set ...), and so on.
+(do     0 (println :one) 2)         ;=> 2 after printing :one
+(let [] 0 (println :one) 2)         ;=> ignoring the 0
+((fn [] 0 (println :one) 2))
+
+;; In fact, you can think of Clojure's literal collection syntax such
+;; as :, "", [], #{}, and {} as shorthand for various function
+;; expressions such as (keyword ...), (str ...), (vector ...),
+;; (set ...), and so on.
 
 ;; These strange non-symbol macros are known as 'reader macros' in
 ;; L-word languages, because they are typically implemented in the
@@ -92,6 +101,7 @@
 
 ;; For example: IF, AND, and OR are all standard Clojure macros.
 ;; They have to be macros, because they cannot be functions.
+
 ;; Why?  Think about it.
 
 (if true  :then :else)                  ;-=> :then
