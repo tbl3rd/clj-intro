@@ -44,8 +44,8 @@
 
 ;; Equality
 
-;; Most programming languages have some notion of equality, but it can
-;; sometimes be a squishy notion.  Java, for example, has '==' and
+;; Most programming languages have some notion of "equality", but it
+;; can sometimes be a squishy one.  Java, for example, has '==' and
 ;; 'Object::equals'.  Usually '==' is just syntax for a call to the
 ;; 'equals()' method on an object.  The 'equals()' method can be
 ;; inherited or overridden. Java distinguishes between object and
@@ -96,7 +96,7 @@ beatles                                     ;=> #{:george :ringo :paul :john}
 
 ;; Clojure has loops.  It even has FOR loops.  FOR looks a lot like
 ;; LET except that where LET binds a single value to a symbol, FOR
-;; binds its symbols to a sequence of values.  The result is also a
+;; binds its symbols to sequences of values.  The result is also a
 ;; sequence of expressions, where each expression has the form
 ;; specified in the body of the FOR.
 
@@ -108,8 +108,8 @@ beatles                                     ;=> #{:george :ringo :paul :john}
       t [0 1 2]]
   [h t])               ;=> ([:a 0] [:a 1] [:a 2] [:b 0] [:b 1] [:b 2])
 
-;; Notice that a later binding always exhausts its sequence before an
-;; earlier symbol progresses to its next binding.
+;; Notice that a later binding always exhausts its sequence of values
+;; before an earlier symbol binds its next value.
 
 ;; As in the "for comprehensions" of other F-word languages, Clojure's
 ;; FOR bindings can be modified by guard expressions.

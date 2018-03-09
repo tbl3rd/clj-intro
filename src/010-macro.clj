@@ -85,7 +85,7 @@
 ;; much of the SYNTAX of other languages: they serve the same purpose
 ;; as declarations, definitions, and conditionals in other languages.
 
-;; Unlike other languages though, Clojure provides DEFMACRO so that
+;; Unlike most languages though, Clojure provides DEFMACRO so that
 ;; programmers can define their own syntax as necessary.  However,
 ;; all of the syntax you are likely to need for a long while is
 ;; already defined for you in the clojure.core namespace.

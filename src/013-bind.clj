@@ -32,7 +32,7 @@
 
 (swamp [0 1] [2 3])                     ;-=> [[3 2] [1 0]]
 
-;; The keyword :as binds its following form to the original
+;; The keyword :as binds its following symbol to the original
 ;; expression's value.
 
 (defn show-rotate
@@ -109,4 +109,5 @@
 ;; to bootstrap its implementation, and DEF is where that happens --
 ;; before there is enough Clojure to support FN binding.
 
-;; DEF (really VAR) is just ... special, unlike LET and the others.
+;; DEF (really VAR) is just ... special, unlike LET and the others,
+;; which are syntactic sugar over FN.

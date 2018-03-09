@@ -11,10 +11,10 @@
 (rest #{0 1 2 3 4})                     ;-=> (1 4 3 2)
 (rest  {:a 0 :b 1 :c 2})                ;-=> ([:b 1] [:c 2])
 
-(rest  "Clojure")                       ; Why not  "lojure"        ?
-(rest  [0 1 2 3 4])                     ; Why not  [1 2 3 4]       ?
-(rest #{0 1 2 3 4})                     ; Why not #{1 4 3 2}       ?
-(rest  {:a 0 :b 1 :c 2})                ; Why not  {[:b 1] [:c 2]} ?
+(rest  "Clojure")                       ; Why not  "lojure"    ?
+(rest  [0 1 2 3 4])                     ; Why not  [1 2 3 4]   ?
+(rest #{0 1 2 3 4})                     ; Why not #{1 4 3 2}   ?
+(rest  {:a 0 :b 1 :c 2})                ; Why not  {:b 1 :c 2} ?
 
 ;; REST actually produces a SEQUENCE.  A SEQUENCE prints as a list.
 

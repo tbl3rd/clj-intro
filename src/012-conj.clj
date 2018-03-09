@@ -60,9 +60,10 @@
 ;; of 3 integers.  CONJ does not add to that list of integers, nor
 ;; does TAKE consume from them.
 
-;; This is not just true of CONJ and collections.  The same is true
-;; for any function applied to any value.  Functions take old values
-;; and produce new values leaving the old values unchanged.
+;; This is not just true of CONJ and collections.  The same is
+;; generally true for any function applied to any value.  A function
+;; take an old value and produces a new value leaving the old value
+;; unchanged.
 
 ;; Let that sink in for a while ...
 ;; It is an important principle in F-word programming.
