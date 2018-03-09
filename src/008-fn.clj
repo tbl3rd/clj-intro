@@ -43,28 +43,28 @@
 ;; A parameter to a function can name anything -- even another
 ;; function.
 
-(fn [f n] (f n))                        ; a function to apply F to N
+(fn [n f] (f n))                        ; a function to apply F to N
 
-((fn [f n] (f n))                       ; Call "apply F to N"
- (fn [n] (+ 1 n))                       ; ... passing it "add 1 to N"
- 2)                                     ; ... and 2 as arguments.
+((fn [n f] (f n))                       ; Call "apply F to N"
+ 2                                      ; ... passing it 2 and
+ (fn [n] (+ 1 n)))                      ; ... "add 1 to N" as arguments.
 
 ;; Although in this case, a better name for the F parameter is ADD1.
 
-((fn [add1 n] (add1 n))                 ; Function to call ADD1 on N.
- (fn [n] (+ 1 n))                       ; Bind (fn [n] (+ 1 n)) to ADD1.
- 2)                                     ; Bind 2 to N.
+((fn [n add1] (add1 n))               ; Function to call ADD1 on N.
+ 2                                    ; Bind 2 to N.
+ (fn [n] (+ 1 n)))                    ; Bind (fn [n] (+ 1 n)) to ADD1.
 
 ;; So now instead of repeating the (fn [n] (+ 1 n)) expression as above,
 ;; we can just use the name ADD1 to apply it multiple times.
 
-((fn [add1                              ; Introduce symbol ADD1.
-      n]                                ; Introduce symbol N.
-   (add1                                ; Apply ADD1 to the result of ...
-    (add1                               ; applying ADD1 to the result of
-     (add1 n))))                        ; ... applying ADD1 to N.
- (fn [n] (+ 1 n))                       ; ADD1's value is this FN.
- 2)                                     ; N's value is this int.
+((fn [n                              ; Introduce symbol N.
+      add1]                          ; Introduce symbol ADD1.
+   (add1                             ; Apply ADD1 to the result of ...
+    (add1                            ; applying ADD1 to the result of
+     (add1 n))))                     ; ... applying ADD1 to N.
+ 2                                   ; N's value is this int.
+ (fn [n] (+ 1 n)))                   ; ADD1's value is this FN.
 
 ;; Conceptually, FN is how every function is defined.
 
@@ -74,8 +74,8 @@
 
 ;; But no one would write an entire program this way.
 
-((fn [add1                    ; Introduce the symbol ADD1 way up here.
-      n]                      ; Introduce the symbol N way up here.
+((fn [n                       ; Introduce the symbol ADD1 way up here.
+      add1]                   ; Introduce the symbol N way up here.
    (add1
     (add1
      (add1
@@ -85,9 +85,9 @@
          (add1
           (add1
            (add1
-            (add1 n)))))))))))   ; Oh my!  Clutch my pearls!
- (fn [n] (+ 1 n))                ; Specify ADD1's value way down here.
- 2)                              ; Specify N's value way down here.
+            (add1 n)))))))))))   ; Oh my!
+ 2                               ; Specify N's value way down here.
+ (fn [n] (+ 1 n)))               ; Specify ADD1's value way down here.
 
 ;; What is wrong with it?  (Lost In a Sea of Parentheses?)
 

@@ -8,8 +8,8 @@
 ;; Clojure has already done that, and called it LET.  LET factors out
 ;; the naming capability of FN with a simpler syntax.
 
-(let [add1 (fn [n] (+ 1 n))             ; Bind ADD1 to (FN ...).
-      n    2]                           ; Bind N to 2.
+(let [n    2                            ; Bind N to 2.
+      add1 (fn [n] (+ 1 n))]            ; Bind ADD1 to (FN ...).
   (add1
    (add1
     (add1
@@ -31,14 +31,14 @@
 ;; ADD1 expression and translates it into the following FN expression,
 ;; which Clojure then evaluates.
 
-(((fn [add1 n]                           ; The left sides.
+(((fn [n add1]                          ; The left sides.
     (add1
      (add1
       (add1
        (add1
         (add1
          n))))))
-  (fn [n] (+ 1 n)) 2))                    ; The right sides.
+  2 (fn [n] (+ 1 n))))                  ; The right sides.
 
 ;; Each binding in the LET vector adds a new parameter to a FN's
 ;; parameter vector and a new argument to the tail of that FN's
@@ -62,5 +62,5 @@
 
 ;; When LET forms are nested, symbols in outer LETs are bound in the
 ;; inner LETs.  Language lawyers call that "lexical scope" or "block
-;; structure".  The scope of a DEF bound symbol extends from the
-;; occurance of that symbol through the end of its namespace.
+;; structure".  In contrast, the scope of a DEF bound symbol extends
+;; from the occurance of that symbol through the end of its namespace.
