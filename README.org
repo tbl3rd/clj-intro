@@ -55,3 +55,7 @@
   will help deliver the Clojure experience.
 
   Good luck.
+
+* Source
+
+  https://github.com/tbl3rd/clj-intro
