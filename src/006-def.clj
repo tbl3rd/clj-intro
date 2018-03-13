@@ -30,8 +30,8 @@ lojure                                  ;-=> [\l \o \j \u \r \e]
 ;; symbols keyed by their values.
 
 ;; So far, we've been working in the USER namespace created by the
-;; Clojure REPL for us to experiment in.  The value of the current
-;; namespace is always bound to the symbol *NS*.
+;; Clojure Read-Eval Print Loop (REPL) for us to experiment in.  The
+;; value of the current namespace is always bound to the symbol *NS*.
 
 *ns*                                    ;-=> #namespace[boot.user]
 (ns-name *ns*)                          ;-=> boot.user

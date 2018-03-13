@@ -53,9 +53,3 @@
 ;; primitive forms.  The rest of the language is built of MACROS on
 ;; top of that fundamental dozen.  If you understand the fundamentals,
 ;; you (at least in theory) understand Clojure.
-
-;; The fundamental Clojure forms are: do fn if loop quote var recur
-;; with these for Java interop: . catch finally monitor-enter
-;;                              monitor-exit new set! throw try
-
-;; I don't know the ClojureScript interop primitives.

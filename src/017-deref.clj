@@ -11,10 +11,10 @@
 ;; reference (AGENT ATOM DELAY FUTURE REF), but the DEREF function
 ;; works on all of them and yields the value in the reference.
 
-;; A REF is designed to be shared across threads, but they are useful
-;; even in single-threaded applications.  Clojure ensures that DEREF
-;; shows a consistent view of the value in all threads that share the
-;; reference.
+;; A reference is designed to be shared across threads, but they are
+;; useful even in single-threaded applications.  Clojure ensures that
+;; DEREF shows a consistent view of the value in all threads that
+;; share the reference.
 
 (let [at (agent  :agent)
       am (atom   :atom)
@@ -81,10 +81,47 @@
          :results (vec results)}))
 
 ;;-=> {:sorted  [[4] [4 0] [4 0 3] [4 0 3 1] [4 0 3 1 2]],
-;;-=>  :results [[4 0] [4 0 3 1] [4 0 3 1 2] [4 0 3] [4]]}
+;;     :results [[4 0] [4 0 3 1] [4 0 3 1 2] [4 0 3] [4]]}
 
 ;; Threads add their integers and report results in apparently random
-;; order, but every integer is present and none is duplicated.
+;; order, but ATOM ensures that every integer is present and none is
+;; duplicated.
+
+;; An AGENT is an asynchronous ATOM that is managed by another thread
+;; or thread pool.
+
+;; SEND or SEND-OFF adds an update request to an AGENT's queue.  The
+;; AGENT serially dispatches requests as threads become available to
+;; service them, where they run asynchronously but atomically against
+;; the value in the AGENT.
+
+;; An update requested by SEND runs opportunistically on threads
+;; allocated from a pool.  A SEND-OFF request allocates its own thread
+;; to run so that IO doesn't starve AGENTs of updates.  Unlike SWAP!,
+;; SEND and SEND-OFF are asynchronous and so just immediately return
+;; their AGENT -- not the value in it.
+
+;; Agents support an API for monitoring AGENT state, and managing the
+;; thread pools that service them.  There are calls to wait for and
+;; validate updates, detect, manage and report errors, and to restart
+;; failed AGENTs.  Here is a small example of what's available.
+
+(let [ints (agent [])
+      updates (atom [])
+      watch (fn [k r o n] (swap! updates conj o))
+      make (fn [x] (send ints conj x))]
+  (add-watch ints :watch watch)
+  (dorun (map make (range 5)))
+  (await ints)
+  (remove-watch ints :watch)
+  {:updates @updates
+   :ints @ints})
+
+;;=> {:updates [[] [0] [0 1] [0 1 2] [0 1 2 3] [0 1 2 3 4]],
+;;    :ints [0 1 2 3 4]}
+
+;; Agents are Clojure's take on the Actor model of computing, and too
+;; large a subject to exhaust here.
 
 ;; A REF is a reference whose value can be changed only in the context
 ;; of a transaction established by DOSYNC.  Here's an example of using
@@ -172,3 +209,39 @@
   )
 
 (show-accounts)
+
+;; References break down into two separate groups: DELAY and FUTURE,
+;; or AGENT, ATOM, and REF.
+
+;; DELAY and FUTURE take multiple expressions like DO, but return
+;; immediately with a reference instead of the result of evaluating
+;; the expressions.  FUTURE evaluates expressions in the background
+;; asynchronously.  DELAY evaluates its expressions synchronously, but
+;; only when demanded by DEREF.  DELAY and FUTURE are useful when the
+;; caller can continue without the result of an evaluation.  Use DELAY
+;; when the resulting value may not be needed.  Use FUTURE when the
+;; value's necessity is not in doubt.
+
+;; AGENT, ATOM, and REF add degrees of coordination to the synchronous
+;; versus asynchronous behavior of DELAY and FUTURE.  Like DELAY and
+;; FUTURE, AGENT and ATOM operate on single values in isolation.  REF,
+;; on the other hand, coordinates multiple value changes atomically
+;; across references in the context of an DOSYNC transaction.
+
+;; The following table summarizes reference semantics.
+
+;;    |--------------+--------+---------------+-------------|
+;;    | AND          |        | UNCOORDINATED | COORDINATED |
+;;    |--------------+--------+---------------+-------------|
+;;    | SYNCHRONOUS  | delay  | atom          | ref         |
+;;    |--------------+--------+---------------+-------------|
+;;    | ASYNCHRONOUS | future | agent         |             |
+;;    |--------------+--------+---------------+-------------|
+
+;; What might an asynchronous and coordinated reference look like?
+
+;; There is one other kind of reference called a VAR.  VARs are used
+;; to implement host bindings and the thread-local dynamic bindings
+;; changed by SET!.  For example, the DEF form is a macro over VAR.
+;; The mutability of VAR is how the REPL supports the redefinition of
+;; symbols during interactive development.

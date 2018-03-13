@@ -69,6 +69,10 @@ String/CASE_INSENSITIVE_ORDER
      (catch Exception e (println "Ignoring:" e))
      (finally (println :Oops!)))
 
-;; There are even MONITOR-ENTER and MONITOR-EXIT, which I've never
-;; used, and SET! which you almost never need.  Please forget I
-;; mentioned them.
+;; There is a lot more to Java interop in Clojure -- most of which is
+;; to support low-level access to Java primitives when you need it,
+;; and you usually don't.
+
+;; There are even MONITOR-ENTER and MONITOR-EXIT, as managed by the
+;; LOCKING macro, which I've never used.  Please forget I mentioned
+;; them.
