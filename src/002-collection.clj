@@ -2,10 +2,10 @@
 ;; Clojure also has COLLECTIONS, which nest however you want.
 ;;
 
-"String is kind of ..."                 ; sequence of characters
-[ "..." :is "an" :ellipsis]             ; vector: indexed sequential
+"String is kind of collection."         ; sequence of characters
+[ 23 :is "a" :number]                   ; vector: indexed sequential
 { "key" "value" :kvs "..." }            ; map: associative by key
-#{ :... }                               ; set: in or out
+#{ 24 :member "..." }                   ; set: members in or out
 
 ;; Clojure's data language of SCALARS and COLLECTIONS encompasses
 ;; all of the textual data representations in common use today.
