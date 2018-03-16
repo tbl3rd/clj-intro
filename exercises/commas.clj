@@ -8,14 +8,14 @@
 (def ACGT (map first bases))
 ACGT                                    ; => (\A \C \G \T)
 
-(def pair (zipmap acgt (reverse ACGT)))
+(def pair (zipmap ACGT (reverse ACGT)))
 pair                                    ; => {\A \T \C \G \G \C \T \A}
 
-(def rna (repeatedly (fn [] (rand-nth ACGT))))
+(def strand (repeatedly (fn [] (rand-nth ACGT))))
 
-(take 7 rna)                            ; => (\G \G \C \T \G \C \C)
+(take 7 strand)                         ; => (\G \G \C \T \G \C \C)
 
-(def dna (map (fn [b] [b (pair b)]) rna))
+(def dna (map (fn [b] [b (pair b)]) strand))
 
 (take 7 dna) ; => ([\G \C] [\C \G] [\T \A] [\T \A] [\A \T] [\A \T] [\G \C])
 (take 7 (map first  dna))               ; => (\G \C \T \T \A \A \G)
@@ -161,10 +161,10 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
                                         ;     [[\G \G \T] :W]
                                         ;     [[\G \T \T] :Y])
 
-(map string (take 7 (partition 3 rna)))
+(map string (take 7 (partition 3 strand)))
 ;; => ("CAA" "ACA" "TAG" "TTC" "AAA" "CTG" "CTA")
 
-(def amino-keys (remove nil? (map code (partition 3 rna))))
+(def amino-keys (remove nil? (map code (partition 3 strand))))
 
 (take 7 amino-keys)                     ; => (:L :Y :E :F :G :D :M)
 
