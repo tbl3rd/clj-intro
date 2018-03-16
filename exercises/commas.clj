@@ -3,13 +3,15 @@
   (:require [clojure.set :as s]
             [clojure.math.combinatorics :as c]))
 
-(def acgt "ACGT")                       ; => #'commas/acgt
-acgt                                    ; => "ACGT"
+(def bases ["Adenine" "Cytosine" "Guanine" "Thymine"])
 
-(def pair (zipmap acgt (reverse acgt)))
+(def ACGT (map first bases))
+ACGT                                    ; => (\A \C \G \T)
+
+(def pair (zipmap acgt (reverse ACGT)))
 pair                                    ; => {\A \T \C \G \G \C \T \A}
 
-(def rna (repeatedly (fn [] (rand-nth acgt))))
+(def rna (repeatedly (fn [] (rand-nth ACGT))))
 
 (take 7 rna)                            ; => (\G \G \C \T \G \C \C)
 
@@ -49,16 +51,31 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 
 (count amino)                           ; => 20
 
-(c/combinations acgt 2) ; => ((\A \C) (\A \G) (\A \T) (\C \G) (\C \T) (\G \T))
+(c/selections ACGT 2)                   ; => ((\A \A)
+                                        ;     (\A \C)
+                                        ;     (\A \G)
+                                        ;     (\A \T)
+                                        ;     (\C \A)
+                                        ;     (\C \C)
+                                        ;     (\C \G)
+                                        ;     (\C \T)
+                                        ;     (\G \A)
+                                        ;     (\G \C)
+                                        ;     (\G \G)
+                                        ;     (\G \T)
+                                        ;     (\T \A)
+                                        ;     (\T \C)
+                                        ;     (\T \G)
+                                        ;     (\T \T))
 
-(count (c/selections acgt 2))                   ; => 16
-(count (c/selections acgt 3))                   ; => 64
-(> (count (c/selections acgt 2)) (count amino)) ; => false
-(> (count (c/selections acgt 3)) (count amino)) ; => true
+(count (c/selections ACGT 2))                   ; => 16
+(count (c/selections ACGT 3))                   ; => 64
+(> (count (c/selections ACGT 2)) (count amino)) ; => false
+(> (count (c/selections ACGT 3)) (count amino)) ; => true
 
 (def string (partial apply str))
 
-(def triples (map string (c/selections acgt 3)))
+(def triples (map string (c/selections ACGT 3)))
 
 (take 7 triples)           ; => ("AAA" "AAC" "AAG" "AAT" "ACA" "ACC" "ACG")
 (take 7 (reverse triples)) ; => ("TTT" "TTG" "TTC" "TTA" "TGT" "TGG" "TGC")
@@ -70,8 +87,8 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
       (map string
            (take n (partition n 1 (cycle s)))))))
 
-(rotations acgt)                    ; => ("ACGT" "CGTA" "GTAC" "TACG")
-(rotations (take 3 acgt))           ; => ("ACG" "CGA" "GAC")
+(rotations ACGT)                    ; => ("ACGT" "CGTA" "GTAC" "TACG")
+(rotations (take 3 ACGT))           ; => ("ACG" "CGA" "GAC")
 
 (take 7 (map rotations triples))        ; => (("AAA" "AAA" "AAA")
                                         ;     ("AAC" "ACA" "CAA")
