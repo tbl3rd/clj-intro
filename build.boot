@@ -6,6 +6,7 @@
  :resource-paths #{"src"}
  :target-path "target"
  :dependencies '[[org.clojure/clojure "1.9.0"]
+                 [org.clojure/math.combinatorics "0.1.4"]
                  [onetom/boot-lein-generate "0.1.3"]])
 
 (require 'boot.lein)
