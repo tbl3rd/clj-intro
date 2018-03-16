@@ -13,11 +13,11 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 
 (take 7 rna)                            ; => (\G \G \C \T \G \C \C)
 
-(def dna (map (fn [b] (str b (pair b))) rna))
+(def dna (map (fn [b] [b (pair b)]) rna))
 
-(take 7 dna)                  ; => ("GC" "GC" "CG" "TA" "GC" "CG" "CG")
-(take 7 (map first  dna))     ; => (\G \G \C \T \G \C \C)
-(take 7 (map second dna))     ; => (\C \C \G \A \C \G \G)
+(take 7 dna) ; => ([\G \C] [\C \G] [\T \A] [\T \A] [\A \T] [\A \T] [\G \C])
+(take 7 (map first  dna))               ; => (\G \C \T \T \A \A \G)
+(take 7 (map second dna))               ; => (\C \G \A \A \T \T \C)
 
 (def essential
   {:F "phenylalanine"
@@ -119,33 +119,33 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
    (+ (count sense-codons)
       (count nonsense-codons)))         ; => true
 
-(def code (zipmap (sort sense-codons) (sort (keys amino))))
+(def code (zipmap (map vec (sort sense-codons)) (sort (keys amino))))
 
-(sort-by second code)                   ; => (["AAC" :A]
-                                        ;     ["AAG" :C]
-                                        ;     ["AAT" :D]
-                                        ;     ["ACC" :E]
-                                        ;     ["ACG" :F]
-                                        ;     ["ACT" :G]
-                                        ;     ["AGC" :H]
-                                        ;     ["AGG" :I]
-                                        ;     ["AGT" :K]
-                                        ;     ["ATC" :L]
-                                        ;     ["ATG" :M]
-                                        ;     ["ATT" :N]
-                                        ;     ["CCG" :P]
-                                        ;     ["CCT" :Q]
-                                        ;     ["CGG" :R]
-                                        ;     ["CGT" :S]
-                                        ;     ["CTG" :T]
-                                        ;     ["CTT" :V]
-                                        ;     ["GGT" :W]
-                                        ;     ["GTT" :Y])
+(sort-by second code)                   ; => ([[\A \A \C] :A]
+                                        ;     [[\A \A \G] :C]
+                                        ;     [[\A \A \T] :D]
+                                        ;     [[\A \C \C] :E]
+                                        ;     [[\A \C \G] :F]
+                                        ;     [[\A \C \T] :G]
+                                        ;     [[\A \G \C] :H]
+                                        ;     [[\A \G \G] :I]
+                                        ;     [[\A \G \T] :K]
+                                        ;     [[\A \T \C] :L]
+                                        ;     [[\A \T \G] :M]
+                                        ;     [[\A \T \T] :N]
+                                        ;     [[\C \C \G] :P]
+                                        ;     [[\C \C \T] :Q]
+                                        ;     [[\C \G \G] :R]
+                                        ;     [[\C \G \T] :S]
+                                        ;     [[\C \T \G] :T]
+                                        ;     [[\C \T \T] :V]
+                                        ;     [[\G \G \T] :W]
+                                        ;     [[\G \T \T] :Y])
 
-(def base-triples (map (partial apply str) (partition 3 rna)))
-(take 7 base-triples) ; => ("CAA" "ACA" "TAG" "TTC" "AAA" "CTG" "CTA")
+(map (partial apply str) (take 7 (partition 3 rna)))
+;; => ("CAA" "ACA" "TAG" "TTC" "AAA" "CTG" "CTA")
 
-(def amino-keys (remove nil? (map code base-triples)))
+(def amino-keys (remove nil? (map code (partition 3 rna))))
 
 (take 7 amino-keys)                     ; => (:L :Y :E :F :G :D :M)
 
@@ -177,4 +177,4 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 
 "... and not a single comma in sight"
 
-"NB: This is fun programming but bad biology."
+"Note: This is fun programming but (as of 1961) bad biology."
