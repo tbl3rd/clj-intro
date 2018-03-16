@@ -3,7 +3,7 @@
   (:require [clojure.set :as s]
             [clojure.math.combinatorics :as c]))
 
-(def acgt "ACGT")
+(def acgt "ACGT")                       ; => #'commas/acgt
 acgt                                    ; => "ACGT"
 
 (def pair (zipmap acgt (reverse acgt)))
@@ -56,17 +56,19 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 (> (count (c/selections acgt 2)) (count amino)) ; => false
 (> (count (c/selections acgt 3)) (count amino)) ; => true
 
-(def triples (map (partial apply str) (c/selections acgt 3)))
+(def string (partial apply str))
+
+(def triples (map string (c/selections acgt 3)))
 
 (take 7 triples)           ; => ("AAA" "AAC" "AAG" "AAT" "ACA" "ACC" "ACG")
 (take 7 (reverse triples)) ; => ("TTT" "TTG" "TTC" "TTA" "TGT" "TGG" "TGC")
 (count triples)            ; => 64
 
-(defn rotations
-  [s]
-  (let [n (count s)]
-    (map (partial apply str)
-         (take n (partition n 1 (cycle s))))))
+(def rotations
+  (fn [s]
+    (let [n (count s)]
+      (map string
+           (take n (partition n 1 (cycle s)))))))
 
 (rotations acgt)                    ; => ("ACGT" "CGTA" "GTAC" "TACG")
 (rotations (take 3 acgt))           ; => ("ACG" "CGA" "GAC")
@@ -142,7 +144,7 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
                                         ;     [[\G \G \T] :W]
                                         ;     [[\G \T \T] :Y])
 
-(map (partial apply str) (take 7 (partition 3 rna)))
+(map string (take 7 (partition 3 rna)))
 ;; => ("CAA" "ACA" "TAG" "TTC" "AAA" "CTG" "CTA")
 
 (def amino-keys (remove nil? (map code (partition 3 rna))))
