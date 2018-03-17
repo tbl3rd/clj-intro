@@ -24,7 +24,7 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 
 (def dna (map (fn [b] [b (pair b)]) strand))
 
-(take 7 dna) ; => ([\G \C] [\C \G] [\T \A] [\T \A] [\A \T] [\A \T] [\G \C])
+(take 6 dna)    ; => ([\G \C] [\C \G] [\T \A] [\T \A] [\A \T] [\A \T])
 (take 7 (map first  dna))               ; => (\G \C \T \T \A \A \G)
 (take 7 (map second dna))               ; => (\C \G \A \A \T \T \C)
 
@@ -154,12 +154,7 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
                                         ;     [[\A \C \G] :F]
                                         ;     [[\A \C \T] :G]
                                         ;     [[\A \G \C] :H]
-                                        ;     [[\A \G \G] :I]
-                                        ;     [[\A \G \T] :K]
-                                        ;     [[\A \T \C] :L]
-                                        ;     [[\A \T \G] :M]
-                                        ;     [[\A \T \T] :N]
-                                        ;     [[\C \C \G] :P]
+                                        ;          ...
                                         ;     [[\C \C \T] :Q]
                                         ;     [[\C \G \G] :R]
                                         ;     [[\C \G \T] :S]
@@ -177,7 +172,7 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 
 (def aminos (map amino amino-keys))
 
-(take 23 aminos)                        ; => ("arginine"
+(take 17 aminos)                        ; => ("arginine"
                                         ;     "tryptophan"
                                         ;     "methionine"
                                         ;     "tryptophan"
@@ -193,12 +188,6 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
                                         ;     "alanine"
                                         ;     "glutamic acid"
                                         ;     "glutamine"
-                                        ;     "glutamine"
-                                        ;     "valine"
-                                        ;     "cysteine"
-                                        ;     "isoleucine"
-                                        ;     "threonine"
-                                        ;     "alanine"
-                                        ;     "glycine")
+                                        ;     "glutamine")
 
 "Note: This is fun programming but (as of 1961) bad biology."
