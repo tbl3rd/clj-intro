@@ -3,11 +3,15 @@
   (:require [clojure.set :as s]
             [clojure.math.combinatorics :as c]))
 
+
 "The problem of how a sequence of four things (nucleotides) can
 determine a sequence of twenty things (amino acids) is known as
 the 'coding' problem."
 
+(comment "http://www.pnas.org/content/43/5/416" is the paper.)
+
 (comment Now is 1957.  What do we know?)
+
 
 (def nucleotides ["Adenine" "Cytosine" "Guanine" "Thymine"])
 nucleotides ; => ["Adenine" "Cytosine" "Guanine" "Thymine"]
@@ -153,9 +157,7 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
                                         ;     [[\A \C \C] :E]
                                         ;     [[\A \C \G] :F]
                                         ;     [[\A \C \T] :G]
-                                        ;     [[\A \G \C] :H]
                                         ;          ...
-                                        ;     [[\C \C \T] :Q]
                                         ;     [[\C \G \G] :R]
                                         ;     [[\C \G \T] :S]
                                         ;     [[\C \T \G] :T]
