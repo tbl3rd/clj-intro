@@ -1,11 +1,18 @@
 (ns commas
-  "Codes Without Commas -- with apologies to Francis Crick"
+  "CODES WITHOUT COMMAS -- with apologies to F.H.C. Crick, et al"
   (:require [clojure.set :as s]
             [clojure.math.combinatorics :as c]))
 
-(def bases ["Adenine" "Cytosine" "Guanine" "Thymine"])
+"The problem of how a sequence of four things (nucleotides) can
+determine a sequence of twenty things (amino acids) is known as
+the 'coding' problem."
 
-(def ACGT (map first bases))
+(comment Now is 1957.  What do we know?)
+
+(def nucleotides ["Adenine" "Cytosine" "Guanine" "Thymine"])
+nucleotides ; => ["Adenine" "Cytosine" "Guanine" "Thymine"]
+
+(def ACGT (map first nucleotides))
 ACGT                                    ; => (\A \C \G \T)
 
 (def pair (zipmap ACGT (reverse ACGT)))
@@ -21,35 +28,34 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 (take 7 (map first  dna))               ; => (\G \C \T \T \A \A \G)
 (take 7 (map second dna))               ; => (\C \G \A \A \T \T \C)
 
-(def essential
-  {:F "phenylalanine"
-   :H "histidine"
-   :I "isoleucine"
-   :K "lysine"
-   :L "leucine"
-   :M "methionine"
-   :T "threonine"
-   :V "valine"
-   :W "tryptophan"})
+(def essential {:F "phenylalanine"
+                :H "histidine"
+                :I "isoleucine"
+                :K "lysine"
+                :L "leucine"
+                :M "methionine"
+                :T "threonine"
+                :V "valine"
+                :W "tryptophan"})
 
-(def conditional
-  {:C "cysteine"
-   :G "glycine"
-   :P "proline"
-   :Q "glutamine"
-   :R "arginine"
-   :Y "tyrosine"})
+(def conditional {:C "cysteine"
+                  :G "glycine"
+                  :P "proline"
+                  :Q "glutamine"
+                  :R "arginine"
+                  :Y "tyrosine"})
 
-(def dispensible
-  {:A "alanine"
-   :D "aspartic acid"
-   :E "glutamic acid"
-   :N "asparagine"
-   :S "serine"})
+(def dispensible {:A "alanine"
+                  :D "aspartic acid"
+                  :E "glutamic acid"
+                  :N "asparagine"
+                  :S "serine"})
 
 (def amino (merge essential conditional dispensible))
 
 (count amino)                           ; => 20
+
+(comment Now ... What can we find out?)
 
 (c/selections ACGT 2)                   ; => ((\A \A)
                                         ;     (\A \C)
@@ -81,11 +87,12 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 (take 7 (reverse triples)) ; => ("TTT" "TTG" "TTC" "TTA" "TGT" "TGG" "TGC")
 (count triples)            ; => 64
 
+(take (count ACGT) (partition (count ACGT) 1 (cycle ACGT)))
+;; => ((\A \C \G \T) (\C \G \T \A) (\G \T \A \C) (\T \A \C \G))
+
 (def rotations
-  (fn [s]
-    (let [n (count s)]
-      (map string
-           (take n (partition n 1 (cycle s)))))))
+  (fn [s] (let [n (count s)]
+            (map string (take n (partition n 1 (cycle s)))))))
 
 (rotations ACGT)                    ; => ("ACGT" "CGTA" "GTAC" "TACG")
 (rotations (take 3 ACGT))           ; => ("ACG" "CGA" "GAC")
@@ -112,11 +119,11 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 (count (group-by count codons))         ; => 2
 (map first (group-by count codons))     ; => (3 1)
 
-(def sense-groups (filter (fn [g] (= 3 (count g))) codons))
+(def sense-codons (filter (fn [g] (= 3 (count g))) codons))
 
-(count sense-groups)                    ; => 20 Eureka!
+(count sense-codons)                    ; => 20 Eureka!
 
-(take 7 sense-groups)                   ; => (#{"ACC" "CCA" "CAC"}
+(take 7 sense-codons)                   ; => (#{"ACC" "CCA" "CAC"}
                                         ;     #{"GCC" "CGC" "CCG"}
                                         ;     #{"CAA" "ACA" "AAC"}
                                         ;     #{"CTC" "CCT" "TCC"}
@@ -124,21 +131,21 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
                                         ;     #{"TAT" "TTA" "ATT"}
                                         ;     #{"GAG" "GGA" "AGG"})
 
-(def sense-codons (map (comp first sort) sense-groups))
+(def sense (map (comp first sort) sense-codons))
 
-(count sense-codons)   ; => 20
+(count sense)   ; => 20
 
-(take 7 sense-codons)  ; => ("ACC" "CCG" "AAC" "CCT" "AGC" "ATT" "AGG")
+(take 7 sense)  ; => ("ACC" "CCG" "AAC" "CCT" "AGC" "ATT" "AGG")
 
-(def nonsense-codons (s/difference (set triples) (set sense-codons)))
+(def nonsense (s/difference (set triples) (set sense)))
 
-(count nonsense-codons)                 ; => 44
+(count nonsense)                 ; => 44
 
 (= (count triples)
-   (+ (count sense-codons)
-      (count nonsense-codons)))         ; => true
+   (+ (count sense)
+      (count nonsense)))         ; => true
 
-(def code (zipmap (map vec (sort sense-codons)) (sort (keys amino))))
+(def code (zipmap (map vec (sort sense)) (sort (keys amino))))
 
 (sort-by second code)                   ; => ([[\A \A \C] :A]
                                         ;     [[\A \A \G] :C]
@@ -161,39 +168,37 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
                                         ;     [[\G \G \T] :W]
                                         ;     [[\G \T \T] :Y])
 
-(map string (take 7 (partition 3 strand)))
-;; => ("CAA" "ACA" "TAG" "TTC" "AAA" "CTG" "CTA")
+(map string (take 7 (partition 3 1 strand)))
+;; => ("TTC" "TCG" "CGG" "GGT" "GTG" "TGA" "GAT")
 
-(def amino-keys (remove nil? (map code (partition 3 strand))))
+(def amino-keys (remove nil? (map code (partition 3 1 strand))))
 
-(take 7 amino-keys)                     ; => (:L :Y :E :F :G :D :M)
+(take 7 amino-keys)                     ; => (:R :W :M :W :G :T :D)
 
 (def aminos (map amino amino-keys))
 
-(take 23 aminos)                        ; => ("valine"
-                                        ;     "glutamic acid"
-                                        ;     "cysteine"
-                                        ;     "valine"
-                                        ;     "valine"
-                                        ;     "proline"
-                                        ;     "aspartic acid"
-                                        ;     "cysteine"
-                                        ;     "arginine"
-                                        ;     "phenylalanine"
+(take 23 aminos)                        ; => ("arginine"
                                         ;     "tryptophan"
-                                        ;     "isoleucine"
-                                        ;     "cysteine"
-                                        ;     "leucine"
+                                        ;     "methionine"
+                                        ;     "tryptophan"
                                         ;     "glycine"
-                                        ;     "leucine"
-                                        ;     "proline"
-                                        ;     "histidine"
-                                        ;     "proline"
-                                        ;     "tryptophan"
+                                        ;     "threonine"
+                                        ;     "aspartic acid"
+                                        ;     "alanine"
+                                        ;     "glutamic acid"
+                                        ;     "alanine"
+                                        ;     "glycine"
+                                        ;     "valine"
+                                        ;     "asparagine"
+                                        ;     "alanine"
+                                        ;     "glutamic acid"
                                         ;     "glutamine"
-                                        ;     "leucine"
-                                        ;     "glutamine")
-
-"... and not a single comma in sight"
+                                        ;     "glutamine"
+                                        ;     "valine"
+                                        ;     "cysteine"
+                                        ;     "isoleucine"
+                                        ;     "threonine"
+                                        ;     "alanine"
+                                        ;     "glycine")
 
 "Note: This is fun programming but (as of 1961) bad biology."
