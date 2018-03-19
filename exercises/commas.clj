@@ -3,7 +3,6 @@
   (:require [clojure.set :as s]
             [clojure.math.combinatorics :as c]))
 
-
 "The problem of how a sequence of four things (nucleotides) can
 determine a sequence of twenty things (amino acids) is known as
 the 'coding' problem."
@@ -12,15 +11,20 @@ the 'coding' problem."
 
 (comment Now is 1957.  What do we know?)
 
-
 (def nucleotides ["Adenine" "Cytosine" "Guanine" "Thymine"])
 nucleotides ; => ["Adenine" "Cytosine" "Guanine" "Thymine"]
 
 (def ACGT (map first nucleotides))
 ACGT                                    ; => (\A \C \G \T)
 
+(reverse ACGT)                          ; => (\T \G \C \A)
+
 (def pair (zipmap ACGT (reverse ACGT)))
 pair                                    ; => {\A \T \C \G \G \C \T \A}
+
+(pair \T)                               ; => \A
+
+(rand-nth ACGT)                         ; => \G
 
 (def strand (repeatedly (fn [] (rand-nth ACGT))))
 
