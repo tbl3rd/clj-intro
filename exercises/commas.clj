@@ -1,7 +1,6 @@
 (ns commas
   "CODES WITHOUT COMMAS -- with apologies to F.H.C. Crick, et al"
-  (:require [clojure.set :as s]
-            [clojure.math.combinatorics :as c]))
+  (:require [clojure.math.combinatorics :as c]))
 
 "The problem of how a sequence of four things (nucleotides) can
 determine a sequence of twenty things (amino acids) is known as
@@ -15,7 +14,7 @@ the 'coding' problem."
 nucleotides ; => ["Adenine" "Cytosine" "Guanine" "Thymine"]
 
 (def ACGT (map first nucleotides))
-ACGT                                    ; => (\A \C \G \T)
+ACGT                                    ; =>  (\A \C \G \T)
 
 (reverse ACGT)                          ; => (\T \G \C \A)
 
@@ -25,6 +24,7 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 (pair \T)                               ; => \A
 
 (rand-nth ACGT)                         ; => \G
+(rand-nth ACGT)                         ; => \C
 
 (def strand (repeatedly (fn [] (rand-nth ACGT))))
 
@@ -71,10 +71,7 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
                                         ;     (\A \T)
                                         ;     (\C \A)
                                         ;     (\C \C)
-                                        ;     (\C \G)
-                                        ;     (\C \T)
-                                        ;     (\G \A)
-                                        ;     (\G \C)
+                                        ;       ...
                                         ;     (\G \G)
                                         ;     (\G \T)
                                         ;     (\T \A)
@@ -103,6 +100,9 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
             (map string (take n (partition n 1 (cycle s)))))))
 
 (rotations ACGT)                    ; => ("ACGT" "CGTA" "GTAC" "TACG")
+(set ACGT)                          ; => #{\A \C \G \T}
+((set ACGT) \T)                     ; => \T
+((set ACGT) \Z)                     ; => nil
 (rotations (take 3 ACGT))           ; => ("ACG" "CGA" "GAC")
 
 (take 7 (map rotations triples))        ; => (("AAA" "AAA" "AAA")
@@ -145,7 +145,7 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 
 (take 7 sense)  ; => ("ACC" "CCG" "AAC" "CCT" "AGC" "ATT" "AGG")
 
-(def nonsense (s/difference (set triples) (set sense)))
+(def nonsense (remove (set sense) (set triples)))
 
 (count nonsense)                 ; => 44
 
