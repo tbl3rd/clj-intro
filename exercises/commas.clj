@@ -135,7 +135,7 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 (count (group-by count codons))         ; => 2
 (map first (group-by count codons))     ; => (3 1)
 
-(def sense-codons (filter (fn [g] (= 3 (count g))) codons))
+(def sense-codons ((group-by count codons) 3))
 
 (count sense-codons)                    ; => 20 Eureka!
 
