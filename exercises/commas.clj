@@ -1,14 +1,5 @@
-(comment
-  "Paste this into the boot repl."
-  (set-env! :dependencies
-            (fn [env]
-              (into env '[[org.clojure/clojure "1.8.0"]
-                          [org.clojure/math.combinatorics "0.1.4"]])))
-  )
-
 (ns commas
-  "CODES WITHOUT COMMAS -- with apologies to F.H.C. Crick, et al"
-  (:require [clojure.math.combinatorics :as c]))
+  "CODES WITHOUT COMMAS -- with apologies to F.H.C. Crick, et al")
 
 "The problem of how a sequence of four things (nucleotides) can
 determine a sequence of twenty things (amino acids) is known as
@@ -44,15 +35,15 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 (take 7 (map first  dna))               ; => (\G \C \T \T \A \A \G)
 (take 7 (map second dna))               ; => (\C \G \A \A \T \T \C)
 
-(def essential {:F "phenylalanine"
-                :H "histidine"
-                :I "isoleucine"
-                :K "lysine"
-                :L "leucine"
-                :M "methionine"
-                :T "threonine"
-                :V "valine"
-                :W "tryptophan"})
+(def essential   {:F "phenylalanine"
+                  :H "histidine"
+                  :I "isoleucine"
+                  :K "lysine"
+                  :L "leucine"
+                  :M "methionine"
+                  :T "threonine"
+                  :V "valine"
+                  :W "tryptophan"})
 
 (def conditional {:C "cysteine"
                   :G "glycine"
@@ -73,28 +64,14 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 
 (comment Now ... What can we find out?)
 
-(c/selections ACGT 2)                   ; => ((\A \A)
-                                        ;     (\A \C)
-                                        ;     (\A \G)
-                                        ;     (\A \T)
-                                        ;     (\C \A)
-                                        ;     (\C \C)
-                                        ;       ...
-                                        ;     (\G \G)
-                                        ;     (\G \T)
-                                        ;     (\T \A)
-                                        ;     (\T \C)
-                                        ;     (\T \G)
-                                        ;     (\T \T))
-
-(count (c/selections ACGT 2))                   ; => 16
-(count (c/selections ACGT 3))                   ; => 64
-(> (count (c/selections ACGT 2)) (count amino)) ; => false
-(> (count (c/selections ACGT 3)) (count amino)) ; => true
+(count (for [x ACGT] [x]))                   ; => 4
+(count (for [x ACGT y ACGT] [x y]))          ; => 16
+(count (for [x ACGT y ACGT z ACGT] [x y z])) ; => 64
 
 (def string (partial apply str))
 
-(def triples (map string (c/selections ACGT 3)))
+(def triples (map string (for [x ACGT y ACGT z ACGT] [x y z])))
+triples
 
 (take 7 triples)           ; => ("AAA" "AAC" "AAG" "AAT" "ACA" "ACC" "ACG")
 (take 7 (reverse triples)) ; => ("TTT" "TTG" "TTC" "TTA" "TGT" "TGG" "TGC")
