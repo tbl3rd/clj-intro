@@ -32,7 +32,7 @@ nucleotides ; => ["Adenine" "Cytosine" "Guanine" "Thymine"]
                   :S "serine"})
 
 (def amino-acids (merge essential conditional dispensable))
-(count amino-acids)                           ; => 20
+(count amino-acids)                     ; => 20
 
 "The problem of how a sequence of four things (nucleotides)
  can determine a sequence of twenty things (amino acids)
@@ -174,4 +174,15 @@ triples         ; => ["AAA" "AAC" "AAG" "AAT" "ACA" "ACC" "ACG" "ACT"
 (def aminos (map amino-acids (remove nil? amino-keys)))
 (take 4 aminos) ;=> ("cysteine" "tyrosine" "methionine" "tyrosine")
 
-"Note: This is fun programming but (as of 1961) bad biology."
+"This is fun programming but (as of 1961) bad biology."
+"The Lisp programming language is as old as this paper."
+"Lisp was designed to help machines help us think."
+"A Lisp program is about the world more than itself."
+"A program is just a list of expressions to be evaluated."
+"Execution is just the sequence of such evaluations."
+"Lisp is almost the simplest language that can work."
+"You develop and explore a Lisp program while it runs."
+"This program includes the values of most expressions."
+"They appear literally as the computer prints them out."
+"How can we do this with other programming languages?"
+"(-: Did you notice any commas in the code? :-)"
