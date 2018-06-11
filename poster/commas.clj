@@ -113,7 +113,7 @@ triples         ; => ["AAA" "AAC" "AAG" "AAT" "ACA" "ACC" "ACG" "ACT"
                                         ;     ("ACC" "CCA" "CAC")
                                         ;     ("ACG" "CGA" "GAC"))
 
-(set ACGT)                              ; => #{\A \C \G \T}
+(set (str ACGT ACGT ACGT))              ; => #{\A \C \G \T}
 [((set ACGT) \T) ((set ACGT) \Z)]       ; => [\T nil]
 
 (def codons (set (map (comp set rotations) triples)))
@@ -175,14 +175,27 @@ triples         ; => ["AAA" "AAC" "AAG" "AAT" "ACA" "ACC" "ACG" "ACT"
 (take 4 aminos) ;=> ("cysteine" "tyrosine" "methionine" "tyrosine")
 
 "This is fun programming but (as of 1961) bad biology."
-"The Lisp programming language is as old as this paper."
-"Lisp was designed to help machines help us think."
-"A Lisp program is about the world more than itself."
-"A program is just a list of expressions to be evaluated."
-"Execution is just the sequence of such evaluations."
-"Lisp is almost the simplest language that can work."
-"You develop and explore a Lisp program while it runs."
-"This program includes the values of most expressions."
-"They appear literally as the computer prints them out."
-"How can we do this with other programming languages?"
-"(-: Did you notice any commas in the code? :-)"
+
+"Biology is not physics and certainly not engineering."
+"Life’s processes are rarely efficient or mistake free."
+"(Crick and Gamow were both degreed in physics.)"
+
+"What is this program about? Can you follow it?"
+
+"This programming language is as old as this paper."
+"It was designed to help machines help us think."
+
+"It is almost the simplest language that can work."
+"So the program is about the world more than itself."
+"A programming language can be a tool of discovery"
+"and not just the means of commanding a computer."
+
+"You can develop and explore a program while it runs."
+"And see the value of each expression as it’s evaluated."
+"They appear here literally as the computer prints them."
+"('Notebook systems' like Jupyter return to this idea.)"
+
+"How do you think with your programming language?"
+"Does it aid or hinder your understanding of the world?"
+
+"(-: BTW: Did you notice any commas in this code? :-)"
