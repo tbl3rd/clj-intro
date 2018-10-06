@@ -41,7 +41,7 @@
 ;; DELAY is just a reference to a single value: the result of
 ;; evaluating the expressions.  You can use DELAY to postpone an
 ;; expensive computation until its value is needed.  This is like
-;; "call by need" in Algol like languages and is the default "lazy"
+;; "call by need" in Algol-like languages and is the default "lazy"
 ;; evaluation model of some F-word languages like Haskell.
 
 (let [delayed (delay (println "Delayed!") :delayed)
