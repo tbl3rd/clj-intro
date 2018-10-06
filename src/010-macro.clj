@@ -77,7 +77,7 @@
 ;; can think of DO as a LET without bindings or a FN called without
 ;; arguments.
 
-(do     (println :zero) 2)         ;=> 1
+(do     (println :zero) 2)         ;=> 2
 (let [] (println :zero) 2)         ; after printing :zero
 ((fn [] (println :zero) 2))        ; Same here.
 
