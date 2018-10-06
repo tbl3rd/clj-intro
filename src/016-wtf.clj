@@ -94,11 +94,12 @@ beatles                                     ;=> #{:george :ringo :paul :john}
 
 ;; Loops
 
-;; Clojure has loops.  It even has FOR loops.  FOR looks a lot like
-;; LET except that where LET binds a single value to a symbol, FOR
-;; binds its symbols to sequences of values.  The result is also a
-;; sequence of expressions, where each expression has the form
-;; specified in the body of the FOR.
+;; Clojure has loops.  You've met LOOP and RECUR already.  It even has
+;; FOR loops.  Like LOOP, FOR looks a lot like LET except that where
+;; LET binds a single value to a symbol, FOR binds its symbols to
+;; sequences of values.  The result of FOR is a sequence of
+;; expressions, where each expression has the form specified in the
+;; body of the FOR.
 
 ;; For example, you can read the following as: For H taking each of
 ;; :a and :b, let T take the values 0, 1, and 2, generating the
@@ -133,3 +134,33 @@ beatles                                     ;=> #{:george :ringo :paul :john}
 ;; Clojure's "sequence monad" or "list monad".  (And I suspect it
 ;; is why Clojure treats both vectors and lists as sequences when
 ;; comparing them for equality!)
+
+;; As you might expect, the sequence produced by a FOR expession is
+;; lazy.  If the primary purpose of your loop is side-effects, you
+;; should consider DOSEQ.  DOSEQ binds like FOR but evaluates its body
+;; expressions eagerly, discarding their values to produce NIL.
+
+(doseq [x (range)
+        :when (odd? x)
+        :let [squared (* x x)]
+        :while (< squared 99)]
+  (println squared "is" x "squared."))  ;=> nil
+
+;; Similarly, when your loop has side-effects but you want to retain
+;; the sequence produced, there is DOALL.  DOALL wraps any lazy
+;; sequence, forces the evaluation of the resulting list, and returns
+;; it as the DOALL expression's value.
+
+(doall (for [x (range)
+             :when (odd? x)
+             :let [squared (* x x)]
+             :while (< squared 99)]
+         (do (println squared "is" x "squared.")
+             squared)))                 ;=> (1 9 25 49 81)
+
+;; Remember DO?
+
+;; There is also DORUN when you need the eager evaluation of DOSEQ
+;; without the binding behavior of FOR.
+
+(dorun 2 (repeatedly 99 (partial println "da dorun run"))) ;=> nil
