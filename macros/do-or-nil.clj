@@ -22,7 +22,7 @@
     (slurp "fnord.txt"))
   )
 
-;; That can be inconvenient.  Can't we just return NIL?
+;; That can be inconvenient.  Can't we just return NIL instead?
 
 ;; Remember that DO just evaluates its expressions in order and
 ;; "returns" the value of the last one.
