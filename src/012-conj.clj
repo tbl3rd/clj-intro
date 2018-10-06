@@ -62,7 +62,7 @@
 
 ;; This is not just true of CONJ and collections.  The same is
 ;; generally true for any function applied to any value.  A function
-;; take an old value and produces a new value leaving the old value
+;; takes an old value and produces a new value leaving the old value
 ;; unchanged.
 
 ;; Let that sink in for a while ...
