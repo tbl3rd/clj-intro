@@ -34,10 +34,10 @@
 ;; output.  The "*earmuffs*" on the *PRINT-LENGTH* symbol indicate
 ;; that it is "dynamic" and designed for use with SET!.
 
-;; That exclamation mark at the end of SET! implies that something
+;; That exclamation mark at the end of SET! denotes that something
 ;; imperative is happening.  Clojure has other core functions and
 ;; macros that end in '!' that we will meet later.  Just as '?'
-;; implies a Boolean-valued function or "predicate", the '!' implies
+;; denotes a Boolean-valued function or "predicate", the '!' denotes
 ;; that the thing named has a side-effect -- that something unusual to
 ;; Clojure is happening.  These are naming conventions -- not syntax
 ;; special to the language.
