@@ -61,7 +61,7 @@ String/CASE_INSENSITIVE_ORDER
   (.put ,,, "a" 0)
   (.put ,,, "b" 1)
   (.put ,,, "c" 2)
-  (println ,)) ;-=> #object[java.util.HashMap 0x481bbea2 {a=0, b=1, c=2}]
+  (println ,,,)) ;-=> #object[java.util.HashMap 0x481bbea2 {a=0, b=1, c=2}]
 
 ;; And of course TRY, CATCH, FINALLY, and THROW.
 
