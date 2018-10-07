@@ -25,12 +25,11 @@
 ;; Java.  It is a space-delimited token that does not begin with a
 ;; backslash (which would denote a character), a digit (which would be
 ;; a number) a colon (which would make it a keyword), any of the
-;; COLLECTION delimiter characters ("[]#{}, for example, which would
+;; COLLECTION delimiter characters ()"[]{}, for example, which would
 ;; make it a collection or something), or a quote (like ' or `).
 
-;; You also can't use @, ^, or ~ in a symbol, because they are special
-;; to the READER, as will be explained later.  A symbol also cannot
-;; begin with # because it too is special to that mysterious READER.
+;; You can't use `, ^, or ~ in a symbol, and a symbol cannot begin
+;; with # or @ because those too are special to the mysterious READER.
 
 ;; A & by itself is also special and not a symbol.
 
