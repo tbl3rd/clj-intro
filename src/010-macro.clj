@@ -174,3 +174,8 @@
 ;; L-word languages, because they are typically implemented in the
 ;; 'reader': that mysterious part of the system that turns text into
 ;; the data expressions of the language: scalars and collections.
+
+;; Like the collection "()[]{} characters, macros are syntax, and are
+;; not themselves values.  Clojure will just throw an exception if you
+;; attempt to evaluate the name of a macro such as DEF or IF.  (Macro
+;; names are not symbols in Clojure.)
