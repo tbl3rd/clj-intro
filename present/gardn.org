@@ -4,7 +4,7 @@
 # That is C-x8 followed by a space character.
 # Use org-confluence-export-as-confluence
 
-* Clojure -- the common view
+* the common view
 
   - Clojure is a hosted functional Lisp.
 
@@ -18,7 +18,7 @@
 
   - "Lisp" means it is as simple as is practical.
 
-* Clojure -- a less common view
+* a less common view
 
   - Clojure is a data-oriented programming language.
 
@@ -218,3 +218,15 @@
     Clojure =nil= is Java =NULL=.  Clojure strings are Java strings.
 
 * Evaluation
+
+  - All scalars except *Symbol* evaluate to themselves.
+
+  - Put =22/7= in and get =22/7= out.
+
+  - Symbols evaluate to whatever they are defined as.
+
+  - All collections except *List* evaluate to themselves.
+
+  - Put ={:b 1 :a 0}= in, get ={:a 0 :b 1}= out.
+
+  - List evaluation depends on the list's /head/.
