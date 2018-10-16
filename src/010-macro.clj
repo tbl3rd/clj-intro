@@ -51,7 +51,7 @@
 "The" 'syntax "is just shorthand for" (quote syntax) "."
 "The first is translated directly into the second when read."
 
-;; This shorthanding of common usage is fundamental to programming
+;; This shorthanding of common usage is fundamental to programming in
 ;; Clojure and other L-word languages.  Most of Clojure's core just
 ;; consists of names for the most common usage patterns discovered
 ;; over generations of programmers. All those names are just shorthand
@@ -165,10 +165,9 @@
 ;; either the second (then) or the third (else) sub-expression
 ;; depending on whether the test is TRUE (then) or FALSE (else).
 
-;; You can even think of Clojure's literal collection syntax such
-;; as :, "", [], #{}, and {} as shorthand for various function
-;; expressions such as (keyword ...), (str ...), (vector ...),
-;; (set ...), and so on.
+;; You can even think of Clojure's literal syntax such as :, "", [],
+;; #{}, and {} as shorthand for various function expressions such
+;; as (keyword ...), (str ...), (vector ...), (set ...), and so on.
 
 ;; These strange non-symbol macros are known as 'reader macros' in
 ;; L-word languages, because they are typically implemented in the
