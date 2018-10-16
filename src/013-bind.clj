@@ -78,7 +78,7 @@
 (->person {:name "Tom"})
 ;;-=> {:kind :person, :name "Tom", :birth :unknownn}
 
-;; You can even supply default arguments value with :or.
+;; You can even supply a default value for an argument with :or.
 
 (defn ->person
   [{name :name birth :birth :or {birth :unknown}}]
