@@ -215,7 +215,7 @@
     Conventions    _ *out* zero? swap!
 #+END_SRC
 
-    Clojure =nil= is Java =NULL=.  Clojure strings are Java strings.
+    Clojure =nil= is Java =null=.  Clojure strings are Java strings.
 
 * Evaluation
 
