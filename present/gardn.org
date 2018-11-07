@@ -23,26 +23,24 @@
   - Computers and programming languages are human tools.
 
   - A computer programmer uses those tools and others ...
-
-    - ... because they complement innate human abilities.
-    - ... to explore the world and build understanding.
-    - ... to evolve solutions to real human problems.
+    - because they complement innate human abilities.
+    - to explore the world and build understanding.
+    - to evolve solutions to real human problems.
 
   - Goal: Understand the world to solve problems.
 
 * Clojure: the common view
 
-  - Clojure is a hosted functional Lisp.
+  - Clojure is a /hosted functional Lisp/.
 
-  - "Hosted" means it leverages another technology.
-
+  - /Hosted/ means it leverages another technology.
     - Clojure leverages Java and the JVM.
     - Clojurescript leverages Javascript.
 
-  - "Functional" means it favors expressions
+  - /Functional/ means it favors expressions
      of immutable data and function composition.
 
-  - "Lisp" means it is as simple as is practical.
+  - /Lisp/ means it is as simple as is practical.
 
 * Clojure: a less common view
 
@@ -73,23 +71,42 @@
 #+BEGIN_SRC clojure
     Numbers     23 -7 3.14159 22/7 1/137 6e23 76.0M 285N
 
-    Booleans    false true
-
-    Characters  \a \b ... \y \z \0 ... \9 \space \newline \tab
+    Characters  \a \b ... \y \z \0 ... \9 \space \newline
 
     Keywords    :keyword :import :require :as :else :keys
 
     Nil         nil
+    Booleans    false true
 
     Strings     "Strings communicate outside a program."
+    Regexs      #"/"      #"\s+"     #"[0-9a-fA-f]*"
 #+END_SRC
+
+  ... and there is one other scalar introduced later.
 
 * Collections
 
 #+BEGIN_SRC clojure
+    Vectors     [0 1 2]  [nil \c :kw "string"]
+
+                [[env schema :as db]]
+
+    Sets        #{nil false}  #{0 "" [] :false}
+
+    Maps        {:a 0 :b 1}  {:keys [env schema] :as db}
+
+                {:falsey #{nil false}
+                 :truthy #{0 \space :false "" [] {} #{}}
+#+END_SRC
+
+   ... and there is one other introduced later.
+
+* More Collections
+
+#+BEGIN_SRC clojure
     Vectors     ["Clojure" 0 :to fn?]
 
-                [environ scheme :as db]
+                [[env scheme :as db]]
 
                 [4 [2 [1 3]] [6 [5 7]]]
 
@@ -111,7 +128,7 @@
                  :Released "09 Oct 1981"
                  :Director "Dušan Makavejev"}
 
-                {:keys [environ schema] :as db}
+                {:keys [env schema] :as db}
 #+END_SRC
 * More Collections
 
@@ -119,8 +136,6 @@
     Sets        #{"Chico" "Groucho" "Harpo" "Zeppo"}
 
     Strings     "A string is a sequence of characters."
-
-    Regexs      #"/"      #"\s+"     #"[0-9a-fA-f]*"
 #+END_SRC
 
     - Everything nests
@@ -135,8 +150,6 @@
 #+END_SRC
 
 * Data
-
-    - What is this?
 
 #+BEGIN_SRC clojure
       [... {:pipeline_version "cfd0c6b",
@@ -156,8 +169,6 @@
 
 * More Data
 
-    - What is this?
-
 #+BEGIN_SRC clojure
       [:html5
        [:head
@@ -175,8 +186,6 @@
 #+END_SRC
 
 * More data
-
-    - What is this?
 
 #+BEGIN_SRC clojure
       [:vmext:RegisterVimServerParams {:id 7}
@@ -202,7 +211,7 @@
 
   - Literals "print like they read".
 
-  - There is one scalar that does not print as read: *Symbol*
+  - One scalar that does not print as read: *Symbol*
 
   - And one collection does not print as read: *List*
 
@@ -250,32 +259,73 @@
 
   - Symbols and Lists are evaluated differently though.
 
+* List evaluation
+
+  The /head/ of list determines what to do with its /tail/.
+
+  The head of a list is usually a function.
+
+  =list= at the head collects its tail into a list.
+
+  =first= returns the head and =rest= returns the tail.
+
+#+BEGIN_SRC clojure
+             (list 0 1 2 3 4 5)   is (0 1 2 3 4 5)
+      (first (list 0 1 2 3 4 5))  is  0
+      (rest  (list 0 1 2 3 4 5))  is   (1 2 3 4 5)
+#+END_SRC
+
+  The value of a list is "its head /applied/ to its tail".
+
 * Symbol evaluation
 
   Symbols get values via =def= or =fn= binding expressions.
 
-  The following =def= expression
+  After the following =def= expression
 
 #+BEGIN_SRC clojure
       (def beatles #{"George" "John" "Paul" "Ringo"})
 #+END_SRC
 
-  binds the symbol =beatles= to the set value
+  the symbol =beatles= has a set value
 
 #+BEGIN_SRC clojure
-      #{"Ringo" "John" "George" "Paul"}
+      beatles  is  #{"Ringo" "John" "George" "Paul"}
 #+END_SRC
 
-* List evaluation
+  /Note:/ Element order does not affect the value of a set.
 
-  The head of list determines what to do with its tail.
+* More evaluation
+#+BEGIN_SRC clojure
+(+ 0 1 2 3)                  is  6
+
+(fn? +)                      is  true
+(fn? (+ 0 1 2 3))            is  false
+
+(defn add1 [n] (+ 1 n))
+(add1 2)                     is  3
+(fn? add1)                   is  true
+
+(    (fn [n] (+ 1 n)) 2)     is  3
+(fn? (fn [n] (+ 1 n)))       is  true
+
+(for [x "ab" y "cd"] {x y})
+
+(if (odd? (rand-int 9) :odd :even)
+#+END_SRC
 
 * Read, Eval, and Print Loop (REPL)
 
-  - The Clojure dialog is a loop.
+  The Clojure dialog is a loop.
 
-    - Read a scalar or collection expression.
-    - Evaluate it according
+  - Read a scalar or collection expression.
+
+  - Evaluate it according to the rules above.
+    - A literal evaluates to itself.
+    - A symbol has the value bound to it.
+    - A list applies its head to its tail.
+
+  - Print the resulting value, and loop back.
 
 * Sequences
 
@@ -283,7 +333,7 @@
 
     - A sequence prints as a list.
 
-#+BEGIN_SRC Clojure
+#+BEGIN_SRC clojure
       (seq  "Clojure")        is (\C \l \o \j \u \r \e)
 
       (seq  [0 1 2 3 4])      is (0 1 2 3 4)
@@ -299,7 +349,7 @@
 
     - Collections are functions of their keys.
 
-#+BEGIN_SRC Clojure
+#+BEGIN_SRC clojure
       ([:a :b :c :d] 3)                             is :d
 
       ({:A :T, :C :G, :T :A, :G :C} :T)             is :A
@@ -309,7 +359,7 @@
 
     - Strings have to be indexed explicitly.
 
-#+BEGIN_SRC Clojure
+#+BEGIN_SRC clojure
       (nth "Clojure" 3)                             is \j
       (get "Clojure" 3)                             is \j
       ((vec "Clojure") 3)                           is \j
@@ -317,7 +367,7 @@
 
 * Syntax
 
-#+BEGIN_SRC Clojure
+#+BEGIN_SRC clojure
     Truthiness     Everything except nil and false is True.
 
     Comments       ; This is a comment.
