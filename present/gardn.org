@@ -4,6 +4,20 @@
 # That is C-x8 followed by a space character.
 # Use org-confluence-export-as-confluence
 
+* Hello, world! (tbl3rd)
+
+  - Tom Lyons
+  - SPLASH Clojure Meetup
+  - Wednesday 7 November 2018
+
+  - https://github.com/tbl3rd
+
+  - https://www.linkedin.com/in/tbl3rd/
+
+  - https://twitter.com/tbl3rd
+
+  - https://github.com/tbl3rd/clj-intro.git
+
 * Hello, world! (Java)
 
   - Write this main.java file in some project tree.
