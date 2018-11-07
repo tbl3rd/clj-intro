@@ -4,7 +4,33 @@
 # That is C-x8 followed by a space character.
 # Use org-confluence-export-as-confluence
 
-* the common view
+* Programming: the common view
+
+  - Programming is about building systems with computers.
+
+  - A /program/ specifies what you want a computer to do.
+
+  - The specification is written in a /programming language/.
+
+  - /Programming/ is the act of writing that specification.
+
+  - Goal: Understand computers to build systems.
+
+* Programming: a less common view
+
+  - Programming is a dialog with a computer about the world.
+
+  - Computers and programming languages are human tools.
+
+  - A computer programmer uses those tools and others ...
+
+    - ... because they complement innate human abilities.
+    - ... to explore the world and build understanding.
+    - ... to evolve solutions to real human problems.
+
+  - Goal: Understand the world to solve problems.
+
+* Clojure: the common view
 
   - Clojure is a hosted functional Lisp.
 
@@ -13,12 +39,12 @@
     - Clojure leverages Java and the JVM.
     - Clojurescript leverages Javascript.
 
-  - "Functional" means it favors immutable data
-     and functional composition.
+  - "Functional" means it favors expressions
+     of immutable data and function composition.
 
   - "Lisp" means it is as simple as is practical.
 
-* a less common view
+* Clojure: a less common view
 
   - Clojure is a data-oriented programming language.
 
@@ -28,13 +54,13 @@
 
   - Virtually nothing else is added to get in the way.
 
-  - Clojure calls this "absence of ceremony".
+  - Clojure programmers call this "absence of ceremony".
 
 * The Gardn of EDN
 
   - Extensible Data Notation
 
-  - EDN is a transfer syntax for network communication.
+  - EDN is a data interchange format like JSON.
 
   - EDN also happens to be the syntax of Clojure.
 
@@ -44,7 +70,7 @@
 
 * Scalars
 
-#+BEGIN_SRC Clojure
+#+BEGIN_SRC clojure
     Numbers     23 -7 3.14159 22/7 1/137 6e23 76.0M 285N
 
     Booleans    false true
@@ -56,56 +82,63 @@
     Nil         nil
 
     Strings     "Strings communicate outside a program."
-
-    Symbols     symbol ns fn + = -> ->> nil? keyword? if or
 #+END_SRC
 
 * Collections
 
-#+BEGIN_SRC Clojure
-    Vectors     ["Clojure" 0 :to fn?]  [environment scheme :as db]
+#+BEGIN_SRC clojure
+    Vectors     ["Clojure" 0 :to fn?]
 
-                  [4 [2 [0 1] [3]] [7 [5 6] [8 9]]]
-                  [             4
-                  [     2
-                    [0 1] [3]              ]
-                   [                7
-                               [5 6] [8 9]]]
+                [environ scheme :as db]
 
-    Maps        {:A :T, :C :G, :T :A, :G :C}
+                [4 [2 [1 3]] [6 [5 7]]]
 
-                  {:Title "Montenegro"
-                   :Year 1981
-                   :Rated :R
-                   :Released "09 Oct 1981"
-                   :Director "Dušan Makavejev"}
+                [         4
+                [    2
+                [  1   3             ]]
+                [              6
+                [            5   7  ]]]
 #+END_SRC
 
 * More Collections
 
-#+BEGIN_SRC Clojure
+#+BEGIN_SRC clojure
+    Maps        {:A :T, :C :G, :T :A, :G :C}
+
+                {:Title "Montenegro"
+                 :Year 1981
+                 :Rated :R
+                 :Released "09 Oct 1981"
+                 :Director "Dušan Makavejev"}
+
+                {:keys [environ schema] :as db}
+#+END_SRC
+* More Collections
+
+#+BEGIN_SRC clojure
     Sets        #{"Chico" "Groucho" "Harpo" "Zeppo"}
 
     Strings     "A string is a sequence of characters."
 
-    Lists       (+ 0 1 2)  (fn [n] (+ 1 n))  (fn? +)
-                  (for [x "ab" y "cd"] {x y})
+    Regexs      #"/"      #"\s+"     #"[0-9a-fA-f]*"
+#+END_SRC
 
     - Everything nests
 
-      {[247711 128745 615585] #{ 7 20}
-       [724475 209311 596076] #{47 35}
-       [ 49338 359939 906095] #{61   }
-       [174818 239856 437406] #{ 6 22}
-       [535936 885819 472347] #{74  9}
-       [ 70989 376305 883810] #{26 68}}
+#+BEGIN_SRC clojure
+                {[247711 128745 615585] #{ 7 20}
+                 [724475 209311 596076] #{47 35}
+                 [ 49338 359939 906095] #{61   }
+                 [174818 239856 437406] #{ 6 22}
+                 [535936 885819 472347] #{74  9}
+                 [ 70989 376305 883810] #{26 68}}
 #+END_SRC
 
 * Data
 
     - What is this?
 
-#+BEGIN_SRC Clojure
+#+BEGIN_SRC clojure
       [... {:pipeline_version "cfd0c6b",
             :document_status "Normal",
             :gvcf_path "gs://broad-gotc-prod-storage/pipeline/...",
@@ -125,7 +158,7 @@
 
     - What is this?
 
-#+BEGIN_SRC Clojure
+#+BEGIN_SRC clojure
       [:html5
        [:head
         [:title "Home | Compojure Docs"]]
@@ -145,7 +178,7 @@
 
     - What is this?
 
-#+BEGIN_SRC Clojure
+#+BEGIN_SRC clojure
       [:vmext:RegisterVimServerParams {:id 7}
        [:vmext:VimServer :name "dvc1-name"
         [:Description "Got me ..."]
@@ -158,6 +191,91 @@
         [:vmext:Password "vsm1-pass"]
         [:vmext:Url "https://127.0.0.1"]]]
 #+END_SRC
+
+* Expressions
+
+  - Scalar and collections comprise most expressions.
+
+  - All the expressions we've seen so far are /literals/.
+
+  - The value of a literal expression is just the expression.
+
+  - Literals "print like they read".
+
+  - There is one scalar that does not print as read: *Symbol*
+
+  - And one collection does not print as read: *List*
+
+* Symbols
+
+  A few symbols have already sneaked in: =fn?=  =schema=  =db=
+
+  Here are some other symbols.
+
+#+BEGIN_SRC clojure
+      symbol *ns* fn + = -> ->> nil? keyword? java.lang.String
+#+END_SRC
+
+  Symbols serve as /identifiers/ or /variables/ in Clojure.
+
+  They name other values within a program.
+
+* Lists
+
+  A list combines other expressions to produce a new value.
+
+#+BEGIN_SRC clojure
+      (+ 0 1 2)  (fn [n] (+ 1 n))  (fn? odd?)
+
+      (def beatles #{"George" "John" "Paul" "Ringo"})
+
+      (defn add1 [n] (+ 1 n))
+
+      (if (odd? (rand-int 9) :odd :even)
+
+      (for [x "ab" y "cd"] {x y})
+#+END_SRC
+
+  Lists are what make things happen in Clojure programs.
+
+* Evaluation
+
+  - All scalars except *Symbol* evaluate to themselves.
+
+  - Put =22/7= in and get =22/7= out.
+
+  - All collections except *List* evaluate to themselves.
+
+  - Put ={:b 1 :a 0}= in, maybe get ={:a 0 :b 1}= out.
+
+  - Symbols and Lists are evaluated differently though.
+
+* Symbol evaluation
+
+  Symbols get values via =def= or =fn= binding expressions.
+
+  The following =def= expression
+
+#+BEGIN_SRC clojure
+      (def beatles #{"George" "John" "Paul" "Ringo"})
+#+END_SRC
+
+  binds the symbol =beatles= to the set value
+
+#+BEGIN_SRC clojure
+      #{"Ringo" "John" "George" "Paul"}
+#+END_SRC
+
+* List evaluation
+
+  The head of list determines what to do with its tail.
+
+* Read, Eval, and Print Loop (REPL)
+
+  - The Clojure dialog is a loop.
+
+    - Read a scalar or collection expression.
+    - Evaluate it according
 
 * Sequences
 
@@ -216,17 +334,3 @@
 #+END_SRC
 
     Clojure =nil= is Java =null=.  Clojure strings are Java strings.
-
-* Evaluation
-
-  - All scalars except *Symbol* evaluate to themselves.
-
-  - Put =22/7= in and get =22/7= out.
-
-  - Symbols evaluate to whatever they are defined as.
-
-  - All collections except *List* evaluate to themselves.
-
-  - Put ={:b 1 :a 0}= in, get ={:a 0 :b 1}= out.
-
-  - List evaluation depends on the list's /head/.
