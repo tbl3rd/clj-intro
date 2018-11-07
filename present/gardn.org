@@ -4,6 +4,59 @@
 # That is C-x8 followed by a space character.
 # Use org-confluence-export-as-confluence
 
+* Hello, world! (Java)
+
+  - Write this main.java file in some project tree.
+
+#+BEGIN_SRC java
+    public class HelloWorld {
+        public static void main(String[] args) {
+            System.out.println("Hello, World");
+        }
+
+    }
+#+END_SRC
+
+  - Compile it into a =.jar= file.
+  - Run with =java -jar hello.jar= ... or something.
+
+* Hello, world! (Clojure)
+
+  - Evaluate this expression.
+
+#+BEGIN_SRC clojure
+    (println "Hello, world!")
+#+END_SRC
+
+  - Run as if it were Perl, Python, Ruby, or Shell.
+
+#+BEGIN_EXAMPLE
+    shell # clj -e '(println "Hello, world!")'
+    Hello, world!
+    shell #
+#+END_EXAMPLE
+
+  - You /can/ build a =.jar= file and run it with =java -jar=.
+
+* Clojure is about the problem
+
+  - Compare Java to Clojure.
+
+#+BEGIN_SRC java
+    public class HelloWorld {       // Java
+        public static void main(String[] args) {
+            System.out.println("Hello, World");
+        }
+
+    }
+#+END_SRC
+
+#+BEGIN_SRC clojure
+    (println "Hello, world!")       ; Clojure
+#+END_SRC
+
+  - No =public class static void main String args System=
+
 * Programming: the common view
 
   - Programming is about building systems with computers.
@@ -427,3 +480,8 @@
 #+END_SRC
 
     Clojure =nil= is Java =null=.  Strings are Java strings.
+* Thank you
+
+  [[https://www.honeycomb.io/wp-content/uploads/2018/09/houston-we-have-a-dogblem.gif][Really!]]
+
+  [[file:houston-we-have-a-dogblem.gif]]
