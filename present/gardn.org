@@ -315,6 +315,30 @@
     (if (odd? (rand-int 9) :odd :even)
 #+END_SRC
 
+* Functions and macros
+
+  =(fn? x)= function tests whether =x= is a function.
+
+#+BEGIN_SRC clojure
+      (fn? fn?)               is  true
+      (fn? true)              is  false
+#+END_SRC
+
+  =fn= is a special form to produce a function value.
+
+#+BEGIN_SRC clojure
+      (fn? (fn [n] (+ 1 n)))  is  true
+#+END_SRC
+
+  =defn= itself is a /macro/ over =def= and =fn=.
+
+#+BEGIN_SRC clojure
+      (defn    add1 [n] (+ 1 n))
+      (def (fn add1 [n] (+ 1 n)))
+#+END_SRC
+
+  Like =defn= defines functions, =defmacro= defines macros.
+
 * Read, Eval, and Print Loop (REPL)
 
   The Clojure dialog is a loop.
