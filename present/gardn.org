@@ -152,53 +152,53 @@
 * Data
 
 #+BEGIN_SRC clojure
-      [... {:pipeline_version "cfd0c6b",
-            :document_status "Normal",
-            :gvcf_path "gs://broad-gotc-prod-storage/pipeline/...",
-            :regulatory_designation "RESEARCH_ONLY",
-            :project "G102438",
-            :data_type "WGS",
-            :contamination 9.15968E-4,
-            :sample_alias "NWD804584",
-            :version 3,
-            :location "GCP",
-            :gvcf_size 6465061643,
-            :gvcf_md5 "30d3fd47fe6876ed91960dfc319306c5",
-            :analysis_date "2017-11-03T11:47:30.153-04:00"} ...]
+[... {:pipeline_version "cfd0c6b",
+      :document_status "Normal",
+      :gvcf_path "gs://broad-gotc-prod-storage/pipeline/...",
+      :regulatory_designation "RESEARCH_ONLY",
+      :project "G102438",
+      :data_type "WGS",
+      :contamination 9.15968E-4,
+      :sample_alias "NWD804584",
+      :version 3,
+      :location "GCP",
+      :gvcf_size 6465061643,
+      :gvcf_md5 "30d3fd47fe6876ed91960dfc319306c5",
+      :analysis_date "2017-11-03T11:47:30.153-04:00"} ...]
 #+END_SRC
 
 * More Data
 
 #+BEGIN_SRC clojure
-      [:html5
-       [:head
-        [:title "Home | Compojure Docs"]]
-       [:body
-        [:div {:class "container-fluid"}
-         [:div {:class "row-fluid"}
-          [:div {:class "span2 menu"}]
-          [:div {:class "span10 content"}
-           [:h1 "Compojure Docs"]
-           [:ul
-            [:li [:a {:href "/start"} "Getting Started"]]
-            [:li [:a {:href "/routes"} "Routes in Detail"]]
-            [:li [:a {:href "/nesting"} "Nesting Routes"]]]]]]]]
+[:html5
+ [:head
+  [:title "Home | Compojure Docs"]]
+ [:body
+  [:div {:class "container-fluid"}
+   [:div {:class "row-fluid"}
+    [:div {:class "span2 menu"}]
+    [:div {:class "span10 content"}
+     [:h1 "Compojure Docs"]
+     [:ul
+      [:li [:a {:href "/start"} "Getting Started"]]
+      [:li [:a {:href "/routes"} "Routes in Detail"]]
+      [:li [:a {:href "/nesting"} "Nesting Routes"]]]]]]]]
 #+END_SRC
 
 * More data
 
 #+BEGIN_SRC clojure
-      [:vmext:RegisterVimServerParams {:id 7}
-       [:vmext:VimServer :name "dvc1-name"
-        [:Description "Got me ..."]
-        [:vmext:Username "lyonst"]
-        [:vmext:Password "password"]
-        [:vmext:Url "https://127.0.0.1"]
-        [:vmext:IsEnabled true]]
-       [:vmext:ShieldManager {:id 23} :name "vsm1"
-        [:vmext:Username "vsm1-user"]
-        [:vmext:Password "vsm1-pass"]
-        [:vmext:Url "https://127.0.0.1"]]]
+[:vmext:RegisterVimServerParams {:id 7}
+ [:vmext:VimServer :name "dvc1-name"
+  [:Description "Got me ..."]
+  [:vmext:Username "lyonst"]
+  [:vmext:Password "password"]
+  [:vmext:Url "https://127.0.0.1"]
+  [:vmext:IsEnabled true]]
+ [:vmext:ShieldManager {:id 23} :name "vsm1"
+  [:vmext:Username "vsm1-user"]
+  [:vmext:Password "vsm1-pass"]
+  [:vmext:Url "https://127.0.0.1"]]]
 #+END_SRC
 
 * Expressions
@@ -207,7 +207,7 @@
 
   - All the expressions we've seen so far are /literals/.
 
-  - The value of a literal expression is just the expression.
+  - The value of a literal expression is just itself.
 
   - Literals "print like they read".
 
@@ -228,6 +228,8 @@
   Symbols serve as /identifiers/ or /variables/ in Clojure.
 
   They name other values within a program.
+
+  A symbol can name any other value or expression.
 
 * Lists
 
@@ -263,7 +265,7 @@
 
   The /head/ of list determines what to do with its /tail/.
 
-  The head of a list is usually a function.
+  The head is usually a function like =list= or =first=.
 
   =list= at the head collects its tail into a list.
 
@@ -296,22 +298,21 @@
   /Note:/ Element order does not affect the value of a set.
 
 * More evaluation
+
 #+BEGIN_SRC clojure
-(+ 0 1 2 3)                  is  6
+         (+ 0 1 2 3)             is  6
+    (fn?  +)                     is  true
+    (fn? (+ 0 1 2 3))            is  false
 
-(fn? +)                      is  true
-(fn? (+ 0 1 2 3))            is  false
+    (defn add1 [n] (+ 1 n))
+         (add1  2)               is  3
+    (fn?  add1)                  is  true
 
-(defn add1 [n] (+ 1 n))
-(add1 2)                     is  3
-(fn? add1)                   is  true
+    (    (fn [n] (+ 1 n)) 2)     is  3
+    (fn? (fn [n] (+ 1 n))  )     is  true
 
-(    (fn [n] (+ 1 n)) 2)     is  3
-(fn? (fn [n] (+ 1 n)))       is  true
-
-(for [x "ab" y "cd"] {x y})
-
-(if (odd? (rand-int 9) :odd :even)
+    (for [x "ab" y "cd"] {x y})
+    (if (odd? (rand-int 9) :odd :even)
 #+END_SRC
 
 * Read, Eval, and Print Loop (REPL)
@@ -325,7 +326,7 @@
     - A symbol has the value bound to it.
     - A list applies its head to its tail.
 
-  - Print the resulting value, and loop back.
+  - Print the resulting value, and loop again.
 
 * Sequences
 
@@ -344,6 +345,24 @@
 #+END_SRC
 
     - Sequences are lazy.
+
+* Count
+
+  =count= counts items in a collection.
+
+#+BEGIN_SRC clojure
+    (count #{:a :b :c :d})   is  4
+    (count       [0 1 2] )   is  3
+    (count      [[0 1 2]])   is  1
+    (count      [[0  [2]]])  is  1
+    (count      [0 [1 2]])   is  2
+    (count      [       ])   is  0
+    (count      [[][][] ])   is  3
+    (count (set [[][][]]))   is  1
+    (count  { :a 0 :b 1 })   is  2
+    (count  [count count])   is  2
+    (count  {count count})   is  1
+#+END_SRC
 
 * Collections /function/
 
