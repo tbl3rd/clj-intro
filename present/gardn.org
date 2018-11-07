@@ -101,7 +101,7 @@
 
    ... and there is one other introduced later.
 
-* More Collections
+* More collections
 
 #+BEGIN_SRC clojure
     Vectors     ["Clojure" 0 :to fn?]
@@ -117,7 +117,7 @@
                 [            5   7  ]]]
 #+END_SRC
 
-* More Collections
+* More collections
 
 #+BEGIN_SRC clojure
     Maps        {:A :T, :C :G, :T :A, :G :C}
@@ -130,7 +130,7 @@
 
                 {:keys [env schema] :as db}
 #+END_SRC
-* More Collections
+* More collections
 
 #+BEGIN_SRC clojure
     Sets        #{"Chico" "Groucho" "Harpo" "Zeppo"}
@@ -167,7 +167,7 @@
       :analysis_date "2017-11-03T11:47:30.153-04:00"} ...]
 #+END_SRC
 
-* More Data
+* More data
 
 #+BEGIN_SRC clojure
 [:html5
