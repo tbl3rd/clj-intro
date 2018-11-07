@@ -14,7 +14,7 @@
 
   - /Programming/ is the act of writing that specification.
 
-  - Goal: Understand computers to build systems.
+  - /Goal:/ Understand computers to build systems.
 
 * Programming: a less common view
 
@@ -27,7 +27,7 @@
     - to explore the world and build understanding.
     - to evolve solutions to real human problems.
 
-  - Goal: Understand the world to solve problems.
+  - /Goal:/ Understand the world to solve problems.
 
 * Clojure: the common view
 
@@ -48,7 +48,7 @@
 
   - Defining and tranforming data is central.
 
-  - There is data and the means for transforming it.
+  - There is data and the means to transform it.
 
   - Virtually nothing else is added to get in the way.
 
@@ -391,15 +391,15 @@
 
     Comments       ; This is a comment.
 
-    Whitespace     ,
+    Whitespace     ,            ; Commas are whitespace.
 
     Namespaces     namespace/symbol  :namespace/keyword
 
-    Java           . .. new try monitor-enter monitor-exit
+    Java           . .. new throw try
 
-    Reader Macros  ' ` ~ @ @ ^ # #_ #inst #(.startswith % "prefix") #tag
+    Reader Macros  ' ` ~ @ ^ # #(.startswith % "prefix") #tag
 
     Conventions    _ *out* zero? swap!
 #+END_SRC
 
-    Clojure =nil= is Java =null=.  Clojure strings are Java strings.
+    Clojure =nil= is Java =null=.  Strings are Java strings.
