@@ -265,7 +265,7 @@
 
 * Expressions
 
-  - Scalar and collections comprise most expressions.
+  - Scalars and collections comprise most expressions.
 
   - All the expressions we've seen so far are /literals/.
 
