@@ -393,8 +393,8 @@
   =defn= itself is a /macro/ over =def= and =fn=.
 
 #+BEGIN_SRC clojure
-      (defn    add1 [n] (+ 1 n))
-      (def (fn add1 [n] (+ 1 n)))
+      (defn add1     [n] (+ 1 n))
+      (def  add1 (fn [n] (+ 1 n)))
 #+END_SRC
 
 * Read, Eval, and Print Loop (REPL)
