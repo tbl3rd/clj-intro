@@ -1,8 +1,6 @@
 #+TITLE: Introducing Clojure
 #+OPTIONS: H:0 num:0 toc:1
-# To get an unbreakable space character: C-x8<space>
-# That is C-x8 followed by a space character.
-# Use org-confluence-export-as-confluence
+#+STARTUP: inlineimages
 
 * Hello, world! (tbl3rd)
 
@@ -294,7 +292,7 @@
 
   They name other values within a program.
 
-  A symbol can name any other value or expression.
+  A symbol can name any value or expression.
 
 * Lists
 
@@ -375,7 +373,7 @@
     (fn? (fn [n] (+ 1 n))  )     is  true
 
     (for [x "ab" y "cd"] {x y})
-    (if (odd? (rand-int 9) :odd :even)
+    (if (odd? (rand-int 9) :odd :even))
 #+END_SRC
 
 * Functions and macros
@@ -400,8 +398,6 @@
       (def (fn add1 [n] (+ 1 n)))
 #+END_SRC
 
-  Like =defn= defines functions, =defmacro= defines macros.
-
 * Read, Eval, and Print Loop (REPL)
 
   The Clojure dialog is a loop.
@@ -424,7 +420,6 @@
       (seq  "Clojure")        is (\C \l \o \j \u \r \e)
 
       (seq  [0 1 2 3 4])      is (0 1 2 3 4)
-
       (seq #{0 1 2 3 4})      is (0 1 2 3 4)
 
       (seq  {:a 0 :b 1 :c 2}) is ([:a 0] [:b 1] [:c 2])
@@ -474,9 +469,7 @@
     Truthiness     Everything except nil and false is True.
 
     Comments       ; This is a comment.
-
     Whitespace     ,            ; Commas are whitespace.
-
     Namespaces     namespace/symbol  :namespace/keyword
 
     Java           . .. new throw try
@@ -487,6 +480,7 @@
 #+END_SRC
 
     Clojure =nil= is Java =null=.  Strings are Java strings.
+
 * Thank you
 
   [[https://www.honeycomb.io/wp-content/uploads/2018/09/houston-we-have-a-dogblem.gif][Really!]]
