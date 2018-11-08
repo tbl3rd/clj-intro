@@ -27,7 +27,6 @@
         public static void main(String[] args) {
             System.out.println("Hello, World");
         }
-
     }
 #+END_SRC
 
@@ -61,7 +60,6 @@
         public static void main(String[] args) {
             System.out.println("Hello, World");
         }
-
     }
 #+END_SRC
 
@@ -163,7 +161,7 @@
     Maps        {:a 0 :b 1}  {:keys [env schema] :as db}
 
                 {:falsey #{nil false}
-                 :truthy #{0 \space :false "" [] {} #{}}
+                 :truthy #{0 \space :false "" [] {} #{}}}
 #+END_SRC
 
    ... and there is one other introduced later.
@@ -309,7 +307,7 @@
 
       (defn add1 [n] (+ 1 n))
 
-      (if (odd? (rand-int 9) :odd :even)
+      (if (odd? (rand-int 9) :odd :even))
 
       (for [x "ab" y "cd"] {x y})
 #+END_SRC
@@ -361,8 +359,6 @@
 #+BEGIN_SRC clojure
       beatles  is  #{"Ringo" "John" "George" "Paul"}
 #+END_SRC
-
-  /Note:/ Element order does not affect the value of a set.
 
 * More evaluation
 
@@ -422,7 +418,6 @@
 * Sequences
 
     - Every collection can be sequenced.
-
     - A sequence prints as a list.
 
 #+BEGIN_SRC clojure
@@ -461,9 +456,7 @@
 
 #+BEGIN_SRC clojure
       ([:a :b :c :d] 3)                             is :d
-
       ({:A :T, :C :G, :T :A, :G :C} :T)             is :A
-
       (#{"Chico" "Groucho" "Harpo" "Zeppo"} "Karl") is nil
 #+END_SRC
 
