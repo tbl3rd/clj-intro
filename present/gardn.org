@@ -1,5 +1,4 @@
 #+TITLE: Introducing Clojure
-#+OPTIONS: H:0 num:0 toc:1
 #+STARTUP: inlineimages
 
 * Hello, world! (tbl3rd)
