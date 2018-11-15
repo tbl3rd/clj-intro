@@ -325,7 +325,7 @@
 
 * List evaluation
 
-  The /head/ of list determines what to do with its /tail/.
+  The /head/ of a list determines the fate of its /tail/.
 
   The head is usually a function like =list= or =first=.
 
