@@ -263,6 +263,24 @@
   [:vmext:Url "https://127.0.0.1"]]]
 #+END_SRC
 
+* More data
+
+#+BEGIN_SRC clojure
+[:piano
+ {:octave 4 :tempo 74}
+ [1/8 #{:e :f# :-a :-d} :a 1/2 #{:f# :+d}]
+ [1/8 #{:-e :e :+c} :a 1/2 #{:e :c}]
+ [1/8 #{:e :f# :-a :-d} :a :+d :+c# :+e :+d :b :+c#]
+ [1/2 #{:-e :c :a} 1/2 #{:e :c}]]
+
+[4/4 #{[:guitar
+        {:octave 3}
+        1/16 :r :r 1/8 :g :r :d :r :g :g :d]
+       [:banjo
+        {:octave 3}
+        1/16 :b :+c 1/8 :+d :b :+c :a :b :g :a]}]
+#+END_SRC
+
 * Expressions
 
   - Scalars and collections comprise most expressions.
