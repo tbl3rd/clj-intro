@@ -171,7 +171,7 @@ triples         ; => ["AAA" "AAC" "AAG" "AAT" "ACA" "ACC" "ACG" "ACT"
 (def amino-keys (map (comp code string) (partition 3 1 strand)))
 (take 13 amino-keys) ; => (nil :C nil nil nil :Y nil nil :M nil nil :Y :M)
 
-(def aminos (map amino-acids (remove nil? amino-keys)))
+(def aminos (keep amino-acids amino-keys))
 (take 4 aminos) ;=> ("cysteine" "tyrosine" "methionine" "tyrosine")
 
 "This is fun programming but (as of 1961) bad biology."
