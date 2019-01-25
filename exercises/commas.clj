@@ -1,5 +1,5 @@
 (ns commas
-  "CODES WITHOUT COMMAS -- with apologies to F.H.C. Crick, et al")
+  "CODES WITHOUT COMMAS -- with apologies to F.H.C. Crick et al")
 
 "The problem of how a sequence of four things (nucleotides) can
 determine a sequence of twenty things (amino acids) is known as
