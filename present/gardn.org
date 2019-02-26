@@ -475,8 +475,8 @@
     - Strings have to be indexed explicitly.
 
 #+BEGIN_SRC clojure
-      (nth "Clojure" 3)                             is \j
-      (get "Clojure" 3)                             is \j
+       (nth "Clojure"  3)                           is \j
+       (get "Clojure"  3)                           is \j
       ((vec "Clojure") 3)                           is \j
 #+END_SRC
 
