@@ -25,7 +25,7 @@
 
 ;; Conceptually, LET is still just FN under the hood.  F-word
 ;; programmers into category theory might recognize LET as
-;; the "identity monad".
+;; the "identity monad" (or "identity M-word").
 
 ;; So LET is a macro that gets the binding vector and the following
 ;; ADD1 expression and translates it into the following FN expression,

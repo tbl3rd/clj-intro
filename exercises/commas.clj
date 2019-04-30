@@ -1,39 +1,62 @@
 (ns commas
   "CODES WITHOUT COMMAS -- with apologies to F.H.C. Crick et al")
 
-"The problem of how a sequence of four things (nucleotides) can
-determine a sequence of twenty things (amino acids) is known as
-the 'coding' problem."
+;; Bold and intriguing without being click-baity.
+;; Fast, Cheap, and Out of Control
+;; Not snory like these.
+;;
+["Recursive functions of symbolic expressions
+ and their computation by machine Part I"
+ "Deceleration heating of interplanetary dust in the Earth's
+ atmosphere and its simulation using analog materials"]
+
+{1957 ["Eisenhower starts second term by suspending nuclear tests."
+       "Chuck Berry records 'Rock and Roll Music'."
+       "The Cavern Club opens and Lennon meets McCartney."
+       "'Throne of Blood' released."
+       "Wham-O ships the first Frisbee."
+       "IBM ships the first FORTRAN compiler."
+       "Brooklyn Dodgers move to Los Angeles."
+       "USAF drops a hydrogen bomb on Albuquerque New Mexico."
+       "FBI arrests James Riddle Hoffa."
+       "Flooding in Japan kills 1000 people."
+       "The International Geophysical Year begins."
+       "'Perry Mason' and 'Leave It to Beaver' premier on TV."
+       "NAACP registers Little Rock Nine honor students."
+       "United States Commission on Civil Rights established."
+       "A nuclear reactor blows up in Chelyabinsk USSR."
+       "2 Sputniks and Laika orbit Earth starting 'space race'."
+       "'West Side Story' opens on Broadway."
+       "US Army Captain Hank Cramer killed in Vietnam."
+       "Toyota begins exporting to the US."
+       "Boeing 707 flies for the first time."
+       "'Atlas Shrugged' and 'The Cat in the Hat' published."
+       "John von Neumann dies."
+       "Osama bin Laden is born."]}
 
 (comment "http://www.pnas.org/content/43/5/416" is the paper.)
 
-(comment Now is 1957.  What do we know?)
+"It is assumed in one of the more popular theories of protein
+ synthesis that amino acids are ordered on a nucleic acid strand
+ and that the order of the amino acids is determined by the order
+ of the nucleotides of the nucleic acid."
+
+(comment Now is 1957.  What does the RNA Tie Club know?)
 
 (def nucleotides ["Adenine" "Cytosine" "Guanine" "Thymine"])
-nucleotides ; => ["Adenine" "Cytosine" "Guanine" "Thymine"]
+nucleotides
 
 (def ACGT (map first nucleotides))
-ACGT                                    ; => (\A \C \G \T)
-
-(reverse ACGT)                          ; => (\T \G \C \A)
+ACGT
 
 (def pair (zipmap ACGT (reverse ACGT)))
-pair                                    ; => {\A \T \C \G \G \C \T \A}
-
-(pair \T)                               ; => \A
-
-(rand-nth ACGT)                         ; => \G
-(rand-nth ACGT)                         ; => \C
+pair
 
 (def strand (repeatedly (fn [] (rand-nth ACGT))))
-
-(take 7 strand)                         ; => (\G \G \C \T \G \C \C)
+strand
 
 (def dna (map (fn [b] [b (pair b)]) strand))
-
-(take 6 dna)    ; => ([\G \C] [\C \G] [\T \A] [\T \A] [\A \T] [\A \T])
-(take 7 (map first  dna))               ; => (\G \C \T \T \A \A \G)
-(take 7 (map second dna))               ; => (\C \G \A \A \T \T \C)
+dna
 
 (def essential   {:F "phenylalanine"
                   :H "histidine"
@@ -60,125 +83,89 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 
 (def amino (merge essential conditional dispensible))
 
-(count amino)                           ; => 20
+"The problem of how a sequence of four things (nucleotides) can
+determine a sequence of twenty things (amino acids) is known as
+the 'coding' problem."
+
+(count nucleotides)
+(count amino)
 
 (comment Now ... What can we find out?)
 
-(count (for [x ACGT] [x]))                   ; => 4
-(count (for [x ACGT y ACGT] [x y]))          ; => 16
-(count (for [x ACGT y ACGT z ACGT] [x y z])) ; => 64
+;; If each amino acid were coded by two bases, we should only be
+;; able to code 4 X 4 = 16 amino acids. It is natural, therefore,
+;; to consider nonoverlapping codes in which three bases code
+;; each amino acid.
+
+(def the-singles (for [x ACGT] [x]))
+(count the-singles)
+(def the-doubles (for [x ACGT y ACGT] [x y]))
+(count the-doubles)
+(def the-triples (for [x ACGT y ACGT z ACGT] [x y z]))
+(count the-triples)
+
+["This confronts us with two difficulties:"
+ 1 "Since there are 4 x 4 x 4 = 64 different triplets of four
+    nucleotides why are there not 64 kinds of amino acids?"
+ 2 "In reading the code how does one know how to choose the
+    groups of three?"]
 
 (def string (partial apply str))
-
 (def triples (map string (for [x ACGT y ACGT z ACGT] [x y z])))
-triples
 
-(take 7 triples)           ; => ("AAA" "AAC" "AAG" "AAT" "ACA" "ACC" "ACG")
-(take 7 (reverse triples)) ; => ("TTT" "TTG" "TTC" "TTA" "TGT" "TGG" "TGC")
-(count triples)            ; => 64
+"We shall assume that there are certain sequences of three
+ nucleotides with which an amino acid can be associated and
+ certain others for which this is not possible."
+
+"... we say that some of the 64 triplets make sense and some
+ make nonsense. We further assume that all possible sequences
+ of the amino acids may occur ... and that at every point in
+ the string of letters one can only read 'sense' in the
+ correct way."
+
+;; In other words, any two triplets which make sense can be put
+;; side by side, and yet the overlapping triplets so formed
+;; must always be nonsense.
+
+"... consider for the moment the restrictions imposed by
+ placing each amino acid next to itself."
+
+[:sense    "...  CAT  AAA  AAA  TAG  ..."]
+[:nonsense "...   ATA  AAA  AAT      ..."]
+[:nonsense "...    TAA  AAA  ATA     ..."]
+
+;; It is easy to see that the 60 remaining triplets can be
+;; grouped into 20 sets of three, each set of three being
+;; cyclic permutations of one another.
 
 (take (count ACGT) (partition (count ACGT) 1 (cycle ACGT)))
-;; => ((\A \C \G \T) (\C \G \T \A) (\G \T \A \C) (\T \A \C \G))
 
 (def rotations
   (fn [s] (let [n (count s)]
             (map string (take n (partition n 1 (cycle s)))))))
 
-(rotations ACGT)                    ; => ("ACGT" "CGTA" "GTAC" "TACG")
-(set ACGT)                          ; => #{\A \C \G \T}
-((set ACGT) \T)                     ; => \T
-((set ACGT) \Z)                     ; => nil
-(rotations (take 3 ACGT))           ; => ("ACG" "CGA" "GAC")
-
-(take 7 (map rotations triples))        ; => (("AAA" "AAA" "AAA")
-                                        ;     ("AAC" "ACA" "CAA")
-                                        ;     ("AAG" "AGA" "GAA")
-                                        ;     ("AAT" "ATA" "TAA")
-                                        ;     ("ACA" "CAA" "AAC")
-                                        ;     ("ACC" "CCA" "CAC")
-                                        ;     ("ACG" "CGA" "GAC"))
-
 (def codons (set (map (comp set rotations) triples)))
-
-(count codons)                          ; => 24
-(take 7 codons)                         ; => (#{"ACC" "CCA" "CAC"}
-                                        ;     #{"GGG"}
-                                        ;     #{"TTT"}
-                                        ;     #{"GCC" "CGC" "CCG"}
-                                        ;     #{"CAA" "ACA" "AAC"}
-                                        ;     #{"CTC" "CCT" "TCC"}
-                                        ;     #{"AGC" "CAG" "GCA"})
-
-(count (group-by count codons))         ; => 2
-(map first (group-by count codons))     ; => (3 1)
 
 (def sense-codons ((group-by count codons) 3))
 
-(count sense-codons)                    ; => 20 Eureka!
-
-(take 7 sense-codons)                   ; => (#{"ACC" "CCA" "CAC"}
-                                        ;     #{"GCC" "CGC" "CCG"}
-                                        ;     #{"CAA" "ACA" "AAC"}
-                                        ;     #{"CTC" "CCT" "TCC"}
-                                        ;     #{"AGC" "CAG" "GCA"}
-                                        ;     #{"TAT" "TTA" "ATT"}
-                                        ;     #{"GAG" "GGA" "AGG"})
-
 (def sense (map (comp first sort) sense-codons))
-
-(count sense)   ; => 20
-
-(take 7 sense)  ; => ("ACC" "CCG" "AAC" "CCT" "AGC" "ATT" "AGG")
+(count sense)
 
 (def nonsense (remove (set sense) (set triples)))
-
-(count nonsense)                 ; => 44
-
-(= (count triples)
-   (+ (count sense)
-      (count nonsense)))         ; => true
+(count nonsense)
 
 (def code (zipmap (map vec (sort sense)) (sort (keys amino))))
 
-(sort-by second code)                   ; => ([[\A \A \C] :A]
-                                        ;     [[\A \A \G] :C]
-                                        ;     [[\A \A \T] :D]
-                                        ;     [[\A \C \C] :E]
-                                        ;     [[\A \C \G] :F]
-                                        ;     [[\A \C \T] :G]
-                                        ;          ...
-                                        ;     [[\C \G \G] :R]
-                                        ;     [[\C \G \T] :S]
-                                        ;     [[\C \T \G] :T]
-                                        ;     [[\C \T \T] :V]
-                                        ;     [[\G \G \T] :W]
-                                        ;     [[\G \T \T] :Y])
-
 (map string (take 7 (partition 3 1 strand)))
-;; => ("TTC" "TCG" "CGG" "GGT" "GTG" "TGA" "GAT")
 
-(def amino-keys (remove nil? (map code (partition 3 1 strand))))
-
-(take 7 amino-keys)                     ; => (:R :W :M :W :G :T :D)
+(def amino-keys (keep code (partition 3 1 strand)))
 
 (def aminos (map amino amino-keys))
 
-(take 17 aminos)                        ; => ("arginine"
-                                        ;     "tryptophan"
-                                        ;     "methionine"
-                                        ;     "tryptophan"
-                                        ;     "glycine"
-                                        ;     "threonine"
-                                        ;     "aspartic acid"
-                                        ;     "alanine"
-                                        ;     "glutamic acid"
-                                        ;     "alanine"
-                                        ;     "glycine"
-                                        ;     "valine"
-                                        ;     "asparagine"
-                                        ;     "alanine"
-                                        ;     "glutamic acid"
-                                        ;     "glutamine"
-                                        ;     "glutamine")
+;; The example given here is only for illustration,
+;; but it brings out the physical idea behind the concept
+;; of a comma-less code.
 
 "Note: This is fun programming but (as of 1961) bad biology."
+
+(comment Questions?)

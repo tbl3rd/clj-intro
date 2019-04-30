@@ -131,7 +131,7 @@ beatles                                     ;=> #{:george :ringo :paul :john}
 ;; conceptually just convenient syntax built on top of FN and RECUR.
 
 ;; F-word programmers into category theory might say that FOR is
-;; Clojure's "sequence monad" or "list monad".  (And I suspect it
+;; Clojure's "sequence M-word" or "list M-word".  (And I suspect it
 ;; is why Clojure treats both vectors and lists as sequences when
 ;; comparing them for equality!)
 
