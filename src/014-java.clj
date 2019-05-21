@@ -47,7 +47,8 @@ String/CASE_INSENSITIVE_ORDER
 (. (. System (getProperties)) (get "os.name")) ;-=> "Mac OS X"
 (.. System (getProperties) (get "os.name"))    ;-=> "Mac OS X"
 
-;; The DOTO form passes an object along to following expressions.
+;; The DOTO form passes an object along to following expressions,
+;; which effectively transforms any class into a "fluid interface".
 
 (doto (java.util.HashMap.)
   (.put "a" 0)
