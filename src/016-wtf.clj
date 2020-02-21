@@ -95,11 +95,11 @@ beatles                                     ;=> #{:george :ringo :paul :john}
 ;; Loops
 
 ;; Clojure has loops.  You've met LOOP and RECUR already.  It even has
-;; FOR loops.  Like LOOP, FOR looks a lot like LET except that where
-;; LET binds a single value to a symbol, FOR binds its symbols to
-;; sequences of values.  The result of FOR is a sequence of
-;; expressions, where each expression has the form specified in the
-;; body of the FOR.
+;; FOR and WHILE loops.  WHILE behaves pretty much like you'd expect.
+;; Like LOOP, FOR looks a lot like LET except that where LET binds a
+;; single value to a symbol, FOR binds its symbols to sequences of
+;; values.  The result of FOR is a sequence of expressions, where each
+;; expression has the form specified in the body of the FOR.
 
 ;; For example, you can read the following as: For H taking each of
 ;; :a and :b, let T take the values 0, 1, and 2, generating the
