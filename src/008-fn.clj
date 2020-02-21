@@ -76,8 +76,8 @@
 
 ;; But no one would write an entire program this way.
 
-((fn [n                       ; Introduce the symbol ADD1 way up here.
-      add1]                   ; Introduce the symbol N way up here.
+((fn [n                       ; Introduce the symbol N way up here.
+      add1]                   ; Introduce the symbol ADD1 way up here.
    (add1
     (add1
      (add1
