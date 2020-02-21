@@ -157,7 +157,7 @@
 (tcetorp rob)              ; nil again after blasting in REPL
 (tcetorp tom)              ; "Hello Tom" after blasting in REPL
 
-;; Unlike our FI, Clojure's IF gets its 3 sub-expressions un-evaluated,
+;; Unlike our FI, Clojure's IF gets its 3 sub-expressions UNevaluated,
 ;; and evaluates the first, and only one of the two other expressions,
 ;; discarding the other unevaluated.
 
