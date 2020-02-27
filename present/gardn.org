@@ -4,7 +4,7 @@
 * Hello, world! (tbl3rd)
 
   - Tom Lyons
-  - SPLASH Clojure Meetup
+  - SPLASH Clojure Meetup (ACM SigPLAN)
   - Wednesday 7 November 2018
 
   - https://github.com/tbl3rd
@@ -41,7 +41,7 @@
   - Run as if it were Perl, Python, Ruby, or Shell.
 
 #+BEGIN_EXAMPLE
-    shell # clj -e '(println "Hello, world!")'
+    shell # clojure -e '(println "Hello, world!")'
     Hello, world!
     shell #
 #+END_EXAMPLE
@@ -369,7 +369,7 @@
       (def beatles #{"George" "John" "Paul" "Ringo"})
 #+END_SRC
 
-  the symbol =beatles= has a set value
+  the symbol =beatles= has a value that is a set
 
 #+BEGIN_SRC clojure
       beatles  is  #{"Ringo" "John" "George" "Paul"}
@@ -442,7 +442,8 @@
       (seq  {:a 0 :b 1 :c 2}) is ([:a 0] [:b 1] [:c 2])
 #+END_SRC
 
-    - Sequences are lazy.
+    - Sequences are /lazy/.
+    - Sequences can be infinitely long ...
 
 * Count
 
