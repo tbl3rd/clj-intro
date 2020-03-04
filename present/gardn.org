@@ -430,17 +430,34 @@
   [... {:db/id 9
         :artist/name "John Lennon"
         :band/member ["The Quarrymen"
-                      "The Beatles" ...] ...}
+                      "The Beatles" ...] ...} ...
        {:db/id 23
         :artist/name     "The Beatles"
         :band/members    [9 ...]
-        :band/recordings [444 ...] ...}
+        :band/recordings [444 ...] ...} ...
        {:db/id 444
-        :album/name   "Revolver"
-        :album/tracks [5050 ...] ...}
+        :album/title   "Revolver"
+        :album/tracks [5050 ...] ...} ...
        {:db/id 5050
-        :track/name    "Tomorrow Never Knows"
+        :track/title    "Tomorrow Never Knows"
         :track/artists [23] ...} ...]
+#+END_SRC
+
+* More data
+
+#+BEGIN_SRC clojure
+  [... [9 :artist/name "John Lennon"]
+       [9 :band/member ["The Quarrymen" "The Beatles"]]
+       ...
+       [23 :artist/name "The Beatles"]
+       [23 :band/members [9 10 11 12]]
+       [23 :band/recordings [444 555 ...]]
+       ...
+       [444 :album/title "Revolver"]
+       [444 :album/tracks [... 5050]]
+       ...
+       [5050 :track/title "Tomorrow Never Knows"]
+       [5050 :track/artists [23 ...]] ...]
 #+END_SRC
 
 * Functions and macros
