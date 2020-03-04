@@ -304,15 +304,15 @@
 * More data
 
 #+BEGIN_SRC clojure
-  [... [9 :artist/name "John Lennon"]
-       [9 :band/member ["The Quarrymen" "The Beatles"]]
+  [... [9    :artist/name "John Lennon"]
+       [9    :band/member [17 23 42]
        ...
-       [23 :artist/name "The Beatles"]
-       [23 :band/members [9 10 11 12]]
-       [23 :band/recordings [444 555 ...]]
+       [23   :artist/name "The Beatles"]
+       [23   :band/members [9 10 11 12]]
+       [23   :band/recordings [444 555 ...]]
        ...
-       [444 :album/title "Revolver"]
-       [444 :album/tracks [... 5050]]
+       [444  :album/title "Revolver"]
+       [444  :album/tracks [... 5050]]
        ...
        [5050 :track/title "Tomorrow Never Knows"]
        [5050 :track/artists [23 ...]] ...]
@@ -521,13 +521,14 @@
 
   (def whole    (range))
   (def counting (rest whole))
-  (def evens    (filter even? counting))
-  (def odds     (filter odd?  counting))
+  (def odds     (filter odd? counting))
 
   (def big      (take 3 (drop 999999999 whole)))
   (def triples  (take 3 (partition 3 whole)))
 
-  (def moby (-> "moby-dick" io/file io/reader line-seq))
+  (def moby     (line-seq
+                  (io/reader
+                    (io/file "moby-dick"))))
 #+END_SRC
 
 * Count
@@ -553,17 +554,17 @@
     - Collections are functions of their keys.
 
 #+BEGIN_SRC clojure
-      ([:a :b :c :d] 3)                             is :d
-      ({:A :T, :C :G, :T :A, :G :C} :T)             is :A
-      (#{"Chico" "Groucho" "Harpo" "Zeppo"} "Karl") is nil
+      ([:a :b :c :d] 3)                     is :d
+      ({:A :T, :C :G, :T :A, :G :C} :T)     is :A
+      (#{"Chico" "Groucho" "Harpo"} "Karl") is nil
 #+END_SRC
 
     - Strings have to be indexed explicitly.
 
 #+BEGIN_SRC clojure
-       (nth "Clojure"  3)                           is \j
-       (get "Clojure"  3)                           is \j
-      ((vec "Clojure") 3)                           is \j
+       (nth "Clojure"  3)                   is \j
+       (get "Clojure"  3)                   is \j
+      ((vec "Clojure") 3)                   is \j
 #+END_SRC
 
 * Syntax
@@ -601,6 +602,71 @@
 
   (when-not (s/valid? ::bucket-name bucket)
     (s/explain ::bucket-name bucket))
+#+END_SRC
+
+* Pipeline macros
+
+  =->= means /compose results at the front/.
+
+#+BEGIN_SRC clojure
+    (-> args
+        ProcessBuilder.
+        .inheritIO
+        .start
+        .waitFor)
+#+END_SRC
+
+  That is equivalent to this.
+
+#+BEGIN_SRC clojure
+    (.waitFor
+      (.start
+        (.inheritIO
+          (ProcessBuilder. args))))
+#+END_SRC
+
+* Pipeline macros
+
+#+BEGIN_SRC clojure
+  (pprint
+    (util/fmap
+      fix
+      (apply
+        merge-with combine-event-seqs
+        (map
+          (partial apply hash-map)
+          (workflow-events
+            (cromwell/metadata
+              env id
+              {:expandSubWorkflows true}))))))
+#+END_SRC
+
+* Pipeline macros
+
+  =->>= means /compose results at the end/.
+
+#+BEGIN_SRC clojure
+  (->> {:expandSubWorkflows true}
+       (cromwell/metadata env id)
+       workflow-events
+       (map (partial apply hash-map))
+       (apply merge-with combine-event-seqs)
+       (util/fmap fix)
+       pprint)
+#+END_SRC
+
+* Pipeline macros
+
+  Insert =,,,= where the prior expression goes.
+
+#+BEGIN_SRC clojure
+  (->> {:expandSubWorkflows true}
+       (cromwell/metadata env id            ,,,)
+       (workflow-events                     ,,,)
+       (map (partial apply hash-map)        ,,,)
+       (apply merge-with combine-event-seqs ,,,)
+       (util/fmap fix                       ,,,)
+       (pprint                              ,,,))
 #+END_SRC
 
 * Printf debugging
