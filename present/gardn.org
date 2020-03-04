@@ -118,7 +118,7 @@
 
   - There is data and the means to transform it.
 
-  - Virtually nothing else is added to get in the way.
+  - Add as little as possible to get in the way.
 
   - Clojure programmers call this "absence of ceremony".
 
