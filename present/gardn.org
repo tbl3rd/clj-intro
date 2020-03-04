@@ -29,6 +29,9 @@
 
   - Compile it into a =.jar= file.
   - Run with =java -jar hello.jar= ... or something.
+  - Debug it with IntelliJ IDEA ... or something.
+
+  - Write, compile, run, read, debug, edit ...
 
 * Hello, world! (Clojure)
 
@@ -40,13 +43,14 @@
 
   - Run as if it were Perl, Python, Ruby, or Shell.
 
-#+BEGIN_EXAMPLE
+#+BEGIN_EXAMPLE sh
     shell # clojure -e '(println "Hello, world!")'
     Hello, world!
     shell #
 #+END_EXAMPLE
 
   - You /can/ build a =.jar= file and run it with =java -jar=.
+  - Run, write, read, edit, read, ...
 
 * Clojure is about the problem
 
@@ -115,6 +119,20 @@
   - Virtually nothing else is added to get in the way.
 
   - Clojure programmers call this "absence of ceremony".
+
+* The programmer cycle
+
+  - Java, Scala, Python, ...
+
+    - Write, compile, run, read, debug, edit ...
+    - Use some *IDE* with its own syntax.
+    - Configure with some other language.
+
+  - Clojure
+
+    - Run, write, read, edit, read, ...
+    - Work within the system as you build it.
+    - Configure with the language you build in.
 
 * The Gardn of EDN
 
@@ -393,6 +411,38 @@
     (if (odd? (rand-int 9) :odd :even))
 #+END_SRC
 
+* More evaluation
+
+#+BEGIN_SRC clojure
+(datomic/q
+  '[:find ?title
+    :in $ ?artist-name
+    :where
+    [?a :artist/name ?artist-name]
+    [?t :track/artists ?a]
+    [?t :track/name ?title]]
+  db "John Lennon")
+#+END_SRC
+
+* More data
+
+#+BEGIN_SRC clojure
+  [... {:db/id 9
+        :artist/name "John Lennon"
+        :band/member ["The Quarrymen"
+                      "The Beatles" ...] ...}
+       {:db/id 23
+        :artist/name     "The Beatles"
+        :band/members    [9 ...]
+        :band/recordings [444 ...] ...}
+       {:db/id 444
+        :album/name   "Revolver"
+        :album/tracks [5050 ...] ...}
+       {:db/id 5050
+        :track/name    "Tomorrow Never Knows"
+        :track/artists [23] ...} ...]
+#+END_SRC
+
 * Functions and macros
 
   =(fn? x)= function tests whether =x= is a function.
@@ -444,6 +494,23 @@
 
     - Sequences are /lazy/.
     - Sequences can be infinitely long ...
+
+* Lazy sequences
+
+#+BEGIN_SRC clojure
+  (range 9)     ;=> (0 1 2 3 4 5 6 7 8)
+
+  (def whole    (range))
+  (def counting (rest whole))
+  (def evens    (filter even? counting))
+  (def odds     (filter odd?  counting))
+
+  (def squares  (map (fn [x] (* x x)) whole))
+  (def big      (take 3 (drop 999999999 whole)))
+  (def triples  (take 3 (partition 3 whole)))
+
+  (def moby (-> "moby-dick" io/file io/reader line-seq))
+#+END_SRC
 
 * Count
 
@@ -498,6 +565,57 @@
 #+END_SRC
 
     Clojure =nil= is Java =null=.  Strings are Java strings.
+
+* Flexible dependent types
+
+#+BEGIN_SRC clojure
+  (def _-? (set "_-"))
+  (def digit? (set "0123456789"))
+  (def lowercase? (set "abcdefghijklmnopqrstuvwxyz"))
+
+  (s/def ::bucket-name
+    (s/and string?
+           (partial every? (set/union _-? digit? lowercase?))
+           (complement (comp _-? first))
+           (complement (comp _-? last))
+           (comp (partial > 64) count)
+           (comp (partial <  2) count)))
+
+  (when-not (s/valid? ::bucket-name bucket)
+    (s/explain ::bucket-name bucket))
+#+END_SRC
+
+* Printf debugging
+
+#+BEGIN_SRC clojure
+    (defmacro dump
+      "Dump [EXPRESSION VALUE]."
+      [expression]
+      `(let [x# ~expression]
+         (do (pprint ['~expression x#])
+             x#)))
+#+END_SRC
+
+  Then the expression =(dump (+ 1 2))= ...
+
+  - outputs the string =[(+ 1 2) 3]=
+  - but still has the value =3=.
+
+* Structured logging with context
+
+#+BEGIN_SRC clojure
+  (defmacro info
+    "Log EXPRESSION and where it comes from."
+    [expression]
+    (let [{:keys [line]} (meta &form)]
+      `(log/info (json/write-str
+                   {'~expression ~expression
+                    :file ~*file* :line ~line}))))
+#+END_SRC
+
+  - =(info stat)= might write the following log record.
+
+  =INFO: {stat: "Failed", file: "zero.clj", line: 23}=
 
 * Thank you
 
