@@ -488,14 +488,14 @@
 
   The Clojure dialog is a loop.
 
-  - Read a scalar or collection expression.
+  - =read= a scalar or collection expression.
 
-  - Evaluate it according to the rules above.
+  - =eval= it according to the rules above.
     - A literal evaluates to itself.
     - A symbol has the value bound to it.
     - A list applies its head to its tail.
 
-  - Print the resulting value, and loop again.
+  - =print= the resulting value, and loop again.
 
 * Sequences
 
@@ -524,7 +524,6 @@
   (def evens    (filter even? counting))
   (def odds     (filter odd?  counting))
 
-  (def squares  (map (fn [x] (* x x)) whole))
   (def big      (take 3 (drop 999999999 whole)))
   (def triples  (take 3 (partition 3 whole)))
 
@@ -578,7 +577,7 @@
 
     Java           . .. new throw try
 
-    Reader Macros  ' ` ~ @ ^ # #(.startswith % "prefix") #tag
+    Reader Macros  ' ` ~ @ ^ # #(.endswith % ".clj") #tag
 
     Conventions    _ *out* zero? swap!
 #+END_SRC
