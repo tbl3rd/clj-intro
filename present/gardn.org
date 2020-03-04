@@ -134,7 +134,7 @@
 
     - Run, write, read, edit, read, edit, read ...
     - Work within the system as you build it.
-    - Manage with the same language and tools.
+    - Manage projects with the same language and tools.
 
 * The Gardn of EDN
 
