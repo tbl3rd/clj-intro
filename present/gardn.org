@@ -31,7 +31,7 @@
   - Run with =java -jar hello.jar= ... or something.
   - Debug it with IntelliJ IDEA ... or something.
 
-  - Write, compile, run, read, debug, edit ...
+  - Write, compile, run, read, debug, edit, compile ...
 
 * Hello, world! (Clojure)
 
@@ -50,7 +50,8 @@
 #+END_EXAMPLE
 
   - You /can/ build a =.jar= file and run it with =java -jar=.
-  - Run, write, read, edit, read, ...
+
+  - Run, write, read, edit, read, edit, read, edit...
 
 * Clojure is about the problem
 
@@ -69,6 +70,7 @@
 #+END_SRC
 
   - No =public class static void main String args System=
+  - Less syntax: =()=, =[]=, ={}=, =.=, and so on.
 
 * Programming: the common view
 
@@ -93,7 +95,7 @@
     - to explore the world and build understanding.
     - to evolve solutions to real human problems.
 
-  - /Goal:/ Understand the world to solve problems.
+  - /Goal:/ Understand the world to solve human problems.
 
 * Clojure: the common view
 
@@ -122,17 +124,17 @@
 
 * The programmer cycle
 
-  - Java, Scala, Python, ...
+  - *Java*, *Scala*, *Python*, ...
 
-    - Write, compile, run, read, debug, edit ...
+    - Write, compile, run, read, debug, edit, compile ...
     - Use some *IDE* with its own syntax.
-    - Configure with some other language.
+    - Manage projects with other languages and tools.
 
-  - Clojure
+  - *Clojure*
 
-    - Run, write, read, edit, read, ...
+    - Run, write, read, edit, read, edit, read ...
     - Work within the system as you build it.
-    - Configure with the language you build in.
+    - Manage with the same language and tools.
 
 * The Gardn of EDN
 
@@ -299,6 +301,23 @@
         1/16 :b :+c 1/8 :+d :b :+c :a :b :g :a]}]
 #+END_SRC
 
+* More data
+
+#+BEGIN_SRC clojure
+  [... [9 :artist/name "John Lennon"]
+       [9 :band/member ["The Quarrymen" "The Beatles"]]
+       ...
+       [23 :artist/name "The Beatles"]
+       [23 :band/members [9 10 11 12]]
+       [23 :band/recordings [444 555 ...]]
+       ...
+       [444 :album/title "Revolver"]
+       [444 :album/tracks [... 5050]]
+       ...
+       [5050 :track/title "Tomorrow Never Knows"]
+       [5050 :track/artists [23 ...]] ...]
+#+END_SRC
+
 * Expressions
 
   - Scalars and collections comprise most expressions.
@@ -441,23 +460,6 @@
        {:db/id 5050
         :track/title    "Tomorrow Never Knows"
         :track/artists [23] ...} ...]
-#+END_SRC
-
-* More data
-
-#+BEGIN_SRC clojure
-  [... [9 :artist/name "John Lennon"]
-       [9 :band/member ["The Quarrymen" "The Beatles"]]
-       ...
-       [23 :artist/name "The Beatles"]
-       [23 :band/members [9 10 11 12]]
-       [23 :band/recordings [444 555 ...]]
-       ...
-       [444 :album/title "Revolver"]
-       [444 :album/tracks [... 5050]]
-       ...
-       [5050 :track/title "Tomorrow Never Knows"]
-       [5050 :track/artists [23 ...]] ...]
 #+END_SRC
 
 * Functions and macros
