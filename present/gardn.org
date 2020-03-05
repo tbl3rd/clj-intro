@@ -102,6 +102,7 @@
   - /Hosted/ means it leverages another technology.
     - Clojure leverages Java and the JVM.
     - Clojurescript leverages Javascript.
+    - The parasite is finding other hosts.
 
   - /Functional/ means it favors expressions
      of immutable data and function composition.
