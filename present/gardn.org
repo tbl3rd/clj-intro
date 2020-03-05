@@ -575,8 +575,9 @@
                   (io/reader
                     (io/file "hiawatha.txt"))))
   (first hiawatha)
-
   "Should you ask me, whence these stories?"
+
+  (first hiawatha)
 #+END_SRC
 
 * Count
