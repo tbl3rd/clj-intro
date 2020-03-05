@@ -91,7 +91,7 @@
     - because they complement innate human abilities.
     - to explore the world and build understanding.
 
-  - /Programs/ communicate that understanding to others.
+  - A /program/ communicates that understanding to others.
 
   - /Goal:/ Share solutions to human problems.
 
