@@ -48,6 +48,8 @@
 #+END_EXAMPLE
 
   - You /can/ build a =.jar= file and run it with =java -jar=.
+  - You can serve it to a browser and run it there.
+  - You can compile to native code (Graal or LLVM).
 
 * Clojure is about the problem
 
