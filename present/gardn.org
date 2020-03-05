@@ -183,16 +183,16 @@
 * Collections
 
 #+BEGIN_SRC clojure
-    Vectors     [0 1 2]  [nil \c :kw "string"]
+    Vectors  [0 1 2]  [nil \c :kw "string"]
 
-                [[env schema :as db]]
+             [[env schema :as db]]
 
-    Sets        #{nil false}  #{0 "" [] :false}
+    Sets     #{nil false}  #{0 "" [] :false}
 
-    Maps        {:a 0 :b 1}  {:keys [env schema] :as db}
+    Maps     {:a 0 :b 1}  {:keys [env schema] :as db}
 
-                {:falsey #{nil false}
-                 :truthy #{0 \space :false "" [] {} #{}}}
+             {:falsey #{nil false}
+              :truthy #{0 \space :false "" [] {} #{}}}
 #+END_SRC
 
    ... and there is one other introduced later.
@@ -200,42 +200,42 @@
 * More collections
 
 #+BEGIN_SRC clojure
-    Vectors     ["Clojure" 0 :to fn?]
+    Vectors  ["Clojure" 0 :to fn?]
 
-                [[env scheme :as db]]
+             [[env scheme :as db]]
 
-                [4 [2 [1 3]] [6 [5 7]]]
+             [4 [2 [1 3]] [6 [5 7]]]
 #+END_SRC
 
 * More collections
 
 #+BEGIN_SRC clojure
-    Vectors     ["Clojure" 0 :to fn?]
+    Vectors  ["Clojure" 0 :to fn?]
 
-                [[env scheme :as db]]
+             [[env scheme :as db]]
 
-                [4 [2 [1 3]] [6 [5 7]]]
+             [4 [2 [1 3]] [6 [5 7]]]
 
-                [         4
-                [    2
-                [  1   3             ]]
-                [              6
-                [            5   7  ]]]
+             [         4
+             [    2
+             [  1   3             ]]
+             [              6
+             [            5   7  ]]]
 #+END_SRC
 * More collections
 
 #+BEGIN_SRC clojure
-    Vectors     ["Clojure" 0 :to fn?]
+    Vectors  ["Clojure" 0 :to fn?]
 
-                [[env scheme :as db]]
+             [[env scheme :as db]]
 
-                [4 [2 [1 3]] [6 [5 7]]]
+             [4 [2 [1 3]] [6 [5 7]]]
 
-                [         4
-                [    2
-                [  1   3             ]]
-                [              6
-                [            5   7  ]]]
+             [         4
+             [    2
+             [  1   3             ]]
+             [              6
+             [            5   7  ]]]
 #+END_SRC
 
     - Every /collection/ is potentially a /tree/.
@@ -243,33 +243,33 @@
 * More collections
 
 #+BEGIN_SRC clojure
-    Maps        {:A :T, :C :G, :T :A, :G :C}
+    Maps     {:A :T, :C :G, :T :A, :G :C}
 
-                {:Title "Montenegro"
-                 :Year 1981
-                 :Rated :R
-                 :Released "09 Oct 1981"
-                 :Director "Dušan Makavejev"}
+             {:Title "Montenegro"
+              :Year 1981
+              :Rated :R
+              :Released "09 Oct 1981"
+              :Director "Dušan Makavejev"}
 
-                {:id 1 :x 7 :y 589 :Δx 24 :Δy 11}
+             {:id 1 :x 7 :y 589 :Δx 24 :Δy 11}
 #+END_SRC
 * More collections
 
 #+BEGIN_SRC clojure
-    Sets        #{"Chico" "Groucho" "Harpo" "Zeppo"}
+    Sets     #{"Chico" "Groucho" "Harpo" "Zeppo"}
 
-    Strings     "A string is a sequence of characters."
+    Strings  "A string is a sequence of characters."
 #+END_SRC
 
     - Everything nests however you like.
 
 #+BEGIN_SRC clojure
-                {[247711 128745 615585] #{ 7 20}
-                 [724475 209311 596076] #{47 35}
-                 [ 49338 359939 906095] #{61   }
-                 [174818 239856 437406] #{ 6 22}
-                 [535936 885819 472347] #{74  9}
-                 [ 70989 376305 883810] #{26 68}}
+             {[247711 128745 615585] #{ 7 20}
+              [724475 209311 596076] #{47 35}
+              [ 49338 359939 906095] #{61   }
+              [174818 239856 437406] #{ 6 22}
+              [535936 885819 472347] #{74  9}
+              [ 70989 376305 883810] #{26 68}}
 #+END_SRC
 
     - Every collection is a tree. Remember?
@@ -446,13 +446,13 @@
   After the following =def= expression is evaluated ...
 
 #+BEGIN_SRC clojure
-      (def beatles #{"George" "John" "Paul" "Ringo"})
+    (def beatles #{"George" "John" "Paul" "Ringo"})
 #+END_SRC
 
   ... the *Symbol* =beatles= has a value that is a *Set*.
 
 #+BEGIN_SRC clojure
-      beatles  is  #{"Ringo" "John" "George" "Paul"}
+    beatles  is  #{"Ringo" "John" "George" "Paul"}
 #+END_SRC
 
 * Functions and macros
@@ -482,9 +482,9 @@
   After the following =def= expression ...
 
 #+BEGIN_SRC clojure
-      (def beatles #{"George" "John" "Paul" "Ringo"})
+    (def beatles #{"George" "John" "Paul" "Ringo"})
 
-      beatles  is  #{"Ringo" "John" "George" "Paul"}
+    beatles  is  #{"Ringo" "John" "George" "Paul"}
 #+END_SRC
 
   =(quote ...)= supresses evaluation of =...=
@@ -498,32 +498,32 @@
 * More evaluation
 
 #+BEGIN_SRC clojure
-         (+ 0 1 2 3)             is  6
-    (fn?  +)                     is  true
-    (fn? (+ 0 1 2 3))            is  false
+       (+ 0 1 2 3)             is  6
+  (fn?  +)                     is  true
+  (fn? (+ 0 1 2 3))            is  false
 
-    (defn add1 [n] (+ 1 n))
-         (add1  2)               is  3
-    (fn?  add1)                  is  true
+  (defn add1 [n] (+ 1 n))
+       (add1  2)               is  3
+  (fn?  add1)                  is  true
 
-    (    (fn [n] (+ 1 n)) 2)     is  3
-    (fn? (fn [n] (+ 1 n))  )     is  true
+  (    (fn [n] (+ 1 n)) 2)     is  3
+  (fn? (fn [n] (+ 1 n))  )     is  true
 
-    (for [x "ab" y "cd"] {x y})
-    (if (odd? (rand-int 9) :odd :even))
+  (apply merge (for [x "ab" y "cd"] {x y}))
+  (if (odd? (rand-int 9) :odd :even))
 #+END_SRC
 
 * More evaluation
 
 #+BEGIN_SRC clojure
-(datomic/q
-  '[:find ?title
-    :in $ ?artist-name
-    :where
-    [?a :artist/name ?artist-name]
-    [?t :track/artists ?a]
-    [?t :track/name ?title]]
-  db "John Lennon")
+    (datomic/q
+      '[:find ?title
+        :in $ ?artist-name
+        :where
+        [?a :artist/name ?artist-name]
+        [?t :track/artists ?a]
+        [?t :track/name ?title]]
+      db "John Lennon")
 #+END_SRC
 
 * More data
@@ -634,25 +634,6 @@
 
     Clojure =nil= is Java =null=.  Strings are Java strings.
 
-* Flexible dependent types
-
-#+BEGIN_SRC clojure
-  (def _-? (set "_-"))
-  (def digit? (set "0123456789"))
-  (def lowercase? (set "abcdefghijklmnopqrstuvwxyz"))
-
-  (s/def ::bucket-name
-    (s/and string?
-           (partial every? (set/union _-? digit? lowercase?))
-           (complement (comp _-? first))
-           (complement (comp _-? last))
-           (comp (partial > 64) count)
-           (comp (partial <  2) count)))
-
-  (when-not (s/valid? ::bucket-name bucket)
-    (s/explain ::bucket-name bucket))
-#+END_SRC
-
 * Pipeline macros
 
 #+BEGIN_SRC clojure
@@ -729,6 +710,25 @@
        (apply merge-with combine-event-seqs ,,,)
        (util/fmap fix                       ,,,)
        (pprint                              ,,,))
+#+END_SRC
+
+* Flexible dependent types
+
+#+BEGIN_SRC clojure
+  (def _-? (set "_-"))
+  (def digit? (set "0123456789"))
+  (def lowercase? (set "abcdefghijklmnopqrstuvwxyz"))
+
+  (s/def ::bucket-name
+    (s/and string?
+           (partial every? (set/union _-? digit? lowercase?))
+           (complement (comp _-? first))
+           (complement (comp _-? last))
+           (comp (partial > 64) count)
+           (comp (partial <  2) count)))
+
+  (when-not (s/valid? ::bucket-name bucket)
+    (s/explain ::bucket-name bucket))
 #+END_SRC
 
 * Printf debugging
