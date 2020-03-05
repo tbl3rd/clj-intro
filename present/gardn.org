@@ -165,7 +165,8 @@
 * Scalars
 
 #+BEGIN_SRC clojure
-    Numbers     23 -7 3.14159 22/7 1/137 6e23 76.0M 285N
+    Numbers     23  -17  2.71828  3.14159  22/7  1/137
+                6e23  76.0M  285N  0xCAFEBABE  36rCRAZY
 
     Characters  \a \b ... \y \z \0 ... \9 \space \newline
 
@@ -277,88 +278,88 @@
 * Data
 
 #+BEGIN_SRC clojure
-[... {:pipeline_version "cfd0c6b"
-      :document_status "Normal"
-      :gvcf_path "gs://broad-gotc-prod-storage/pipeline/..."
-      :regulatory_designation "RESEARCH_ONLY"
-      :project "G102438"
-      :data_type "WGS"
-      :contamination 9.15968E-4
-      :sample_alias "NWD804584"
-      :version 3
-      :location "GCP"
-      :gvcf_size 6465061643
-      :gvcf_md5 "30d3fd47fe6876ed91960dfc319306c5"
-      :analysis_date "2017-11-03T11:47:30.153-04:00"} ...]
+  [... {:pipeline_version "cfd0c6b"
+        :document_status "Normal"
+        :gvcf_path "gs://broad-gotc-prod-storage/pipeline/..."
+        :regulatory_designation "RESEARCH_ONLY"
+        :project "G102438"
+        :data_type "WGS"
+        :contamination 9.15968E-4
+        :sample_alias "NWD804584"
+        :version 3
+        :location "GCP"
+        :gvcf_size 6465061643
+        :gvcf_md5 "30d3fd47fe6876ed91960dfc319306c5"
+        :analysis_date "2017-11-03T11:47:30.153-04:00"} ...]
 #+END_SRC
 
 * More data
 
 #+BEGIN_SRC clojure
-[:html5
- [:head
-  [:title "Home | Compojure Docs"]]
- [:body
-  [:div {:class "container-fluid"}
-   [:div {:class "row-fluid"}
-    [:div {:class "span2 menu"}]
-    [:div {:class "span10 content"}
-     [:h1 "Compojure Docs"]
-     [:ul
-      [:li [:a {:href "/start"} "Getting Started"]]
-      [:li [:a {:href "/routes"} "Routes in Detail"]]
-      [:li [:a {:href "/nesting"} "Nesting Routes"]]]]]]]]
+  [:html5
+   [:head
+    [:title "Home | Compojure Docs"]]
+   [:body
+    [:div {:class "container-fluid"}
+     [:div {:class "row-fluid"}
+      [:div {:class "span2 menu"}]
+      [:div {:class "span10 content"}
+       [:h1 "Compojure Docs"]
+       [:ul
+        [:li [:a {:href "/start"} "Getting Started"]]
+        [:li [:a {:href "/routes"} "Routes in Detail"]]
+        [:li [:a {:href "/nesting"} "Nesting Routes"]]]]]]]]
 #+END_SRC
 
 * More data
 
 #+BEGIN_SRC clojure
-[:vmext:RegisterVimServerParams {:id 7}
- [:vmext:VimServer :name "dvc1-name"
-  [:Description "Got me ..."]
-  [:vmext:Username "lyonst"]
-  [:vmext:Password "password"]
-  [:vmext:Url "https://127.0.0.1"]
-  [:vmext:IsEnabled true]]
- [:vmext:ShieldManager {:id 23} :name "vsm1"
-  [:vmext:Username "vsm1-user"]
-  [:vmext:Password "vsm1-pass"]
-  [:vmext:Url "https://127.0.0.1"]]]
+  [:vmext:RegisterVimServerParams {:id 7}
+   [:vmext:VimServer :name "dvc1-name"
+    [:Description "Got me ..."]
+    [:vmext:Username "lyonst"]
+    [:vmext:Password "password"]
+    [:vmext:Url "https://127.0.0.1"]
+    [:vmext:IsEnabled true]]
+   [:vmext:ShieldManager {:id 23} :name "vsm1"
+    [:vmext:Username "vsm1-user"]
+    [:vmext:Password "vsm1-pass"]
+    [:vmext:Url "https://127.0.0.1"]]]
 #+END_SRC
 
 * More data
 
 #+BEGIN_SRC clojure
-[:piano
- {:octave 4 :tempo 74}
- [1/8 #{:e :f# :-a :-d} :a 1/2 #{:f# :+d}]
- [1/8 #{:-e :e :+c} :a 1/2 #{:e :c}]
- [1/8 #{:e :f# :-a :-d} :a :+d :+c# :+e :+d :b :+c#]
- [1/2 #{:-e :c :a} 1/2 #{:e :c}]]
+  [:piano
+   {:octave 4 :tempo 74}
+   [1/8 #{:e :f# :-a :-d} :a 1/2 #{:f# :+d}]
+   [1/8 #{:-e :e :+c} :a 1/2 #{:e :c}]
+   [1/8 #{:e :f# :-a :-d} :a :+d :+c# :+e :+d :b :+c#]
+   [1/2 #{:-e :c :a} 1/2 #{:e :c}]]
 
-[4/4 #{[:guitar
-        {:octave 3}
-        1/16 :r :r 1/8 :g :r :d :r :g :g :d]
-       [:banjo
-        {:octave 3}
-        1/16 :b :+c 1/8 :+d :b :+c :a :b :g :a]}]
+  [4/4 #{[:guitar
+          {:octave 3}
+          1/16 :r :r 1/8 :g :r :d :r :g :g :d]
+         [:banjo
+          {:octave 3}
+          1/16 :b :+c 1/8 :+d :b :+c :a :b :g :a]}]
 #+END_SRC
 
 * More data
 
 #+BEGIN_SRC clojure
-  [... [9    :artist/name "John Lennon"]
-       [9    :band/member [17 23 42]
-       ...
-       [23   :artist/name "The Beatles"]
-       [23   :band/members [9 10 11 12]]
-       [23   :band/recordings [444 555 ...]]
-       ...
-       [444  :album/title "Revolver"]
-       [444  :album/tracks [... 5050]]
-       ...
-       [5050 :track/title "Tomorrow Never Knows"]
-       [5050 :track/artists [23 ...]] ...]
+  [ ... [9    :artist/name     "John Lennon"]
+        [9    :band/member     [17 23 42]]
+        ...
+        [23   :artist/name     "The Beatles"]
+        [23   :band/members    [9 10 11 12]]
+        [23   :band/recordings [444 555 ...]]
+        ...
+        [444  :album/title     "Revolver"]
+        [444  :album/tracks    [... 5050]]
+        ...
+        [5050 :track/title     "Tomorrow Never Knows"]
+        [5050 :track/artists   [23 ...]] ... ]
 #+END_SRC
 
 * Expressions
@@ -529,19 +530,19 @@
 * More data
 
 #+BEGIN_SRC clojure
-  [... {:db/id 9
-        :artist/name "John Lennon"
-        :band/member [17 23 42] ...} ...
-       {:db/id 23
-        :artist/name     "The Beatles"
-        :band/members    [9 ...]
-        :band/recordings [444 ...] ...} ...
-       {:db/id 444
-        :album/title  "Revolver"
-        :album/tracks [5050 ...] ...} ...
-       {:db/id 5050
-        :track/title   "Tomorrow Never Knows"
-        :track/artists [23] ...} ...]
+  [ ... {:db/id           9
+         :artist/name     "John Lennon"
+         :band/member     [17 23 42] ...} ...
+        {:db/id           23
+         :artist/name     "The Beatles"
+         :band/members    [9 ...]
+         :band/recordings [444 ...] ...} ...
+        {:db/id           444
+         :album/title     "Revolver"
+         :album/tracks    [5050 ...] ...} ...
+        {:db/id           5050
+         :track/title     "Tomorrow Never Knows"
+         :track/artists   [23] ... } ... ]
 #+END_SRC
 
 * Sequences
@@ -637,22 +638,22 @@
 * Pipeline macros
 
 #+BEGIN_SRC clojure
-  (-> {:method  :post ; :debug true
-       :url     url
-       :headers {"X-Auth-Token" token}}
-      http/request :body
-      (json/read-str :key-fn keyword))
-#+END_SRC
-
-  That is exactly equivalent to this.
-
-#+BEGIN_SRC clojure
   (json/read-str
     (:body (http/request
              {:method  :post ; :debug true
               :url     url
               :headers {"X-Auth-Token" token}}))
     :key-fn keyword)
+#+END_SRC
+
+  This is exactly equivalent to that.
+
+#+BEGIN_SRC clojure
+  (-> {:method  :post ; :debug true
+       :url     url
+       :headers {"X-Auth-Token" token}}
+      http/request :body
+      (json/read-str :key-fn keyword))
 #+END_SRC
 
 * Pipeline macros
