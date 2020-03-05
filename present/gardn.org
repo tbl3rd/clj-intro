@@ -68,7 +68,7 @@
 #+END_SRC
 
   - No =public class static void main String args System=
-  - Less other syntax: =()=, =[]=, ={}=, =.=, and so on.
+  - Less other syntax: =()=, =[]=, ={}=, and so on.
 
 * Programming: a common view
 
@@ -91,7 +91,7 @@
     - because they complement innate human abilities.
     - to explore the world and build understanding.
 
-  - A /program/ communicates that understanding to others.
+  - /Programs/ communicate that understanding to others.
 
   - /Goal:/ Share solutions to human problems.
 
