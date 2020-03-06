@@ -121,7 +121,7 @@
 
   - Clojure programmers say, /No ceremony!/
 
-  - Objects? Monads? Operator precedence?
+  - Objects? Classes? Operator precedence?
 
 * Read, Eval, and Print Loop (REPL)
 
@@ -505,26 +505,6 @@
 #+END_SRC
 
   - Functions are values too.
-
-* Functions compute
-
-#+BEGIN_SRC clojure
-((partial + 1) 40 1)                       is 42
-
-(* 7 (count (list list count + - * /)))    is 42
-
-((partial str "forty") \- "two")           is "forty-two"
-
-((comp str inc read-string) "41")          is "42"
-
-(((comp constantly *) 2 3 7) comp * 4 5)   is 42
-
-(((comp constantly inc) 41) :who "cares")  is 42
-
-(fn? ((comp constantly inc) 41))           is true
-
-(take 2 (iterate identity (* 6 7))         is (42 42)
-#+END_SRC
 
 * Quoting
 
