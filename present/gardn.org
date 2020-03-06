@@ -547,7 +547,7 @@
   (    (fn [n] (+ 1 n)) 2)     is  3
   (fn? (fn [n] (+ 1 n))  )     is  true
 
-  (into {} (for [x "ab" y "cd"] [x y]))
+  (into {} (for [x "ab" y [0 1]] [x y])
   (if (odd? (rand-int 9)) :odd :even)
 #+END_SRC
 
