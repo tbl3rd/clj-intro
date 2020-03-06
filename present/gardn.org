@@ -49,7 +49,19 @@
 
   - You /can/ build a =.jar= file and run it with =java -jar=.
   - You can serve it to a browser and run it there.
-  - You can compile to native code (Graal or LLVM).
+  - You can compile to "native" code (Graal or LLVM).
+
+* History
+
+  - [[https://www.youtube.com/watch?v=zPT-DuG0UjU][Rich Hickey]] (BDFL): 30 months of /hammock time/.
+
+  - Released a stable Clojure 1.0 in 2009.
+
+  - Code from 2009 still runs today on 1.10.1.
+
+  - Runs unchanged on every JDK released since 2007.
+
+  - (= Clojure (+ Lisp Data 65-years-experience))
 
 * Clojure is about the problem
 
@@ -78,7 +90,7 @@
 
   - The specification is written in a /programming language/.
 
-  - /Programming/ is writing that specification.
+  - /Programming/ is writing that specification down.
 
   - /Goal:/ Understand computers to build systems.
 
@@ -102,7 +114,6 @@
   - /Hosted/ means it leverages another technology.
     - Clojure leverages Java and the JVM.
     - Clojurescript leverages Javascript.
-    - The parasite is finding other hosts.
 
   - /Functional/ means it favors expressions
      of immutable data and function composition.
@@ -120,8 +131,6 @@
   - Add as little as possible to get in the way.
 
   - Clojure programmers say, /No ceremony!/
-
-  - Objects? Classes? Operator precedence?
 
 * Read, Eval, and Print Loop (REPL)
 
@@ -160,7 +169,7 @@
 
   - All Clojure code is EDN (Clojure) data.
 
-  - EDN has an informal [[https://github.com/edn-format/edn#edn][specification]].
+  - EDN has an informal [[https://github.com/edn-format/edn#edn][specification]], like YAML.
 
   - Code is data, so programming is programmable.
 
