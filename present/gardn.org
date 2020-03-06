@@ -70,7 +70,7 @@
   - No =public class static void main String args System=
   - Less other syntax: =()=, =[]=, ={}=, and so on.
 
-* Programming: a common view
+* Programming is about computers and languages
 
   - Programming is about building systems with computers.
 
@@ -82,7 +82,7 @@
 
   - /Goal:/ Understand computers to build systems.
 
-* Programming: a less common view
+* Programming is about everything
 
   - /Programming/ is dialog with computers about the world.
 
@@ -95,7 +95,7 @@
 
   - /Goal:/ Share solutions to human problems.
 
-* Clojure: the common view
+* Hosted Functional Lisp
 
   - Clojure is a /hosted functional Lisp/.
 
@@ -109,7 +109,7 @@
 
   - /Lisp/ means it is as simple as is practical.
 
-* Clojure: a less common view
+* No ceremony!
 
   - Clojure is a /data-oriented/ programming language.
 
@@ -120,6 +120,8 @@
   - Add as little as possible to get in the way.
 
   - Clojure programmers say, /No ceremony!/
+
+  - Objects? Monads? Operator precedence?
 
 * Read, Eval, and Print Loop (REPL)
 
@@ -132,9 +134,9 @@
     - A symbol has the value bound to it.
     - A list applies its head to its tail.
 
-  - =print= the resulting value, and loop again.
+  - =print= the result, and loop again.
 
-* The programmer cycle
+* The programming cycle
 
   - *Java*, *Scala*, *Python*, ...
 
@@ -165,18 +167,19 @@
 * Scalars
 
 #+BEGIN_SRC clojure
-    Numbers     23  -17  2.71828  3.14159  22/7  1/137
-                6e23  76.0M  285N  0xCAFEBABE  36rCRAZY
+    Numbers   0  23  -17  2.71828  3.14159   6e23  22/7
+              1/137  76.0M  285N  -0070  0xCAFEBABE
+              2r1010  36rCRAZY
 
-    Characters  \a \b ... \y \z \0 ... \9 \space \newline
+    Chars     \a \b ... \y \z \0 ... \9 \space \newline
 
-    Keywords    :keyword :import :require :as :else :keys
+    Keywords  :keyword :import :require :as :else :keys
 
-    Nil         nil
-    Booleans    false true
+    Nil       nil
+    Booleans  false  true
 
-    Strings     "Strings communicate outside a program."
-    Regexs      #"/"      #"\s+"     #"[0-9a-fA-f]*"
+    Strings   "Strings communicate outside a program."
+    Regexs    #"/"      #"\s+"     #"[0-9a-fA-f]*"
 #+END_SRC
 
   ... and there is one other scalar introduced later.
@@ -273,7 +276,7 @@
               [ 70989 376305 883810] #{26 68}}
 #+END_SRC
 
-    - Every collection is a tree. Remember?
+    - Collections are trees. Remember?
 
 * Data
 
@@ -330,20 +333,21 @@
 * More data
 
 #+BEGIN_SRC clojure
-  [:piano
-   {:octave 4 :tempo 74}
+  [:piano {:octave 4 :tempo 74}
    [1/8 #{:e :f# :-a :-d} :a 1/2 #{:f# :+d}]
    [1/8 #{:-e :e :+c} :a 1/2 #{:e :c}]
    [1/8 #{:e :f# :-a :-d} :a :+d :+c# :+e :+d :b :+c#]
    [1/2 #{:-e :c :a} 1/2 #{:e :c}]]
 
-  [4/4 #{[:guitar
-          {:octave 3}
+  [4/4 #{[:guitar {:octave 3}
           1/16 :r :r 1/8 :g :r :d :r :g :g :d]
-         [:banjo
-          {:octave 3}
+         [:banjo {:octave 3}
           1/16 :b :+c 1/8 :+d :b :+c :a :b :g :a]}]
 #+END_SRC
+
+  - Why vectors?
+  - Why maps?
+  - Why sets?
 
 * More data
 
@@ -442,7 +446,7 @@
 
 * Symbol evaluation
 
-  Symbols get values via =def= or =fn= binding expressions.
+  Symbols get values via =def= or =fn= /binding/ expressions.
 
   After the following =def= expression is evaluated ...
 
@@ -455,6 +459,28 @@
 #+BEGIN_SRC clojure
     beatles  is  #{"Ringo" "John" "George" "Paul"}
 #+END_SRC
+
+  A symbol is a name for some value.
+
+  Like a /variable/ except that it does not vary.
+
+* Conjuring collections
+
+#+BEGIN_SRC clojure
+  (def marx [:chico :groucho :harpo])
+
+  (conj marx :zeppo)    is  [:chico :groucho :harpo :zeppo]
+  (conj marx :gummo)    is  [:chico :groucho :harpo :gummo]
+  (conj marx :karl)     is  [:chico :groucho :harpo :karl]
+  (assoc marx 1 :karl)  is  [:chico :karl    :harpo]
+  (replace marx [0 2])  is  [:chico          :harpo]
+
+  marx                  is  [:chico :groucho :harpo]
+#+END_SRC
+
+  - Collections are values, just like scalars.
+  - All values are immutable.
+  - No value changes.
 
 * Functions and macros
 
@@ -510,7 +536,7 @@
   (    (fn [n] (+ 1 n)) 2)     is  3
   (fn? (fn [n] (+ 1 n))  )     is  true
 
-  (apply merge (for [x "ab" y "cd"] {x y}))
+  (into {} (for [x "ab" y "cd"] [x y]))
   (if (odd? (rand-int 9) :odd :even))
 #+END_SRC
 
