@@ -63,7 +63,7 @@
 
   - (= Clojure (+ Lisp Data 65-years-experience))
 
-* Clojure is about the problem
+* Keep it about the problem
 
   - Compare Java to Clojure.
 
@@ -548,7 +548,7 @@
   (fn? (fn [n] (+ 1 n))  )     is  true
 
   (into {} (for [x "ab" y "cd"] [x y]))
-  (if (odd? (rand-int 9) :odd :even))
+  (if (odd? (rand-int 9)) :odd :even)
 #+END_SRC
 
 * More evaluation
