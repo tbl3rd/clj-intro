@@ -451,7 +451,7 @@
       (rest  (list 0 1 2 3 4 5))  is   (1 2 3 4 5)
 #+END_SRC
 
-  The value of a list is "its head /applied/ to its tail".
+  To =eval= a list, =apply= its head to its tail.
 
 * Symbol evaluation
 
