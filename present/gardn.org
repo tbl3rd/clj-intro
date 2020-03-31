@@ -453,8 +453,6 @@
 
   To =eval= a list, =apply= its head to its tail.
 
-* Symbol evaluation
-
   Symbols get values via =def= or =fn= /binding/ expressions.
 
   After the following =def= expression is evaluated ...

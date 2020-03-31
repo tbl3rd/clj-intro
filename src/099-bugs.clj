@@ -26,3 +26,21 @@
   (sort-by key {:a  0 "b" 1})
   (sort-by key {"a" 0 :b  1})
   )
+
+;; Some values don't print like they read because their types differ.
+;;
+(keyword "k")                           ; => :k
+(symbol ":k")                           ; => :k
+(= (keyword "k") (symbol ":k"))         ; => false
+(map type [(keyword "k") (symbol ":k")])
+;; => (clojure.lang.Keyword clojure.lang.Symbol)
+
+;; And some values are just different though they look the same.
+;;
+(keyword "b" "c")                       ; => :b/c
+(keyword "b/c")                         ; => :b/c
+(keyword nil "b/c")                     ; => :b/c
+(= (keyword "b" "c") (keyword "b/c") (keyword nil "b/c"))
+;; => false
+(map type [(keyword "b" "c") (keyword "b/c") (keyword nil "b/c")])
+;; => (clojure.lang.Keyword clojure.lang.Keyword clojure.lang.Keyword)
