@@ -40,7 +40,9 @@
 (keyword "b" "c")                       ; => :b/c
 (keyword "b/c")                         ; => :b/c
 (keyword nil "b/c")                     ; => :b/c
-(= (keyword "b" "c") (keyword "b/c") (keyword nil "b/c"))
+(= (keyword "b" "c") (keyword "b/c"))   ; => true
+(= (keyword nil "b/c") (keyword "b/c")) ; => false
+(= (keyword nil "b/c") (keyword "b" "c"))
 ;; => false
 (map type [(keyword "b" "c") (keyword "b/c") (keyword nil "b/c")])
 ;; => (clojure.lang.Keyword clojure.lang.Keyword clojure.lang.Keyword)
