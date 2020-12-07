@@ -72,7 +72,7 @@ pair                                    ; => {\A \T \C \G \G \C \T \A}
 
 [(rand-nth ACGT) (rand-nth ACGT)]       ; => [\G \A]
 
-(def strand (repeatedly (fn [] (rand-nth ACGT))))
+(def strand (repeatedly (partial rand-nth ACGT)))
 (string (take 23 strand))               ; => "TCTGTCCCCGTAGACAAGACGTT"
 (string (take 23 (map pair strand)))    ; => "AGACAGGGGCATCTGTTCTGCAA"
 
