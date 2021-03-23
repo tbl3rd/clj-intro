@@ -621,13 +621,13 @@
   =count= counts items in a collection.
 
 #+BEGIN_SRC clojure
+    (count "count counts")   is 12
     (count #{:a :b :c :d})   is  4
     (count       [0 1 2] )   is  3
     (count      [[0 1 2]])   is  1
-    (count      [[0  [2]]])  is  1
     (count      [0 [1 2]])   is  2
     (count      [       ])   is  0
-    (count      [[][][] ])   is  3
+    (count      [ [] [] ])   is  2
     (count (set [[][][]]))   is  1
     (count  { :a 0 :b 1 })   is  2
     (count  [count count])   is  2
