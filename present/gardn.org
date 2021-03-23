@@ -699,9 +699,9 @@
   (-> {:method  :post ; :debug true
        :url     url
        :headers {"X-Auth-Token" token}}
-      (http/request                      ,,,)
-      (:body                             ,,,)
-      (json/read-str :key-fn keyword     ,,,))
+      (http/request  ,,,)
+      (:body         ,,,)
+      (json/read-str ,,, :key-fn keyword))
 #+END_SRC
 
 * Pipeline macros
