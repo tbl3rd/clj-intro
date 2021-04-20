@@ -9,19 +9,19 @@
 ;; DEF binds a symbol to a value.  Here we bind the value 23 to the
 ;; symbol TWENTY-THREE.
 
-(def twenty-three 23)                   ;-=> #'boot.user/twenty-three
+(def twenty-three 23)                   ;-=> #'user/twenty-three
 twenty-three                            ;-=> 23
 
 ;; Here we bind the symbol ODDS to all the odd integers and TWO-ODDS
 ;; to the first 2 ODDS.
 
-(def odds (filter odd? (range)))        ;-=> #'boot.user/odds
-(def two-odds (take 2 odds))            ;-=> #'boot.user/two-odds
+(def odds (filter odd? (range)))        ;-=> #'user/odds
+(def two-odds (take 2 odds))            ;-=> #'user/two-odds
 two-odds                                ;-=> (1 3)
 
 ;; Here we bind the symbol LOJURE to a vector of characters.
 
-(def lojure (vec (rest "Clojure")))     ;-=> #'boot.user/lojure
+(def lojure (vec (rest "Clojure")))     ;-=> #'user/lojure
 lojure                                  ;-=> [\l \o \j \u \r \e]
 
 ;; The place where DEF symbols are bound is called a NAMESPACE.
@@ -33,8 +33,8 @@ lojure                                  ;-=> [\l \o \j \u \r \e]
 ;; Clojure Read-Eval Print Loop (REPL) for us to experiment in.  The
 ;; value of the current namespace is always bound to the symbol *NS*.
 
-*ns*                                    ;-=> #namespace[boot.user]
-(ns-name *ns*)                          ;-=> boot.user
+*ns*                                    ;-=> #namespace[user]
+(ns-name *ns*)                          ;-=> user
 
 ;; The NS-NAME function returns the name of its namespace argument.
 ;; Note that the name of a namespace is a symbol.
@@ -43,7 +43,7 @@ lojure                                  ;-=> [\l \o \j \u \r \e]
 ;; called a VAR.  The VAR is that weird value the REPL prints after
 ;; evaluating a DEF form.
 
-(def twenty-three 23)                   ;-=> #'boot.user/twenty-three
+(def twenty-three 23)                   ;-=> #'user/twenty-three
 
 ;; DEF is a macro over VAR.  The first argument to DEF is always a
 ;; symbol.  That symbol is bound to the following value in a VAR and
@@ -52,14 +52,14 @@ lojure                                  ;-=> [\l \o \j \u \r \e]
 ;; The part to the left of the / in the VAR is its namespace.  When
 ;; evaluated, the symbol to the right of the / is evaluated in the
 ;; context of the namespace to the left.  We say "the value 23 is
-;; bound to the symbol TWENTY-THREE in the BOOT.USER namespace".
+;; bound to the symbol TWENTY-THREE in the USER namespace".
 
 ;; Similar to symbols, keywords can also be bound to a particular
 ;; namespace.
 
 :global                                 ;-=> :global
-:boot.user/local                        ;-=> :boot.user/local
-::local                                 ;-=> :boot.user/local
+:user/local                             ;-=> :user/local
+::local                                 ;-=> :user/local
 
 ;; The double-colon in ::local is just an abbreviation for "the
 ;; keyword :local in the current namespace".  The value of ::local

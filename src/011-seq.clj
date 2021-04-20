@@ -40,7 +40,7 @@
 (range 10)                              ;-=> (0 1 2 3 4 5 6 7 8 9)
 (range 3 8)                             ;-=> (3 4 5 6 7)
 (range 0 10 3)                          ;-=> (0 3 6 9)
-(def whole (range))                     ;-=> #'boot.user/whole
+(def whole (range))                     ;-=> #'user/whole
 
 ;; What is WHOLE?  WHOLE is the positive integers starting at 0.
 

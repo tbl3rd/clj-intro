@@ -103,12 +103,12 @@
       (println (slurp "mary.txt"))
       (println (slurp "fnord.txt"))
       :ok)
-    (catch java.lang.Exception boot.user/x
-      (clojure.core/println "Caught:" boot.user/x)))
+    (catch java.lang.Exception user/x
+      (clojure.core/println "Caught:" user/x)))
   )
 
 ;; Our exception symbol X is interpreted as bound in the surrounding
-;; BOOT.USER namespace instead of as local to the macro expansion.
+;; USER namespace instead of as local to the macro expansion.
 ;; We can work around that with GENSYM (GENerate a SYMbol).
 
 (gensym)                                ;-=> G__10912
