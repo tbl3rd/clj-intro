@@ -56,7 +56,7 @@
 
 {:safe   #{:get     :head               ; Map of "safe" ...
            :options :trace}             ; ... and "unsafe" ...
- :unsafe #{:delete  :patch              ; ... http methods.
+ :unsafe #{:delete  :patch              ; ... HTTP methods.
            :post    :put}}
 
 [:html5                                 ; HTML
