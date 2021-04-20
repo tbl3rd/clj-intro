@@ -51,10 +51,10 @@
 ;; For example, LIST is a symbol whose value is a function, and that
 ;; function constructs a list of its TAIL values.
 
-list                     ;-=> #function[clojure.lang.PersistentList/1]
-(list 0 1 2)             ;-=> (0 1 2)
-(list list)              ;-=> (#function[clojure.lang.PersistentList/1])
-(list fn?)               ;-=> (#function[clojure.core/fn?])
+list           ;-=> #function[clojure.lang.PersistentList/Primordial]
+(list 0 1 2)   ;-=> (0 1 2)
+(list list)    ;-=> (#function[clojure.lang.PersistentList/Primordial])
+(list fn?)     ;-=> (#function[clojure.core/fn?])
 ((first (list fn? + - count)) list)     ;-=> true
 ((first (list list fn? +)) 0 1 2)       ;-=> (0 1 2)
 
