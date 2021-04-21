@@ -85,8 +85,8 @@ beatles                                     ;=> #{:george :ringo :paul :john}
 ;; equality".  Use '==' when you know you're comparing numbers and
 ;; your code will probably run a bit faster with fewer surprises.
 
-(=  1 1/1)                              ;=> true
-(=  1 1.0)                              ;=> false
+(=  1 1.0    )                          ;=> false
+(=  1     1/1)                          ;=> true
 (== 1 1.0 1/1)                          ;=> true
 
 ;; Also note that if you use Clojure to access the host language
