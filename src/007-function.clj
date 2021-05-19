@@ -84,7 +84,8 @@
 ;;
 ;; ((COMP F G) X) is exactly equivalent to (F (G X)), but COMP lets
 ;; you talk about the composition of F and G without worrying about
-;; the parameters F and G take, such as X.
+;; the parameters F and G take, such as X.  This is sometimes called
+;; "point-free" notation in F-word languages.
 
 ;; MAP takes the function that is the value of its first argument,
 ;; applies that function to the sequences of values that are the
