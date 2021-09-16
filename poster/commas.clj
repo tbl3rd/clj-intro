@@ -1,3 +1,8 @@
+"We will waste 45 minutes writing a do-nothing program in a
+ 60-year-old programming language.  The program explains a
+ mistake made by 2 physicists in 1957.  (And don't miss the
+ lame joke at the end.)  Luncheon will be served as usual."
+
 (ns commas
   "CODES WITHOUT COMMAS -- with apologies to F.H.C. Crick et al")
 
