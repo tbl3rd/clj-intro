@@ -24,7 +24,7 @@
 ;; those arguments.
 
 (+ 1 2)                                 ; add 1 to 2
-(fn [n] (+ 1 n))                        ; add 1 to N
+( fn [n] (+ 1 n))                       ; add 1 to N
 ((fn [n] (+ 1 n)) 2)                    ; n is 2 so return 3
 ((fn [n] (+ 1 n)) ((fn [n] (+ 1 n)) 2)) ; Add 1 and add 1 again.
 
