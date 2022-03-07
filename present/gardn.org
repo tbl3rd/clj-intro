@@ -198,7 +198,6 @@
 #+BEGIN_SRC clojure
     Vectors  [0 1 2]  [nil \c :kw "string"]
 
-             [[env schema :as db]]
 
     Sets     #{nil false}  #{0 "" [] :false}
 
