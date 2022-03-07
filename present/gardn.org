@@ -115,8 +115,8 @@
     - Clojure leverages Java and the JVM.
     - Clojurescript leverages Javascript.
 
-  - /Functional/ means it favors expressions
-     of immutable data and function composition.
+  - /Functional/ favors composing functions
+    over immutable data.
 
   - /Lisp/ means it is as simple as is practical.
 
