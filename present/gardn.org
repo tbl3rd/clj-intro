@@ -525,7 +525,7 @@
 
   =quote= is so useful that it gets its own syntax.
 
-  ='beatles= is =(quote beatles)= which is just =beatles=
+  'beatles is =(quote beatles)= which is just =beatles=
 
   =quote= is to macros as =identity= is to functions.
 
