@@ -691,7 +691,7 @@
 
 * Pipeline macros
 
-  Insert =,,,= where the prior expression goes.
+  Insert ,,, where the prior expression goes.
 
 #+BEGIN_SRC clojure
   (-> {:method  :post ; :debug true
