@@ -54,17 +54,17 @@ lojure                                  ;-=> [\l \o \j \u \r \e]
 ;; context of the namespace to the left.  We say "the value 23 is
 ;; bound to the symbol TWENTY-THREE in the USER namespace".
 
-;; Similar to symbols, keywords can also be bound to a particular
-;; namespace.
+;; Similar to symbols, keywords can be "qualified" with a prefix
+;; before the /.
 
 :global                                 ;-=> :global
 :user/local                             ;-=> :user/local
 ::local                                 ;-=> :user/local
 
 ;; The double-colon in ::local is just an abbreviation for "the
-;; keyword :local in the current namespace".  The value of ::local
-;; depends on the namespace in which it is evaluated, as opposed
-;; to :global whose value is the same :global everywhere.
+;; keyword :local qualified by the current namespace".  The value
+;; of ::local depends on the namespace in which it is evaluated, as
+;; opposed to :global whose value is the same :global everywhere.
 
 ;; Namespaces are the main unit of code organization in Clojure.
 
