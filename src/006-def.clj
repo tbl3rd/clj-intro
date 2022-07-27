@@ -37,7 +37,7 @@ lojure                                  ;-=> [\l \o \j \u \r \e]
 (ns-name *ns*)                          ;-=> user
 
 ;; The NS-NAME function returns the name of its namespace argument.
-;; Note that the name of a namespace is a symbol.
+;; Note that NS-NAME returns a symbol.
 
 ;; The binding of a symbol to a value in a namespace is sometimes
 ;; called a VAR.  The VAR is that weird value the REPL prints after
