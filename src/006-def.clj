@@ -62,9 +62,10 @@ lojure                                  ;-=> [\l \o \j \u \r \e]
 ::local                                 ;-=> :user/local
 
 ;; The double-colon in ::local is just an abbreviation for "the
-;; keyword :local qualified by the current namespace".  The value
-;; of ::local depends on the namespace in which it is evaluated, as
-;; opposed to :global whose value is the same :global everywhere.
+;; keyword :local qualified by the current namespace" (that is, *ns*).
+;; The value of ::local depends on the namespace in which it is
+;; evaluated, as opposed to :global whose value is the same :global
+;; everywhere.
 
 ;; Namespaces are the main unit of code organization in Clojure.
 
