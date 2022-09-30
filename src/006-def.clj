@@ -78,8 +78,8 @@ String                                  ;-=> java.lang.String
 ;; Any other symbol known to the program can be referenced explicitly
 ;; with a NAMESPACE/NAME symbol.
 
-;; Clojure defines an NS macro to specify and determine which symbols
-;; are bound in a namespace.
+;; Clojure defines an NS macro to specify which symbols are bound in a
+;; namespace.
 
 ;; Namespaces allow Clojure programs to use libraries and grow without
 ;; code in one part of the program interfering with, perhaps unknown,
