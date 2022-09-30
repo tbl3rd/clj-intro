@@ -42,7 +42,7 @@
 ;; in the list.  A list's FIRST expression is often called its HEAD.
 ;; The REST of the list is occasionally called its TAIL.
 
-;; As in life, a list's HEAD determines how its TAIL is evaluated.
+;; As in life, a list's HEAD determines how its TAIL is used.
 
 ;; Usually, the HEAD is a SYMBOL or another LIST whose value is a
 ;; function.  Occasionally the HEAD is a symbol that names a MACRO.

@@ -2,7 +2,7 @@
 
 ;;-=> ["Clojure" 0 :to #function[clojure.core/fn?]]
 
-"Where ;-=> means has the value.  That's just me, not Clojure."
+"Where ;-=> means 'has the value'.  That's just me, not Clojure."
 
 "What happened to the '; an introduction'?"
 
